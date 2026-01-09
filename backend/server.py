@@ -33,7 +33,7 @@ resend.api_key = os.environ.get('RESEND_API_KEY', '')
 SENDER_EMAIL = os.environ.get('SENDER_EMAIL', 'onboarding@resend.dev')
 
 # Create the main app
-app = FastAPI(title="Economizaí API", version="1.0.0")
+app = FastAPI(title="Economize Bem API", version="1.0.0")
 api_router = APIRouter(prefix="/api")
 security = HTTPBearer()
 
@@ -191,15 +191,15 @@ async def forgot_password(data: ForgotPassword, background_tasks: BackgroundTask
     reset_link = f"{os.environ.get('FRONTEND_URL', 'http://localhost:3000')}/reset-password?token={reset_token}"
     html = f"""
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h2 style="color: #10b981;">Economizaí - Recuperação de Senha</h2>
+        <h2 style="color: #0ea5e9;">Economize Bem - Recuperação de Senha</h2>
         <p>Olá {user['name']},</p>
         <p>Você solicitou a recuperação de senha. Clique no link abaixo para criar uma nova senha:</p>
-        <a href="{reset_link}" style="display: inline-block; padding: 12px 24px; background-color: #10b981; color: white; text-decoration: none; border-radius: 8px; margin: 16px 0;">Redefinir Senha</a>
+        <a href="{reset_link}" style="display: inline-block; padding: 12px 24px; background-color: #0ea5e9; color: white; text-decoration: none; border-radius: 8px; margin: 16px 0;">Redefinir Senha</a>
         <p style="color: #666; font-size: 14px;">Este link expira em 1 hora.</p>
         <p style="color: #666; font-size: 14px;">Se você não solicitou esta recuperação, ignore este e-mail.</p>
     </div>
     """
-    background_tasks.add_task(send_email, data.email, "Recuperação de Senha - Economizaí", html)
+    background_tasks.add_task(send_email, data.email, "Recuperação de Senha - Economize Bem", html)
     return {"message": "Se o e-mail existir, você receberá um link de recuperação"}
 
 @api_router.post("/auth/reset-password")
@@ -513,7 +513,7 @@ async def get_streaming_plans(min_screens: Optional[int] = None, max_price: Opti
 
 @api_router.get("/")
 async def root():
-    return {"message": "Economizaí API", "version": "1.0.0"}
+    return {"message": "Economize Bem API", "version": "1.0.0"}
 
 @api_router.get("/health")
 async def health():
