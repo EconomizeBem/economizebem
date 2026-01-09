@@ -1,0 +1,166 @@
+{
+  "design_system": {
+    "name": "Economizaí Design System",
+    "archetype": "Soft Utility",
+    "description": "A friendly, accessible, and trustworthy aesthetic that bridges the gap between complex financial data and lay users. It combines the precision of Swiss design with the warmth of consumer apps.",
+    "typography": {
+      "font_family": {
+        "heading": "Manrope, sans-serif",
+        "body": "Public Sans, sans-serif",
+        "mono": "JetBrains Mono, monospace"
+      },
+      "scale": {
+        "h1": "text-4xl md:text-6xl font-bold tracking-tight",
+        "h2": "text-3xl md:text-4xl font-semibold tracking-tight",
+        "h3": "text-2xl md:text-3xl font-semibold",
+        "body_large": "text-lg md:text-xl leading-relaxed",
+        "body_default": "text-base leading-relaxed",
+        "caption": "text-sm text-muted-foreground"
+      }
+    },
+    "colors": {
+      "palette": {
+        "primary": {
+          "name": "Savings Emerald",
+          "50": "#ecfdf5",
+          "100": "#d1fae5",
+          "500": "#10b981",
+          "600": "#059669",
+          "700": "#047857",
+          "900": "#064e3b",
+          "DEFAULT": "hsl(158, 64%, 52%)",
+          "foreground": "hsl(0, 0%, 100%)"
+        },
+        "secondary": {
+          "name": "Trust Indigo",
+          "50": "#eef2ff",
+          "100": "#e0e7ff",
+          "500": "#6366f1",
+          "900": "#312e81",
+          "DEFAULT": "hsl(235, 80%, 60%)",
+          "foreground": "hsl(0, 0%, 100%)"
+        },
+        "accent": {
+          "name": "Alert Amber",
+          "DEFAULT": "hsl(45, 93%, 47%)",
+          "foreground": "hsl(0, 0%, 9%)"
+        },
+        "background": {
+          "light": "#fafafa",
+          "dark": "#09090b"
+        },
+        "surface": {
+          "light": "#ffffff",
+          "dark": "#18181b"
+        }
+      },
+      "usage": {
+        "primary_action": "bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-600/20",
+        "secondary_action": "bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white",
+        "alert": "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300 border-amber-200 dark:border-amber-800"
+      }
+    },
+    "spacing": {
+      "container_padding": "px-4 md:px-8 lg:px-12",
+      "section_gap": "gap-12 md:gap-24",
+      "card_padding": "p-6 md:p-8"
+    },
+    "visual_enhancers": {
+      "radius": "rounded-xl",
+      "shadows": {
+        "card": "shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300",
+        "float": "shadow-[0_20px_40px_-12px_rgba(0,0,0,0.15)]"
+      },
+      "glassmorphism": "bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border border-white/20 dark:border-white/10",
+      "gradients": {
+        "hero": "bg-gradient-to-br from-emerald-50 to-indigo-50 dark:from-emerald-950/30 dark:to-indigo-950/30",
+        "text": "bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-500"
+      }
+    }
+  },
+  "layout_strategies": {
+    "marketing_page": {
+      "grid": "grid grid-cols-1 md:grid-cols-12 gap-8",
+      "hero_section": "col-span-full min-h-[80vh] flex items-center justify-center relative overflow-hidden",
+      "feature_grid": "grid grid-cols-1 md:grid-cols-3 gap-8"
+    },
+    "dashboard": {
+      "grid": "grid grid-cols-1 md:grid-cols-4 gap-6",
+      "sidebar": "hidden md:block col-span-1 h-screen sticky top-0",
+      "main_content": "col-span-1 md:col-span-3 space-y-8"
+    },
+    "comparison_table": {
+      "wrapper": "w-full overflow-x-auto rounded-xl border border-zinc-200 dark:border-zinc-800",
+      "table": "w-full text-left text-sm",
+      "header_cell": "p-4 font-semibold bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 sticky left-0",
+      "data_cell": "p-4 border-b border-zinc-100 dark:border-zinc-800"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "h-12 px-8 rounded-full font-semibold transition-transform active:scale-95",
+      "ghost": "h-10 px-4 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+    },
+    "cards": {
+      "product": "group relative bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden hover:border-emerald-500/50 transition-colors",
+      "plan": "flex flex-col p-8 rounded-2xl border-2 border-zinc-100 dark:border-zinc-800 hover:border-emerald-500 hover:shadow-xl transition-all relative"
+    },
+    "inputs": {
+      "search_bar": "h-14 pl-12 pr-4 rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 shadow-sm focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 w-full text-lg transition-all"
+    }
+  },
+  "assets": {
+    "logos": {
+      "amazon": "https://images.unsplash.com/photo-1704204656144-3dd12c110dd8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzB8MHwxfHNlYXJjaHwzfHxBbWF6b24lMjBsb2dvJTIwd2hpdGUlMjBiYWNrZ3JvdW5kfGVufDB8fHx8MTc2Nzk2NzU1N3ww&ixlib=rb-4.1.0&q=85",
+      "netflix": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzF8MHwxfHNlYXJjaHwxfHxOZXRmbGl4JTIwbG9nb3xlbnwwfHx8fDE3Njc5Njc1NjJ8MA&ixlib=rb-4.1.0&q=85",
+      "generic_store": "https://images.unsplash.com/photo-1728300250509-f7b954491905?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1NzZ8MHwxfHNlYXJjaHwxfHxNZXJjYWRvJTIwTGl2cmUlMjBsb2dvfGVufDB8fHx8MTc2Nzk2NzU1OXww&ixlib=rb-4.1.0&q=85",
+      "generic_tech": "https://images.unsplash.com/photo-1644984875410-e11486d2b94f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHwyfHxTaG9wZWUlMjBsb2dvfGVufDB8fHx8MTc2Nzk2NzU2MXww&ixlib=rb-4.1.0&q=85"
+    },
+    "images": {
+      "hero_family": "https://images.unsplash.com/photo-1590214873614-1e1b613d542c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDJ8MHwxfHNlYXJjaHwxfHxoYXBweSUyMGJyYXppbGlhbiUyMGZhbWlseSUyMHNhdmluZyUyMG1vbmV5fGVufDB8fHx8MTc2Nzk2NzU0NHww&ixlib=rb-4.1.0&q=85",
+      "product_phone": "https://images.unsplash.com/photo-1758186334264-d1ab8a079aa2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBzbWFydHBob25lJTIwcHJvZHVjdCUyMHNob3QlMjB3aGl0ZSUyMGJhY2tncm91bmR8ZW58MHx8fHwxNzY3OTY3NTQ1fDA&ixlib=rb-4.1.0&q=85",
+      "product_tv": "https://images.unsplash.com/photo-1757774636367-d03962a019f7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwxfHxzbWFydCUyMHR2JTIwcHJvZHVjdCUyMHNob3QlMjB3aGl0ZSUyMGJhY2tncm91bmR8ZW58MHx8fHwxNzY3OTY3NTQ3fDA&ixlib=rb-4.1.0&q=85"
+    }
+  },
+  "instructions_to_main_agent": {
+    "general": [
+      "Use 'Manrope' for all headings to give a friendly, modern feel.",
+      "Use 'Public Sans' for body text for maximum readability.",
+      "Implement a 'Dark/Light' toggle in the navbar immediately.",
+      "Use the 'Savings Emerald' color (#10b981) for all primary CTAs (Sign Up, Compare Now).",
+      "Ensure all price tags are large, bold, and clearly visible (e.g., text-2xl font-bold text-emerald-600).",
+      "Use 'Lucide React' for icons (e.g., <Search />, <TrendingUp />, <ShieldCheck />)."
+    ],
+    "pages": {
+      "home": "Create a hero section with the 'hero_family' image on the right and a large value prop on the left. Add a floating search bar in the center.",
+      "comparison": "Use a 3-column layout for plans. Highlight the 'Best Value' plan with a 'Savings Emerald' border and a 'Most Popular' badge.",
+      "dashboard": "Keep it simple. Show 'Total Saved' as the hero metric. Use a simple list for 'Recent Alerts'."
+    },
+    "accessibility": [
+      "Ensure text contrast is at least 4.5:1.",
+      "All images must have alt text.",
+      "Interactive elements must have focus states (ring-2 ring-emerald-500)."
+    ]
+  },
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "You tend to converge toward generic, 'on distribution' outputs. In frontend design, this creates what users call the 'AI slop' aesthetic. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy",
+    "Use glass-morphism effects with backdrop filters (12-24px blur)",
+    "You MUST NOT apply universal transition. Eg: transition: all. This results in breaking transforms. Always add transitions for specific interactive elements like button, input excluding transforms",
+    "You MUST NOT center align the app container, ie do not add .App { text-align: center; } in the css file. This disrupts the human natural reading flow of text",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations & color relevant to the app style",
+    "NEVER: use AI assistant Emoji characters like 🤖🧠💭💡🔮🎯📚🎭🎬🎪🎉🎊🎁🎀🎂🍰🎈🎨🎰💰💵💳🏦💎🪙💸🤑📊📈📉💹🔢🏆🥇 etc for icons.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations. Static = dead.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Subtle grain textures, noise overlays, custom cursors, selection states, and loading animations: separates good from extraordinary.",
+    "Main agent relies on these image URLs. Missing categories (especially sponsor logos) = main agent will use placeholder text which is FORBIDDEN",
+    "Prioritize using pre-existing components from src/components/ui when applicable",
+    "Create new components that match the style and conventions of existing components when needed",
+    "Examine existing components to understand the project's component patterns before creating new ones",
+    "Components MUST use named exports (export const ComponentName = ...)",
+    "Pages MUST use default exports (export default function PageName() {...})",
+    "Use 'sonner' for toasts. Sonner component are located in /app/src/components/ui/sonner.tsx"
+  ]
+}
