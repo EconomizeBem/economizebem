@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
-import { TrendingUp, Mail, Lock, User, ArrowRight } from 'lucide-react';
+import { Wallet, Mail, Lock, User, ArrowRight } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function LoginPage() {
@@ -37,12 +37,12 @@ export default function LoginPage() {
             <div className="w-full max-w-md">
                 {/* Logo */}
                 <div className="text-center mb-8">
-                    <Link to="/" className="inline-flex items-center gap-2">
-                        <div className="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center">
-                            <TrendingUp className="w-6 h-6 text-white" />
+                    <Link to="/" className="inline-flex items-center gap-2.5">
+                        <div className="w-10 h-10 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center shadow-lg shadow-sky-500/25">
+                            <Wallet className="w-6 h-6 text-white" />
                         </div>
-                        <span className="text-2xl font-bold font-['Manrope']">
-                            Economiza<span className="text-emerald-600">í</span>
+                        <span className="text-2xl logo-text">
+                            Economize<span className="text-sky-500">Bem</span>
                         </span>
                     </Link>
                 </div>
@@ -73,7 +73,7 @@ export default function LoginPage() {
                             <div className="space-y-2">
                                 <div className="flex justify-between">
                                     <Label htmlFor="password">Senha</Label>
-                                    <Link to="/forgot-password" className="text-sm text-emerald-600 hover:underline">
+                                    <Link to="/forgot-password" className="text-sm text-sky-500 hover:underline">
                                         Esqueceu a senha?
                                     </Link>
                                 </div>
@@ -91,7 +91,7 @@ export default function LoginPage() {
                                 </div>
                             </div>
 
-                            <Button type="submit" className="w-full btn-primary h-12" disabled={loading} data-testid="login-submit">
+                            <Button type="submit" className="w-full btn-primary h-12 rounded-xl" disabled={loading} data-testid="login-submit">
                                 {loading ? 'Entrando...' : 'Entrar'}
                                 <ArrowRight className="w-4 h-4 ml-2" />
                             </Button>
@@ -100,7 +100,7 @@ export default function LoginPage() {
                         <div className="mt-6 text-center">
                             <p className="text-muted-foreground">
                                 Não tem uma conta?{' '}
-                                <Link to="/register" className="text-emerald-600 font-medium hover:underline">
+                                <Link to="/register" className="text-sky-500 font-medium hover:underline">
                                     Criar conta gratuita
                                 </Link>
                             </p>
@@ -149,12 +149,12 @@ export function RegisterPage() {
             <div className="w-full max-w-md">
                 {/* Logo */}
                 <div className="text-center mb-8">
-                    <Link to="/" className="inline-flex items-center gap-2">
-                        <div className="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center">
-                            <TrendingUp className="w-6 h-6 text-white" />
+                    <Link to="/" className="inline-flex items-center gap-2.5">
+                        <div className="w-10 h-10 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center shadow-lg shadow-sky-500/25">
+                            <Wallet className="w-6 h-6 text-white" />
                         </div>
-                        <span className="text-2xl font-bold font-['Manrope']">
-                            Economiza<span className="text-emerald-600">í</span>
+                        <span className="text-2xl logo-text">
+                            Economize<span className="text-sky-500">Bem</span>
                         </span>
                     </Link>
                 </div>
@@ -230,7 +230,7 @@ export function RegisterPage() {
                                 </div>
                             </div>
 
-                            <Button type="submit" className="w-full btn-primary h-12" disabled={loading} data-testid="register-submit">
+                            <Button type="submit" className="w-full btn-primary h-12 rounded-xl" disabled={loading} data-testid="register-submit">
                                 {loading ? 'Criando conta...' : 'Criar conta'}
                                 <ArrowRight className="w-4 h-4 ml-2" />
                             </Button>
@@ -239,7 +239,7 @@ export function RegisterPage() {
                         <div className="mt-6 text-center">
                             <p className="text-muted-foreground">
                                 Já tem uma conta?{' '}
-                                <Link to="/login" className="text-emerald-600 font-medium hover:underline">
+                                <Link to="/login" className="text-sky-500 font-medium hover:underline">
                                     Fazer login
                                 </Link>
                             </p>
@@ -279,12 +279,12 @@ export function ForgotPasswordPage() {
         <div className="min-h-screen flex items-center justify-center py-12 px-4" data-testid="forgot-password-page">
             <div className="w-full max-w-md">
                 <div className="text-center mb-8">
-                    <Link to="/" className="inline-flex items-center gap-2">
-                        <div className="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center">
-                            <TrendingUp className="w-6 h-6 text-white" />
+                    <Link to="/" className="inline-flex items-center gap-2.5">
+                        <div className="w-10 h-10 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center shadow-lg shadow-sky-500/25">
+                            <Wallet className="w-6 h-6 text-white" />
                         </div>
-                        <span className="text-2xl font-bold font-['Manrope']">
-                            Economiza<span className="text-emerald-600">í</span>
+                        <span className="text-2xl logo-text">
+                            Economize<span className="text-sky-500">Bem</span>
                         </span>
                     </Link>
                 </div>
@@ -302,8 +302,8 @@ export function ForgotPasswordPage() {
                     <CardContent>
                         {sent ? (
                             <div className="text-center py-4">
-                                <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <Mail className="w-8 h-8 text-emerald-600" />
+                                <div className="w-16 h-16 bg-sky-100 dark:bg-sky-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <Mail className="w-8 h-8 text-sky-500" />
                                 </div>
                                 <p className="text-muted-foreground mb-4">
                                     Se o e-mail existir em nossa base, você receberá um link para redefinir sua senha.
@@ -330,12 +330,12 @@ export function ForgotPasswordPage() {
                                     </div>
                                 </div>
 
-                                <Button type="submit" className="w-full btn-primary h-12" disabled={loading} data-testid="submit-btn">
+                                <Button type="submit" className="w-full btn-primary h-12 rounded-xl" disabled={loading} data-testid="submit-btn">
                                     {loading ? 'Enviando...' : 'Enviar link'}
                                 </Button>
 
                                 <div className="text-center">
-                                    <Link to="/login" className="text-sm text-emerald-600 hover:underline">
+                                    <Link to="/login" className="text-sm text-sky-500 hover:underline">
                                         Voltar para login
                                     </Link>
                                 </div>
@@ -402,12 +402,12 @@ export function ResetPasswordPage() {
         <div className="min-h-screen flex items-center justify-center py-12 px-4" data-testid="reset-password-page">
             <div className="w-full max-w-md">
                 <div className="text-center mb-8">
-                    <Link to="/" className="inline-flex items-center gap-2">
-                        <div className="w-10 h-10 bg-emerald-600 rounded-lg flex items-center justify-center">
-                            <TrendingUp className="w-6 h-6 text-white" />
+                    <Link to="/" className="inline-flex items-center gap-2.5">
+                        <div className="w-10 h-10 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center shadow-lg shadow-sky-500/25">
+                            <Wallet className="w-6 h-6 text-white" />
                         </div>
-                        <span className="text-2xl font-bold font-['Manrope']">
-                            Economiza<span className="text-emerald-600">í</span>
+                        <span className="text-2xl logo-text">
+                            Economize<span className="text-sky-500">Bem</span>
                         </span>
                     </Link>
                 </div>
@@ -451,7 +451,7 @@ export function ResetPasswordPage() {
                                 </div>
                             </div>
 
-                            <Button type="submit" className="w-full btn-primary h-12" disabled={loading} data-testid="submit-btn">
+                            <Button type="submit" className="w-full btn-primary h-12 rounded-xl" disabled={loading} data-testid="submit-btn">
                                 {loading ? 'Salvando...' : 'Salvar nova senha'}
                             </Button>
                         </form>
