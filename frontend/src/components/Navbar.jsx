@@ -20,7 +20,7 @@ import {
     Heart, 
     Bell, 
     Settings,
-    TrendingUp,
+    Wallet,
     LayoutDashboard
 } from 'lucide-react';
 
@@ -49,12 +49,12 @@ export const Navbar = () => {
         <header className="sticky top-0 z-50 w-full glass-effect" data-testid="navbar">
             <nav className="container-main h-16 flex items-center justify-between">
                 {/* Logo */}
-                <Link to="/" className="flex items-center gap-2" data-testid="logo-link">
-                    <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
-                        <TrendingUp className="w-5 h-5 text-white" />
+                <Link to="/" className="flex items-center gap-2.5" data-testid="logo-link">
+                    <div className="w-9 h-9 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center shadow-lg shadow-sky-500/25">
+                        <Wallet className="w-5 h-5 text-white" />
                     </div>
-                    <span className="text-xl font-bold font-['Manrope']">
-                        Economiza<span className="text-emerald-600">í</span>
+                    <span className="text-xl logo-text">
+                        Economize<span className="text-sky-500">Bem</span>
                     </span>
                 </Link>
 
@@ -64,8 +64,8 @@ export const Navbar = () => {
                         <Link
                             key={link.href}
                             to={link.href}
-                            className={`text-sm font-medium transition-colors hover:text-emerald-600 ${
-                                isActive(link.href) ? 'text-emerald-600 nav-link-active' : 'text-muted-foreground'
+                            className={`text-sm font-medium transition-colors hover:text-sky-500 ${
+                                isActive(link.href) ? 'text-sky-500 nav-link-active' : 'text-muted-foreground'
                             }`}
                             data-testid={`nav-${link.label.toLowerCase().replace(' ', '-')}`}
                         >
@@ -154,7 +154,7 @@ export const Navbar = () => {
                                         to={link.href}
                                         onClick={() => setMobileOpen(false)}
                                         className={`text-lg font-medium ${
-                                            isActive(link.href) ? 'text-emerald-600' : ''
+                                            isActive(link.href) ? 'text-sky-500' : ''
                                         }`}
                                     >
                                         {link.label}

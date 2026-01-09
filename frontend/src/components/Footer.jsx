@@ -1,19 +1,19 @@
 import { Link } from 'react-router-dom';
-import { TrendingUp, Mail, Github, Linkedin } from 'lucide-react';
+import { Wallet, Mail } from 'lucide-react';
 
 export const Footer = () => {
     return (
-        <footer className="border-t bg-zinc-50 dark:bg-zinc-950" data-testid="footer">
+        <footer className="border-t bg-slate-50 dark:bg-slate-950" data-testid="footer">
             <div className="container-main py-12">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     {/* Brand */}
                     <div className="col-span-1 md:col-span-2">
-                        <div className="flex items-center gap-2 mb-4">
-                            <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
-                                <TrendingUp className="w-5 h-5 text-white" />
+                        <div className="flex items-center gap-2.5 mb-4">
+                            <div className="w-9 h-9 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center">
+                                <Wallet className="w-5 h-5 text-white" />
                             </div>
-                            <span className="text-xl font-bold font-['Manrope']">
-                                Economiza<span className="text-emerald-600">í</span>
+                            <span className="text-xl logo-text">
+                                Economize<span className="text-sky-500">Bem</span>
                             </span>
                         </div>
                         <p className="text-muted-foreground max-w-sm">
@@ -25,9 +25,9 @@ export const Footer = () => {
                     <div>
                         <h4 className="font-semibold mb-4">Navegação</h4>
                         <ul className="space-y-2 text-muted-foreground">
-                            <li><Link to="/products" className="hover:text-emerald-600 transition-colors">Comparar Produtos</Link></li>
-                            <li><Link to="/plans" className="hover:text-emerald-600 transition-colors">Comparar Planos</Link></li>
-                            <li><Link to="/calculator" className="hover:text-emerald-600 transition-colors">Calculadora</Link></li>
+                            <li><Link to="/products" className="hover:text-sky-500 transition-colors">Comparar Produtos</Link></li>
+                            <li><Link to="/plans" className="hover:text-sky-500 transition-colors">Comparar Planos</Link></li>
+                            <li><Link to="/calculator" className="hover:text-sky-500 transition-colors">Calculadora</Link></li>
                         </ul>
                     </div>
 
@@ -37,7 +37,7 @@ export const Footer = () => {
                         <ul className="space-y-2 text-muted-foreground">
                             <li className="flex items-center gap-2">
                                 <Mail className="w-4 h-4" />
-                                <span>contato@economizai.com.br</span>
+                                <span>contato@economizebem.com.br</span>
                             </li>
                         </ul>
                     </div>
@@ -47,11 +47,11 @@ export const Footer = () => {
 
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-sm text-muted-foreground">
-                        © 2024 Economizaí. Todos os direitos reservados.
+                        © 2024 EconomizeBem. Todos os direitos reservados.
                     </p>
                     <div className="flex items-center gap-4 text-muted-foreground">
-                        <Link to="#" className="hover:text-emerald-600 transition-colors">Termos de Uso</Link>
-                        <Link to="#" className="hover:text-emerald-600 transition-colors">Privacidade</Link>
+                        <Link to="#" className="hover:text-sky-500 transition-colors">Termos de Uso</Link>
+                        <Link to="#" className="hover:text-sky-500 transition-colors">Privacidade</Link>
                     </div>
                 </div>
             </div>
