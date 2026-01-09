@@ -55,8 +55,8 @@ export const PlanCard = ({ plan, type, onFavoriteChange }) => {
         <div 
             className={`flex flex-col p-6 rounded-2xl border-2 transition-all duration-300 hover:shadow-xl ${
                 plan.popular 
-                    ? 'border-emerald-500 plan-card-popular' 
-                    : 'border-zinc-200 dark:border-zinc-800 hover:border-emerald-500/50'
+                    ? 'border-sky-500 plan-card-popular' 
+                    : 'border-slate-200 dark:border-slate-800 hover:border-sky-500/50'
             }`}
             data-testid={`plan-card-${plan.id}`}
         >
@@ -64,7 +64,7 @@ export const PlanCard = ({ plan, type, onFavoriteChange }) => {
             <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
                     <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                        plan.popular ? 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30' : 'bg-zinc-100 dark:bg-zinc-800'
+                        plan.popular ? 'bg-sky-100 text-sky-600 dark:bg-sky-900/30' : 'bg-slate-100 dark:bg-slate-800'
                     }`}>
                         {getPlanIcon(type)}
                     </div>
@@ -81,7 +81,7 @@ export const PlanCard = ({ plan, type, onFavoriteChange }) => {
 
             {/* Main Metric */}
             <div className="text-center py-6 border-y border-dashed">
-                <div className="text-4xl font-bold text-emerald-600 mb-1">
+                <div className="text-4xl font-bold text-sky-500 mb-1">
                     {getMainMetric()}
                 </div>
                 <div className="flex items-baseline justify-center gap-1">
@@ -94,7 +94,7 @@ export const PlanCard = ({ plan, type, onFavoriteChange }) => {
             <ul className="space-y-3 py-6 flex-1">
                 {plan.features?.map((feature, idx) => (
                     <li key={idx} className="flex items-center gap-2 text-sm">
-                        <Check className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                        <Check className="w-4 h-4 text-sky-500 flex-shrink-0" />
                         <span>{feature}</span>
                     </li>
                 ))}
@@ -106,8 +106,8 @@ export const PlanCard = ({ plan, type, onFavoriteChange }) => {
                     </li>
                 )}
                 {plan.loyalty_months === 0 && (
-                    <li className="flex items-center gap-2 text-sm text-emerald-600">
-                        <Badge variant="outline" className="border-emerald-500 text-emerald-600">
+                    <li className="flex items-center gap-2 text-sm text-sky-600">
+                        <Badge variant="outline" className="border-sky-500 text-sky-600">
                             Sem fidelidade
                         </Badge>
                     </li>
@@ -117,7 +117,7 @@ export const PlanCard = ({ plan, type, onFavoriteChange }) => {
             {/* Actions */}
             <div className="flex gap-2">
                 <Button 
-                    className={`flex-1 rounded-full ${plan.popular ? 'btn-primary' : 'btn-secondary'}`}
+                    className={`flex-1 rounded-xl ${plan.popular ? 'btn-primary' : 'btn-secondary'}`}
                     data-testid="contract-button"
                 >
                     Contratar
@@ -125,7 +125,7 @@ export const PlanCard = ({ plan, type, onFavoriteChange }) => {
                 <Button
                     variant="outline"
                     size="icon"
-                    className="rounded-full"
+                    className="rounded-xl"
                     onClick={handleFavorite}
                     data-testid="favorite-plan-button"
                 >

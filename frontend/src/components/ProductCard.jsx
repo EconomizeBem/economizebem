@@ -86,7 +86,7 @@ export const ProductCard = ({ product, onFavoriteChange }) => {
                 )}
 
                 {/* Image */}
-                <div className="aspect-square p-4 bg-zinc-50 dark:bg-zinc-900">
+                <div className="aspect-square p-4 bg-slate-50 dark:bg-slate-900">
                     <img 
                         src={product.image} 
                         alt={product.name}
@@ -123,7 +123,7 @@ export const ProductCard = ({ product, onFavoriteChange }) => {
                             <Truck className="w-4 h-4" />
                             <span>{bestStore?.shipping === 0 ? 'Frete grátis' : `R$ ${bestStore?.shipping}`}</span>
                         </div>
-                        <span className="font-medium text-emerald-600">{bestStore?.store}</span>
+                        <span className="font-medium text-sky-600">{bestStore?.store}</span>
                     </div>
 
                     {/* Store comparisons */}
@@ -134,7 +134,7 @@ export const ProductCard = ({ product, onFavoriteChange }) => {
                                 <Badge 
                                     key={idx} 
                                     variant={store.price === product.best_price ? "default" : "secondary"}
-                                    className={store.price === product.best_price ? "bg-emerald-600" : ""}
+                                    className={store.price === product.best_price ? "bg-sky-500" : ""}
                                 >
                                     {store.store}: R$ {store.price?.toLocaleString('pt-BR')}
                                 </Badge>
@@ -145,7 +145,7 @@ export const ProductCard = ({ product, onFavoriteChange }) => {
                     {/* Actions */}
                     <div className="flex gap-2 pt-2">
                         <Button 
-                            className="flex-1 btn-primary rounded-full"
+                            className="flex-1 btn-primary rounded-xl"
                             onClick={() => window.open(bestStore?.url, '_blank')}
                             data-testid="buy-button"
                         >
@@ -155,7 +155,7 @@ export const ProductCard = ({ product, onFavoriteChange }) => {
                         <Button
                             variant="outline"
                             size="icon"
-                            className={`rounded-full border-2 transition-all ${isFavorited ? 'border-red-500 bg-red-50 dark:bg-red-950/30' : 'hover:border-red-300 hover:bg-red-50 dark:hover:bg-red-950/20'}`}
+                            className={`rounded-xl border-2 transition-all ${isFavorited ? 'border-red-500 bg-red-50 dark:bg-red-950/30' : 'hover:border-red-300 hover:bg-red-50 dark:hover:bg-red-950/20'}`}
                             onClick={handleFavorite}
                             data-testid="favorite-button"
                             aria-label={isFavorited ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
@@ -166,7 +166,7 @@ export const ProductCard = ({ product, onFavoriteChange }) => {
                         <Button
                             variant="outline"
                             size="icon"
-                            className="rounded-full border-2 hover:border-amber-300 hover:bg-amber-50 dark:hover:bg-amber-950/20"
+                            className="rounded-xl border-2 hover:border-amber-300 hover:bg-amber-50 dark:hover:bg-amber-950/20"
                             onClick={() => setAlertDialogOpen(true)}
                             data-testid="alert-button"
                             aria-label="Criar alerta de preço"
