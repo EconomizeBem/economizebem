@@ -1,10 +1,19 @@
-# Economizaí - Product Requirements Document
+# EconomizeBem - Product Requirements Document
 
 ## Visão Geral
 Plataforma web brasileira de comparação de preços, planos e ferramentas financeiras focada em economia para o usuário final.
 
+**Domínio**: economizebem.com.br
+
 ## Problem Statement Original
 Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade pública e economia para o usuário final. O site deve ser simples de usar, visualmente limpo e pensado para pessoas leigas.
+
+## Identidade Visual
+- **Nome**: EconomizeBem
+- **Cor Principal**: Sky Blue (#0ea5e9)
+- **Cor Secundária**: Violet (#8b5cf6)
+- **Fontes**: Outfit (headings), Inter (body)
+- **Suporte**: Dark/Light mode
 
 ## User Personas
 1. **Consumidor Consciente**: Busca melhores preços antes de comprar
@@ -43,6 +52,12 @@ Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade púb
 - Componentes reutilizáveis com Shadcn UI
 - Gráficos com Recharts (pizza para gastos)
 - Navegação responsiva com menu mobile
+
+### Rebrand (v1.1)
+- Nome alterado de "Economizaí" para "EconomizeBem"
+- Identidade visual atualizada (verde → azul sky)
+- Logo com ícone de carteira (Wallet)
+- Nova paleta de cores consistente em toda aplicação
 
 ## Prioritized Backlog
 
