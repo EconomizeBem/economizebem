@@ -155,23 +155,25 @@ export const ProductCard = ({ product, onFavoriteChange }) => {
                         <Button
                             variant="outline"
                             size="icon"
-                            className="rounded-full"
+                            className={`rounded-full border-2 transition-all ${isFavorited ? 'border-red-500 bg-red-50 dark:bg-red-950/30' : 'hover:border-red-300 hover:bg-red-50 dark:hover:bg-red-950/20'}`}
                             onClick={handleFavorite}
                             data-testid="favorite-button"
+                            aria-label={isFavorited ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
+                            title={isFavorited ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
                         >
-                            <Heart className={`w-4 h-4 ${isFavorited ? 'fill-red-500 text-red-500' : ''}`} />
+                            <Heart className={`w-4 h-4 ${isFavorited ? 'fill-red-500 text-red-500' : 'text-red-400'}`} />
                         </Button>
-                        {isAuthenticated && (
-                            <Button
-                                variant="outline"
-                                size="icon"
-                                className="rounded-full"
-                                onClick={() => setAlertDialogOpen(true)}
-                                data-testid="alert-button"
-                            >
-                                <TrendingDown className="w-4 h-4" />
-                            </Button>
-                        )}
+                        <Button
+                            variant="outline"
+                            size="icon"
+                            className="rounded-full border-2 hover:border-amber-300 hover:bg-amber-50 dark:hover:bg-amber-950/20"
+                            onClick={() => setAlertDialogOpen(true)}
+                            data-testid="alert-button"
+                            aria-label="Criar alerta de preço"
+                            title="Criar alerta de preço"
+                        >
+                            <TrendingDown className="w-4 h-4 text-amber-500" />
+                        </Button>
                     </div>
                 </div>
             </div>
