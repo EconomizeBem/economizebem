@@ -14,7 +14,7 @@ import { EmptyState } from '../components/EmptyState';
 
 const expenseCategories = [
     { id: 'aluguel', name: 'Aluguel', color: '#ef4444' },
-    { id: 'agua', name: 'Água', color: '#3b82f6' },
+    { id: 'agua', name: 'Água', color: '#0ea5e9' },
     { id: 'luz', name: 'Luz', color: '#eab308' },
     { id: 'internet', name: 'Internet', color: '#8b5cf6' },
     { id: 'mercado', name: 'Mercado', color: '#22c55e' },
@@ -406,17 +406,17 @@ export default function CalculatorPage() {
                             </Card>
 
                             {simulatorResult && (
-                                <Card className={simulatorResult.recommendation === 'À vista' ? 'border-emerald-500' : 'border-amber-500'}>
+                                <Card className={simulatorResult.recommendation === 'À vista' ? 'border-sky-500' : 'border-amber-500'}>
                                     <CardHeader>
                                         <CardTitle className="flex items-center gap-2">
-                                            <TrendingUp className={`w-5 h-5 ${simulatorResult.recommendation === 'À vista' ? 'text-emerald-500' : 'text-amber-500'}`} />
+                                            <TrendingUp className={`w-5 h-5 ${simulatorResult.recommendation === 'À vista' ? 'text-sky-500' : 'text-amber-500'}`} />
                                             Resultado
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent className="space-y-4">
                                         <div className="p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900">
                                             <p className="text-sm text-muted-foreground">Recomendação</p>
-                                            <p className={`text-2xl font-bold ${simulatorResult.recommendation === 'À vista' ? 'text-emerald-600' : 'text-amber-600'}`}>
+                                            <p className={`text-2xl font-bold ${simulatorResult.recommendation === 'À vista' ? 'text-sky-600' : 'text-amber-600'}`}>
                                                 Comprar {simulatorResult.recommendation}
                                             </p>
                                         </div>
@@ -435,7 +435,7 @@ export default function CalculatorPage() {
                                             </div>
                                             <div>
                                                 <p className="text-sm text-muted-foreground">Economia</p>
-                                                <p className={`text-lg font-semibold ${simulatorResult.difference > 0 ? 'text-emerald-600' : 'text-amber-600'}`}>
+                                                <p className={`text-lg font-semibold ${simulatorResult.difference > 0 ? 'text-sky-600' : 'text-amber-600'}`}>
                                                     R$ {simulatorResult.savings.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                                                 </p>
                                             </div>
@@ -480,17 +480,17 @@ export default function CalculatorPage() {
                             </Card>
 
                             {netSalary && (
-                                <Card className="border-emerald-500">
+                                <Card className="border-sky-500">
                                     <CardHeader>
                                         <CardTitle className="flex items-center gap-2">
-                                            <DollarSign className="w-5 h-5 text-emerald-500" />
+                                            <DollarSign className="w-5 h-5 text-sky-500" />
                                             Resultado
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent className="space-y-4">
-                                        <div className="p-4 rounded-lg bg-emerald-50 dark:bg-emerald-900/20">
+                                        <div className="p-4 rounded-lg bg-sky-50 dark:bg-sky-900/20">
                                             <p className="text-sm text-muted-foreground">Salário Líquido Estimado</p>
-                                            <p className="text-3xl font-bold text-emerald-600">
+                                            <p className="text-3xl font-bold text-sky-600">
                                                 R$ {netSalary.net.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                                             </p>
                                         </div>
