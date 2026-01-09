@@ -59,8 +59,8 @@ export default function DashboardLayout() {
                             <CardContent className="p-4">
                                 {/* User Info */}
                                 <div className="flex items-center gap-3 p-4 mb-4 rounded-lg bg-zinc-50 dark:bg-zinc-900">
-                                    <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
-                                        <User className="w-6 h-6 text-emerald-600" />
+                                    <div className="w-12 h-12 rounded-full bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center">
+                                        <User className="w-6 h-6 text-sky-600" />
                                     </div>
                                     <div>
                                         <p className="font-semibold">{user?.name}</p>
@@ -78,8 +78,8 @@ export default function DashboardLayout() {
                                                 to={link.href}
                                                 className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
                                                     isActive 
-                                                        ? 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600' 
-                                                        : 'hover:bg-zinc-50 dark:hover:bg-zinc-900'
+                                                        ? 'bg-sky-50 dark:bg-sky-900/20 text-sky-600' 
+                                                        : 'hover:bg-slate-50 dark:hover:bg-slate-900'
                                                 }`}
                                             >
                                                 <link.icon className="w-5 h-5" />
@@ -164,8 +164,8 @@ export function DashboardOverview() {
                 <Card>
                     <CardContent className="p-6">
                         <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
-                                <TrendingUp className="w-6 h-6 text-emerald-500" />
+                            <div className="w-12 h-12 rounded-xl bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center">
+                                <TrendingUp className="w-6 h-6 text-sky-500" />
                             </div>
                             <div>
                                 <p className="text-2xl font-bold">R$ 0</p>
@@ -280,7 +280,7 @@ export function DashboardFavorites() {
                                                 />
                                                 <div>
                                                     <p className="font-medium">{item.name}</p>
-                                                    <p className="text-emerald-600 font-semibold">
+                                                    <p className="text-sky-600 font-semibold">
                                                         R$ {item.best_price?.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                                                     </p>
                                                 </div>
