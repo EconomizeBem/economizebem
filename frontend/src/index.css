@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,62 +7,62 @@
 @layer base {
     :root {
         --background: 0 0% 98%;
-        --foreground: 240 10% 3.9%;
+        --foreground: 222 47% 11%;
         --card: 0 0% 100%;
-        --card-foreground: 240 10% 3.9%;
+        --card-foreground: 222 47% 11%;
         --popover: 0 0% 100%;
-        --popover-foreground: 240 10% 3.9%;
-        --primary: 158 64% 52%;
+        --popover-foreground: 222 47% 11%;
+        --primary: 199 89% 48%;
         --primary-foreground: 0 0% 100%;
-        --secondary: 235 80% 60%;
+        --secondary: 262 83% 58%;
         --secondary-foreground: 0 0% 100%;
-        --muted: 240 4.8% 95.9%;
-        --muted-foreground: 240 3.8% 46.1%;
-        --accent: 45 93% 47%;
+        --muted: 210 40% 96%;
+        --muted-foreground: 215 16% 47%;
+        --accent: 38 92% 50%;
         --accent-foreground: 0 0% 9%;
-        --destructive: 0 84.2% 60.2%;
+        --destructive: 0 84% 60%;
         --destructive-foreground: 0 0% 98%;
-        --border: 240 5.9% 90%;
-        --input: 240 5.9% 90%;
-        --ring: 158 64% 52%;
-        --chart-1: 158 64% 52%;
-        --chart-2: 235 80% 60%;
-        --chart-3: 45 93% 47%;
+        --border: 214 32% 91%;
+        --input: 214 32% 91%;
+        --ring: 199 89% 48%;
+        --chart-1: 199 89% 48%;
+        --chart-2: 262 83% 58%;
+        --chart-3: 38 92% 50%;
         --chart-4: 340 75% 55%;
-        --chart-5: 200 70% 50%;
+        --chart-5: 160 60% 45%;
         --radius: 0.75rem;
-        --emerald-500: #10b981;
-        --emerald-600: #059669;
-        --emerald-700: #047857;
-        --indigo-500: #6366f1;
-        --indigo-600: #4f46e5;
+        --sky-500: #0ea5e9;
+        --sky-600: #0284c7;
+        --sky-700: #0369a1;
+        --violet-500: #8b5cf6;
+        --violet-600: #7c3aed;
     }
     
     .dark {
-        --background: 240 10% 3.9%;
-        --foreground: 0 0% 98%;
-        --card: 240 10% 8%;
-        --card-foreground: 0 0% 98%;
-        --popover: 240 10% 8%;
-        --popover-foreground: 0 0% 98%;
-        --primary: 158 64% 52%;
+        --background: 222 47% 6%;
+        --foreground: 210 40% 98%;
+        --card: 222 47% 9%;
+        --card-foreground: 210 40% 98%;
+        --popover: 222 47% 9%;
+        --popover-foreground: 210 40% 98%;
+        --primary: 199 89% 48%;
         --primary-foreground: 0 0% 100%;
-        --secondary: 235 80% 60%;
+        --secondary: 262 83% 58%;
         --secondary-foreground: 0 0% 100%;
-        --muted: 240 3.7% 15.9%;
-        --muted-foreground: 240 5% 64.9%;
-        --accent: 45 93% 47%;
+        --muted: 217 33% 17%;
+        --muted-foreground: 215 20% 65%;
+        --accent: 38 92% 50%;
         --accent-foreground: 0 0% 9%;
-        --destructive: 0 62.8% 30.6%;
+        --destructive: 0 62% 30%;
         --destructive-foreground: 0 0% 98%;
-        --border: 240 3.7% 20%;
-        --input: 240 3.7% 20%;
-        --ring: 158 64% 52%;
-        --chart-1: 158 64% 52%;
-        --chart-2: 235 80% 60%;
-        --chart-3: 45 93% 47%;
+        --border: 217 33% 20%;
+        --input: 217 33% 20%;
+        --ring: 199 89% 48%;
+        --chart-1: 199 89% 48%;
+        --chart-2: 262 83% 58%;
+        --chart-3: 38 92% 50%;
         --chart-4: 340 75% 55%;
-        --chart-5: 200 70% 50%;
+        --chart-5: 160 60% 45%;
     }
 }
 
@@ -77,11 +77,11 @@
     
     body {
         @apply bg-background text-foreground antialiased;
-        font-family: 'Public Sans', sans-serif;
+        font-family: 'Inter', sans-serif;
     }
     
     h1, h2, h3, h4, h5, h6 {
-        font-family: 'Manrope', sans-serif;
+        font-family: 'Outfit', sans-serif;
     }
     
     code, pre {
@@ -91,31 +91,35 @@
 
 @layer utilities {
     .text-gradient {
-        @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-500;
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-sky-500 to-violet-500;
+    }
+    
+    .text-gradient-warm {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-sky-500 to-cyan-400;
     }
     
     .glass-effect {
-        @apply bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border border-white/20 dark:border-white/10;
+        @apply bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border border-white/20 dark:border-white/10;
     }
     
     .card-hover {
-        @apply shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300;
+        @apply shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_32px_rgba(14,165,233,0.15)] transition-all duration-300;
     }
     
     .btn-primary {
-        @apply bg-emerald-600 hover:bg-emerald-700 text-white shadow-lg shadow-emerald-600/20 transition-all duration-200 active:scale-95;
+        @apply bg-sky-500 hover:bg-sky-600 text-white shadow-lg shadow-sky-500/25 transition-all duration-200 active:scale-95;
     }
     
     .btn-secondary {
-        @apply bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white transition-colors duration-200;
+        @apply bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-900 dark:text-white transition-colors duration-200;
     }
     
     .input-search {
-        @apply h-14 pl-12 pr-4 rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 shadow-sm focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 w-full text-lg transition-colors duration-200;
+        @apply h-14 pl-12 pr-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-sm focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 w-full text-lg transition-colors duration-200;
     }
     
     .price-highlight {
-        @apply text-2xl font-bold text-emerald-600 dark:text-emerald-400;
+        @apply text-2xl font-bold text-sky-600 dark:text-sky-400;
     }
     
     .fade-in {
@@ -128,6 +132,10 @@
     
     .scale-in {
         animation: scaleIn 0.3s ease-out forwards;
+    }
+    
+    .float-animation {
+        animation: float 6s ease-in-out infinite;
     }
 }
 
@@ -158,6 +166,11 @@
     }
 }
 
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
@@ -169,16 +182,16 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    @apply bg-zinc-300 dark:bg-zinc-700 rounded-full;
+    @apply bg-slate-300 dark:bg-slate-700 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    @apply bg-zinc-400 dark:bg-zinc-600;
+    @apply bg-slate-400 dark:bg-slate-600;
 }
 
 /* Focus states */
 :focus-visible {
-    @apply outline-none ring-2 ring-emerald-500 ring-offset-2 ring-offset-background;
+    @apply outline-none ring-2 ring-sky-500 ring-offset-2 ring-offset-background;
 }
 
 @layer base {

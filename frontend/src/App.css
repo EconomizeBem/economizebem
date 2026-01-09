@@ -1,27 +1,28 @@
-/* Economizaí App Styles */
+/* Economize Bem App Styles */
 
 /* Hero gradient backgrounds */
 .hero-gradient-light {
-    background: linear-gradient(135deg, #ecfdf5 0%, #eef2ff 100%);
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f5f3ff 100%);
 }
 
 .hero-gradient-dark {
-    background: linear-gradient(135deg, rgba(6, 78, 59, 0.2) 0%, rgba(49, 46, 129, 0.2) 100%);
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
 }
 
 /* Product card styles */
 .product-card {
     position: relative;
     background: var(--card);
-    border-radius: 1rem;
+    border-radius: 1.25rem;
     border: 1px solid var(--border);
     overflow: hidden;
-    transition: border-color 0.2s ease, box-shadow 0.3s ease;
+    transition: border-color 0.2s ease, box-shadow 0.3s ease, transform 0.2s ease;
 }
 
 .product-card:hover {
-    border-color: rgba(16, 185, 129, 0.5);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-color: rgba(14, 165, 233, 0.5);
+    box-shadow: 0 12px 32px rgba(14, 165, 233, 0.12);
+    transform: translateY(-2px);
 }
 
 /* Best price badge */
@@ -29,13 +30,13 @@
     position: absolute;
     top: 12px;
     left: 12px;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
     color: white;
-    padding: 4px 12px;
+    padding: 6px 14px;
     border-radius: 9999px;
     font-size: 12px;
     font-weight: 600;
-    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.35);
 }
 
 /* Store logos placeholder */
@@ -43,7 +44,7 @@
     width: 80px;
     height: 32px;
     background: var(--muted);
-    border-radius: 4px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,7 +55,7 @@
 
 /* Plan card highlight */
 .plan-card-popular {
-    border: 2px solid #10b981;
+    border: 2px solid #0ea5e9;
     position: relative;
 }
 
@@ -64,12 +65,13 @@
     top: -12px;
     left: 50%;
     transform: translateX(-50%);
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
     color: white;
     padding: 4px 16px;
     border-radius: 9999px;
     font-size: 12px;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 /* Chart container */
@@ -92,7 +94,7 @@
 
 /* Navigation active state */
 .nav-link-active {
-    color: #10b981;
+    color: #0ea5e9;
     position: relative;
 }
 
@@ -103,7 +105,7 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: #10b981;
+    background: #0ea5e9;
     border-radius: 1px;
 }
 
@@ -123,7 +125,7 @@
 
 /* Alert card styles */
 .alert-card {
-    border-left: 4px solid #10b981;
+    border-left: 4px solid #0ea5e9;
 }
 
 .alert-card-inactive {
@@ -133,7 +135,7 @@
 
 /* Expense category colors */
 .expense-aluguel { background-color: #ef4444; }
-.expense-agua { background-color: #3b82f6; }
+.expense-agua { background-color: #0ea5e9; }
 .expense-luz { background-color: #eab308; }
 .expense-internet { background-color: #8b5cf6; }
 .expense-mercado { background-color: #22c55e; }
@@ -142,7 +144,7 @@
 
 /* Tab styles */
 .tab-active {
-    background: #10b981;
+    background: #0ea5e9;
     color: white;
 }
 
@@ -188,4 +190,20 @@
     .container-main {
         padding: 0 48px;
     }
+}
+
+/* Logo text style */
+.logo-text {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+/* Feature card hover */
+.feature-card {
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
 }
