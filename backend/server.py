@@ -240,18 +240,8 @@ async def forgot_password(data: ForgotPassword, background_tasks: BackgroundTask
         "expires": expires.isoformat()
     })
     
-    reset_link = f"{os.environ.get('FRONTEND_URL', 'http://localhost:3000')}/reset-password?token={reset_token}"
-    html = f"""
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h2 style="color: #0ea5e9;">Economize Bem - Recuperação de Senha</h2>
-        <p>Olá {user['name']},</p>
-        <p>Você solicitou a recuperação de senha. Clique no link abaixo para criar uma nova senha:</p>
-        <a href="{reset_link}" style="display: inline-block; padding: 12px 24px; background-color: #0ea5e9; color: white; text-decoration: none; border-radius: 8px; margin: 16px 0;">Redefinir Senha</a>
-        <p style="color: #666; font-size: 14px;">Este link expira em 1 hora.</p>
-        <p style="color: #666; font-size: 14px;">Se você não solicitou esta recuperação, ignore este e-mail.</p>
-    </div>
-    """
-    background_tasks.add_task(send_email, data.email, "Recuperação de Senha - Economize Bem", html)
+    reset_link = f"{os.environ.get('FRONTEND_URL', 'https://economizebem.com.br')}/reset-password?token={reset_token}"
+    background_tasks.add_task(send_password_reset_email, data.email, user['name'], reset_link)
     return {"message": "Se o e-mail existir, você receberá um link de recuperação"}
 
 @api_router.post("/auth/reset-password")
