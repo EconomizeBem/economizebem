@@ -15,6 +15,15 @@ import jwt
 import bcrypt
 import resend
 
+# Import email templates
+from email_templates import (
+    welcome_email, 
+    password_reset_email, 
+    price_alert_email,
+    favorite_price_drop_email,
+    weekly_deals_email
+)
+
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
