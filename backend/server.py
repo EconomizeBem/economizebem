@@ -39,9 +39,13 @@ JWT_SECRET = os.environ.get('JWT_SECRET', 'economizai-secret-key-change-in-produ
 JWT_ALGORITHM = "HS256"
 JWT_EXPIRATION_HOURS = 24
 
-# Resend Config
-resend.api_key = os.environ.get('RESEND_API_KEY', '')
-SENDER_EMAIL = os.environ.get('SENDER_EMAIL', 'onboarding@resend.dev')
+# SMTP Config (Zoho Mail)
+SMTP_HOST = os.environ.get('SMTP_HOST', 'smtp.zoho.com')
+SMTP_PORT = int(os.environ.get('SMTP_PORT', 587))
+SMTP_USER = os.environ.get('SMTP_USER', '')
+SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD', '')
+SENDER_EMAIL = os.environ.get('SENDER_EMAIL', 'contato@economizebem.com.br')
+SENDER_NAME = os.environ.get('SENDER_NAME', 'EconomizeBem')
 
 # Create the main app
 app = FastAPI(title="Economize Bem API", version="1.0.0")
