@@ -145,18 +145,52 @@ async def send_email(to: str, subject: str, html: str):
         logger.warning("RESEND_API_KEY not configured, skipping email")
         return None
     try:
-        params = {"from": SENDER_EMAIL, "to": [to], "subject": subject, "html": html}
+        # Replace template variables
+        html = html.replace("{{unsubscribe_url}}", f"{os.environ.get('FRONTEND_URL', 'https://economizebem.com.br')}/unsubscribe")
+        params = {
+            "from": f"EconomizeBem <{SENDER_EMAIL}>",
+            "to": [to],
+            "subject": subject,
+            "html": html
+        }
         result = await asyncio.to_thread(resend.Emails.send, params)
-        logger.info(f"Email sent to {to}")
+        logger.info(f"Email sent to {to}: {subject}")
         return result
     except Exception as e:
-        logger.error(f"Failed to send email: {e}")
+        logger.error(f"Failed to send email to {to}: {e}")
         return None
+
+async def send_welcome_email(to: str, user_name: str):
+    """Envia email de boas-vindas"""
+    email_data = welcome_email(user_name)
+    return await send_email(to, email_data["subject"], email_data["html"])
+
+async def send_password_reset_email(to: str, user_name: str, reset_link: str):
+    """Envia email de recuperação de senha"""
+    email_data = password_reset_email(user_name, reset_link)
+    return await send_email(to, email_data["subject"], email_data["html"])
+
+async def send_price_alert(to: str, user_name: str, product_name: str, product_image: str,
+                           old_price: float, new_price: float, store: str, product_url: str):
+    """Envia alerta de preço"""
+    email_data = price_alert_email(user_name, product_name, product_image, old_price, new_price, store, product_url)
+    return await send_email(to, email_data["subject"], email_data["html"])
+
+async def send_favorite_alert(to: str, user_name: str, product_name: str, product_image: str,
+                              old_price: float, new_price: float, store: str, product_url: str):
+    """Envia alerta de favorito com preço baixo"""
+    email_data = favorite_price_drop_email(user_name, product_name, product_image, old_price, new_price, store, product_url)
+    return await send_email(to, email_data["subject"], email_data["html"])
+
+async def send_weekly_newsletter(to: str, user_name: str, deals: list):
+    """Envia newsletter semanal"""
+    email_data = weekly_deals_email(user_name, deals)
+    return await send_email(to, email_data["subject"], email_data["html"])
 
 # ==================== AUTH ROUTES ====================
 
 @api_router.post("/auth/register", response_model=dict)
-async def register(user: UserCreate):
+async def register(user: UserCreate, background_tasks: BackgroundTasks):
     existing = await db.users.find_one({"email": user.email})
     if existing:
         raise HTTPException(status_code=400, detail="E-mail já cadastrado")
@@ -168,9 +202,18 @@ async def register(user: UserCreate):
         "email": user.email,
         "password": hash_password(user.password),
         "created_at": datetime.now(timezone.utc).isoformat(),
+        "email_preferences": {
+            "weekly_deals": True,
+            "price_alerts": True,
+            "favorite_alerts": True
+        },
         "favorites": {"products": [], "plans": [], "stores": []}
     }
     await db.users.insert_one(user_doc)
+    
+    # Enviar email de boas-vindas
+    background_tasks.add_task(send_welcome_email, user.email, user.name)
+    
     token = create_token(user_id)
     return {"token": token, "user": {"id": user_id, "name": user.name, "email": user.email}}
 
