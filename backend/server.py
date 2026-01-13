@@ -146,25 +146,41 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
 
 # ==================== EMAIL HELPERS ====================
 
-async def send_email(to: str, subject: str, html: str):
-    if not resend.api_key:
-        logger.warning("RESEND_API_KEY not configured, skipping email")
+def send_email_sync(to: str, subject: str, html: str):
+    """Envia email via SMTP (síncrono)"""
+    if not SMTP_USER or not SMTP_PASSWORD:
+        logger.warning("SMTP credentials not configured, skipping email")
         return None
+    
     try:
         # Replace template variables
         html = html.replace("{{unsubscribe_url}}", f"{os.environ.get('FRONTEND_URL', 'https://economizebem.com.br')}/unsubscribe")
-        params = {
-            "from": f"EconomizeBem <{SENDER_EMAIL}>",
-            "to": [to],
-            "subject": subject,
-            "html": html
-        }
-        result = await asyncio.to_thread(resend.Emails.send, params)
+        
+        # Create message
+        msg = MIMEMultipart('alternative')
+        msg['Subject'] = subject
+        msg['From'] = f"{SENDER_NAME} <{SENDER_EMAIL}>"
+        msg['To'] = to
+        
+        # Attach HTML content
+        html_part = MIMEText(html, 'html', 'utf-8')
+        msg.attach(html_part)
+        
+        # Send via SMTP
+        with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
+            server.starttls()
+            server.login(SMTP_USER, SMTP_PASSWORD)
+            server.sendmail(SENDER_EMAIL, to, msg.as_string())
+        
         logger.info(f"Email sent to {to}: {subject}")
-        return result
+        return True
     except Exception as e:
         logger.error(f"Failed to send email to {to}: {e}")
         return None
+
+async def send_email(to: str, subject: str, html: str):
+    """Envia email via SMTP (assíncrono)"""
+    return await asyncio.to_thread(send_email_sync, to, subject, html)
 
 async def send_welcome_email(to: str, user_name: str):
     """Envia email de boas-vindas"""
