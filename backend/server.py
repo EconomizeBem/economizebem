@@ -561,6 +561,115 @@ async def root():
 async def health():
     return {"status": "healthy"}
 
+# ==================== EMAIL PREFERENCES ROUTES ====================
+
+class EmailPreferences(BaseModel):
+    weekly_deals: Optional[bool] = None
+    price_alerts: Optional[bool] = None
+    favorite_alerts: Optional[bool] = None
+
+@api_router.get("/email-preferences")
+async def get_email_preferences(user: dict = Depends(get_current_user)):
+    user_doc = await db.users.find_one({"id": user["id"]}, {"_id": 0, "email_preferences": 1})
+    return user_doc.get("email_preferences", {
+        "weekly_deals": True,
+        "price_alerts": True,
+        "favorite_alerts": True
+    })
+
+@api_router.put("/email-preferences")
+async def update_email_preferences(prefs: EmailPreferences, user: dict = Depends(get_current_user)):
+    update_data = {f"email_preferences.{k}": v for k, v in prefs.model_dump().items() if v is not None}
+    if update_data:
+        await db.users.update_one({"id": user["id"]}, {"$set": update_data})
+    return {"message": "Preferências atualizadas"}
+
+@api_router.post("/unsubscribe/{user_id}")
+async def unsubscribe(user_id: str, email_type: Optional[str] = None):
+    """Permite descadastrar de emails específicos ou todos"""
+    if email_type:
+        await db.users.update_one(
+            {"id": user_id},
+            {"$set": {f"email_preferences.{email_type}": False}}
+        )
+    else:
+        await db.users.update_one(
+            {"id": user_id},
+            {"$set": {
+                "email_preferences.weekly_deals": False,
+                "email_preferences.price_alerts": False,
+                "email_preferences.favorite_alerts": False
+            }}
+        )
+    return {"message": "Inscrição cancelada com sucesso"}
+
+# ==================== NEWSLETTER / ADMIN ROUTES ====================
+
+@api_router.post("/admin/send-weekly-newsletter")
+async def send_weekly_newsletter_to_all(background_tasks: BackgroundTasks):
+    """Envia newsletter semanal para todos os usuários inscritos"""
+    # Buscar usuários com weekly_deals ativo
+    users = await db.users.find(
+        {"email_preferences.weekly_deals": {"$ne": False}},
+        {"_id": 0, "id": 1, "name": 1, "email": 1}
+    ).to_list(10000)
+    
+    # Preparar ofertas (pegar os produtos com maior desconto)
+    deals = []
+    for product in MOCK_PRODUCTS:
+        best_store = min(product["stores"], key=lambda x: x["price"])
+        if best_store.get("original_price") and best_store["original_price"] > best_store["price"]:
+            deals.append({
+                "name": product["name"],
+                "image": product["image"],
+                "price": best_store["price"],
+                "original_price": best_store["original_price"],
+                "store": best_store["store"],
+                "url": best_store["url"]
+            })
+    
+    # Ordenar por desconto
+    deals.sort(key=lambda x: (x["original_price"] - x["price"]) / x["original_price"], reverse=True)
+    
+    # Enviar para cada usuário
+    sent_count = 0
+    for user in users:
+        background_tasks.add_task(send_weekly_newsletter, user["email"], user["name"], deals[:6])
+        sent_count += 1
+    
+    return {"message": f"Newsletter agendada para {sent_count} usuários"}
+
+@api_router.post("/admin/test-email/{email_type}")
+async def test_email(email_type: str, test_email: str, background_tasks: BackgroundTasks):
+    """Testa envio de um tipo específico de email"""
+    if email_type == "welcome":
+        background_tasks.add_task(send_welcome_email, test_email, "Usuário Teste")
+    elif email_type == "password_reset":
+        background_tasks.add_task(send_password_reset_email, test_email, "Usuário Teste", "https://economizebem.com.br/reset-password?token=test123")
+    elif email_type == "price_alert":
+        background_tasks.add_task(
+            send_price_alert, test_email, "Usuário Teste",
+            "iPhone 15 Pro 128GB", "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400",
+            8999.00, 7499.00, "Amazon", "https://amazon.com.br"
+        )
+    elif email_type == "favorite_alert":
+        background_tasks.add_task(
+            send_favorite_alert, test_email, "Usuário Teste",
+            "Samsung Galaxy S24 Ultra", "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400",
+            7999.00, 6499.00, "Magazine Luiza", "https://magazineluiza.com.br"
+        )
+    elif email_type == "weekly":
+        deals = [
+            {"name": "iPhone 15 Pro 128GB", "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400", "price": 7499.00, "original_price": 8999.00, "store": "Amazon"},
+            {"name": "Samsung Galaxy S24 Ultra", "image": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400", "price": 6499.00, "original_price": 7999.00, "store": "Shopee"},
+            {"name": "Smart TV LG 55\" 4K OLED", "image": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400", "price": 4299.00, "original_price": 5999.00, "store": "Amazon"},
+        ]
+        background_tasks.add_task(send_weekly_newsletter, test_email, "Usuário Teste", deals)
+    else:
+        raise HTTPException(status_code=400, detail="Tipo de email inválido")
+    
+    return {"message": f"Email de teste ({email_type}) enviado para {test_email}"}
+
 # Include router and middleware
 app.include_router(api_router)
 
