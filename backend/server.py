@@ -13,7 +13,9 @@ import uuid
 from datetime import datetime, timezone, timedelta
 import jwt
 import bcrypt
-import resend
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 # Import email templates
 from email_templates import (
