@@ -50,7 +50,7 @@ Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade púb
 ## Tech Stack
 - **Backend**: FastAPI + Python
 - **Frontend**: React + Tailwind CSS + Shadcn UI
-- **Database**: MongoDB
+- **Database**: MongoDB Atlas (Free Tier - M0) ☁️
 - **Email**: SMTP Zoho Mail
 - **Auth**: JWT
 - **Product Data**: SerpAPI (Google Shopping)
@@ -83,9 +83,9 @@ Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade púb
 - [x] Integrar SerpAPI para dados reais de produtos
 - [x] Implementar cache de 24 horas
 - [x] Implementar verificação de alertas de preço
+- [x] Configurar MongoDB Atlas para produção
 
 ### P1 (Alta Prioridade)
-- [ ] Configurar MongoDB Atlas para produção
 - [ ] Implementar cron job externo para verificação diária de alertas
 
 ### P2 (Média Prioridade)
