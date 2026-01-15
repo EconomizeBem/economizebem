@@ -4,6 +4,7 @@
 Plataforma web brasileira de comparação de preços, planos e ferramentas financeiras focada em economia para o usuário final.
 
 **Domínio**: economizebem.com.br
+**Preview URL**: https://economizebem.preview.emergentagent.com
 
 ## Problem Statement Original
 Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade pública e economia para o usuário final. O site deve ser simples de usar, visualmente limpo e pensado para pessoas leigas.
@@ -20,31 +21,48 @@ Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade púb
 2. **Planejador Financeiro**: Quer controlar gastos e comparar planos
 3. **Usuário Casual**: Precisa de ferramentas simples para decisões rápidas
 
-## Core Requirements (Implementados)
+## Core Requirements
+
+### Implementados ✅
 - ✅ Sistema de autenticação JWT (cadastro, login, logout, recuperação de senha)
-- ✅ Comparador de preços de produtos (8 produtos mockados de lojas brasileiras)
-- ✅ Comparador de planos (Internet, Celular, Streaming)
-- ✅ Calculadora financeira (gastos, simulador "vale a pena", conversão salário)
+- ✅ **Comparador de preços de produtos COM DADOS REAIS via SerpAPI (Google Shopping)**
+- ✅ Cache de 24 horas para resultados da SerpAPI
+- ✅ Sistema de verificação de alertas de preço
+- ✅ Comparador de planos (Internet, Celular, Streaming) - **DADOS MOCKADOS**
+- ✅ Calculadora financeira (gastos, simulador "vale a pena")
 - ✅ Sistema de favoritos (produtos e planos)
-- ✅ Alertas de preço por e-mail (estrutura pronta, Resend configurado)
+- ✅ Sistema de e-mail via SMTP Zoho (boas-vindas, recuperação de senha, alertas)
 - ✅ Dark/Light mode toggle
 - ✅ Design responsivo (desktop e mobile)
-- ✅ SEO básico configurado
+
+### Em Progresso 🔄
+- Nenhum
+
+### Pendentes 📋
+- [ ] Integrar dados reais para "Comparador de Planos" (atualmente mockado)
+- [ ] Implementar backend completo para "Calculadora Financeira"
+- [ ] Integrar APIs de afiliados (Amazon, Magazine Luiza, Mercado Livre)
+- [ ] Configurar SEO avançado
+- [ ] Configurar MongoDB Atlas para produção
 
 ## Tech Stack
 - **Backend**: FastAPI + Python
 - **Frontend**: React + Tailwind CSS + Shadcn UI
 - **Database**: MongoDB
-- **Email**: Resend (configuração pendente de chave API)
+- **Email**: SMTP Zoho Mail
 - **Auth**: JWT
+- **Product Data**: SerpAPI (Google Shopping)
 
-## What's Been Implemented (Jan 2025)
+## What's Been Implemented
 
 ### Backend
-- API REST completa com 15+ endpoints
+- API REST completa com 20+ endpoints
 - Autenticação JWT com bcrypt
 - CRUD de favoritos, alertas, despesas
-- Dados mockados realistas de produtos e planos brasileiros
+- **Integração SerpAPI para busca de produtos reais**
+- **Sistema de cache de 24 horas para resultados da API**
+- **Endpoints para verificação de alertas de preço**
+- Dados mockados para planos (internet, mobile, streaming)
 
 ### Frontend
 - 6 páginas principais (Home, Produtos, Planos, Calculadora, Auth, Dashboard)
@@ -53,30 +71,34 @@ Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade púb
 - Gráficos com Recharts (pizza para gastos)
 - Navegação responsiva com menu mobile
 
-### Rebrand (v1.1)
-- Nome alterado de "Economizaí" para "EconomizeBem"
-- Identidade visual atualizada (verde → azul sky)
-- Logo com ícone de carteira (Wallet)
-- Nova paleta de cores consistente em toda aplicação
+### Integrações
+- **SerpAPI (Google Shopping)**: ✅ FUNCIONANDO - Busca produtos reais
+- **SMTP Zoho Mail**: ✅ FUNCIONANDO - Envio de e-mails transacionais
 
 ## Prioritized Backlog
 
-### P0 (Próximos Passos)
-- [ ] Configurar chave Resend para envio real de e-mails
-- [ ] Implementar job de verificação de preços para alertas
+### P0 (Crítico) - Concluído ✅
+- [x] Integrar SerpAPI para dados reais de produtos
+- [x] Implementar cache de 24 horas
+- [x] Implementar verificação de alertas de preço
 
-### P1 (Melhorias)
-- [ ] Adicionar mais produtos mockados
-- [ ] Implementar histórico de preços
-- [ ] Adicionar gráficos de evolução de preços
+### P1 (Alta Prioridade)
+- [ ] Configurar MongoDB Atlas para produção
+- [ ] Implementar cron job externo para verificação diária de alertas
 
-### P2 (Futuro)
-- [ ] Integração real com APIs de lojas (web scraping)
+### P2 (Média Prioridade)
+- [ ] Substituir dados mockados de planos por dados reais
+- [ ] Integrar APIs de afiliados (Amazon, Magazine Luiza, Mercado Livre)
+- [ ] Adicionar histórico de preços dos produtos
+
+### P3 (Baixa Prioridade)
 - [ ] Autenticação Google OAuth
 - [ ] App mobile (PWA)
-- [ ] Sistema de afiliados para monetização
+- [ ] Sistema de reviews/avaliações
 
 ## API Endpoints
+
+### Autenticação
 ```
 POST /api/auth/register
 POST /api/auth/login
@@ -85,19 +107,41 @@ POST /api/auth/reset-password
 GET  /api/auth/me
 PUT  /api/auth/profile
 PUT  /api/auth/change-password
-GET  /api/products
-GET  /api/products/{id}
-GET  /api/products/categories/list
+```
+
+### Produtos (Dados Reais via SerpAPI)
+```
+GET  /api/products                    # Produtos populares
+GET  /api/products/search?q=<termo>   # Busca
+GET  /api/products/{id}               # Detalhes
+GET  /api/products/categories/list    # Categorias
+GET  /api/products/cache/stats        # Estatísticas do cache
+POST /api/products/cache/clear        # Limpar cache expirado
+```
+
+### Alertas de Preço
+```
+GET  /api/alerts                      # Listar alertas do usuário
+POST /api/alerts                      # Criar alerta
+PUT  /api/alerts/{id}                 # Atualizar alerta
+DELETE /api/alerts/{id}               # Remover alerta
+POST /api/alerts/check                # Disparar verificação
+POST /api/alerts/check-favorites      # Verificar favoritos
+GET  /api/alerts/check-history        # Histórico de verificações
+```
+
+### Planos (Dados Mockados)
+```
 GET  /api/plans/internet
 GET  /api/plans/mobile
 GET  /api/plans/streaming
+```
+
+### Outros
+```
 GET  /api/favorites
 POST /api/favorites
 DELETE /api/favorites/{type}/{id}
-GET  /api/alerts
-POST /api/alerts
-PUT  /api/alerts/{id}
-DELETE /api/alerts/{id}
 GET  /api/expenses
 POST /api/expenses
 PUT  /api/expenses/{id}
@@ -106,6 +150,38 @@ GET  /api/expenses/summary
 ```
 
 ## Notes
-- Todos os dados de produtos e planos são MOCKADOS
-- E-mail de envio configurado como onboarding@resend.dev (modo teste)
-- Frontend URL: https://economizebem.preview.emergentagent.com
+- Produtos: **DADOS REAIS** via SerpAPI (Google Shopping)
+- Planos: **DADOS MOCKADOS** (internet, mobile, streaming)
+- E-mail configurado via SMTP Zoho (funcional)
+- Cache de produtos: 24 horas (economiza chamadas da API)
+- Plano gratuito do SerpAPI: 100 buscas/mês
+
+## Testing Status
+- Backend: 100% dos testes passando (18/18)
+- Frontend: 100% funcionando
+- Última execução: Janeiro 2025
+
+## Files Structure
+```
+/app/
+├── backend/
+│   ├── .env
+│   ├── requirements.txt
+│   ├── server.py
+│   ├── email_templates.py
+│   ├── product_service.py    # SerpAPI integration
+│   └── alert_service.py      # Price alert checks
+├── frontend/
+│   ├── .env
+│   ├── package.json
+│   └── src/
+│       ├── pages/
+│       │   ├── ProductsPage.jsx
+│       │   ├── PlansPage.jsx
+│       │   └── ...
+│       └── components/
+│           ├── ProductCard.jsx
+│           └── ...
+└── tests/
+    └── test_serpapi_integration.py
+```
