@@ -41,7 +41,6 @@ export const ProductCard = ({ product, onFavoriteChange }) => {
 
     const handleViewOffer = () => {
         const offerUrl = getOfferUrl();
-        console.log("offer_url:", offerUrl); // Log temporário para debug
         
         if (offerUrl) {
             window.open(offerUrl, '_blank');
