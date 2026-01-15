@@ -167,7 +167,7 @@ export const ProductCard = ({ product, onFavoriteChange }) => {
                     <div className="flex gap-2 pt-2">
                         <Button 
                             className="flex-1 btn-primary rounded-xl"
-                            onClick={() => window.open(bestStore?.url, '_blank')}
+                            onClick={handleViewOffer}
                             data-testid="buy-button"
                         >
                             <ExternalLink className="w-4 h-4 mr-2" />
