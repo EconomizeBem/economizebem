@@ -26,6 +26,10 @@ from email_templates import (
     weekly_deals_email
 )
 
+# Import product and alert services
+import product_service
+import alert_service
+
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
@@ -33,6 +37,10 @@ load_dotenv(ROOT_DIR / '.env')
 mongo_url = os.environ['MONGO_URL']
 client = AsyncIOMotorClient(mongo_url)
 db = client[os.environ['DB_NAME']]
+
+# Inject database into services
+product_service.set_database(db)
+alert_service.set_database(db)
 
 # JWT Config
 JWT_SECRET = os.environ.get('JWT_SECRET', 'economizai-secret-key-change-in-production')
