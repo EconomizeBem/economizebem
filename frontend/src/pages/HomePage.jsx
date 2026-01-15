@@ -21,12 +21,13 @@ const features = [
     {
         icon: <TrendingDown className="w-6 h-6" />,
         title: 'Compare preços entre as principais lojas online',
-        description: 'Amazon, Magazine Luiza, Mercado Livre, Shopee e mais.'
+        description: 'Amazon, Magazine Luiza, Mercado Livre, Casas Bahia e mais.'
     },
     {
         icon: <Wifi className="w-6 h-6" />,
-        title: 'Descubra o melhor plano de internet, celular ou streaming',
-        description: 'Compare operadoras e encontre o melhor custo-benefício.'
+        title: 'Compare planos de internet, celular e streaming',
+        description: 'Em breve: encontre o melhor custo-benefício entre operadoras.',
+        comingSoon: true
     },
     {
         icon: <Calculator className="w-6 h-6" />,
@@ -43,7 +44,7 @@ const features = [
 const categories = [
     { icon: <Smartphone className="w-8 h-8" />, name: 'Smartphones', link: '/products?category=smartphones' },
     { icon: <Tv className="w-8 h-8" />, name: 'TVs', link: '/products?category=tvs' },
-    { icon: <Wifi className="w-8 h-8" />, name: 'Internet', link: '/plans?tab=internet' },
+    { icon: <Wifi className="w-8 h-8" />, name: 'Planos', link: '/plans', comingSoon: true },
     { icon: <Calculator className="w-8 h-8" />, name: 'Calculadora', link: '/calculator' },
 ];
 
