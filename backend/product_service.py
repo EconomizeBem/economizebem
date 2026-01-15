@@ -29,7 +29,7 @@ def set_database(database):
 
 async def get_cached_search(query: str, category: Optional[str] = None) -> Optional[Dict]:
     """Busca resultado em cache"""
-    if not db:
+    if db is None:
         return None
     
     cache_key = f"{query}_{category or 'all'}".lower().strip()
@@ -54,7 +54,7 @@ async def get_cached_search(query: str, category: Optional[str] = None) -> Optio
 
 async def save_to_cache(query: str, category: Optional[str], results: List[Dict]):
     """Salva resultado no cache"""
-    if not db:
+    if db is None:
         return
     
     cache_key = f"{query}_{category or 'all'}".lower().strip()
@@ -204,7 +204,7 @@ async def get_product_details(product_id: str) -> Optional[Dict]:
     Busca detalhes de um produto específico
     Primeiro tenta no cache, depois faz nova busca se necessário
     """
-    if not db:
+    if db is None:
         return None
     
     # Buscar em todos os caches
@@ -246,7 +246,7 @@ async def get_popular_products(limit: int = 12) -> List[Dict]:
 
 async def get_cache_stats() -> Dict:
     """Retorna estatísticas do cache"""
-    if not db:
+    if db is None:
         return {"error": "Database not connected"}
     
     total_entries = await db.search_cache.count_documents({})
@@ -275,7 +275,7 @@ async def get_cache_stats() -> Dict:
 
 async def clear_expired_cache():
     """Remove entradas de cache expiradas"""
-    if not db:
+    if db is None:
         return 0
     
     cutoff = datetime.now(timezone.utc) - timedelta(hours=CACHE_DURATION_HOURS)

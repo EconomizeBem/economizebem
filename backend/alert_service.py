@@ -34,7 +34,7 @@ async def check_price_alerts():
     Verifica todos os alertas de preço ativos
     Envia email quando preço atinge o valor desejado
     """
-    if not db:
+    if db is None:
         logger.error("Database not connected")
         return {"error": "Database not connected"}
     
@@ -144,7 +144,7 @@ async def check_favorite_prices():
     Verifica preços de produtos favoritados
     Envia email quando há queda significativa de preço (>10%)
     """
-    if not db:
+    if db is None:
         return {"error": "Database not connected"}
     
     # Buscar usuários com favoritos
@@ -214,7 +214,7 @@ async def check_favorite_prices():
 
 async def get_alert_check_history(limit: int = 10) -> List[Dict]:
     """Retorna histórico de verificações de alertas"""
-    if not db:
+    if db is None:
         return []
     
     logs = await db.alert_check_logs.find(
