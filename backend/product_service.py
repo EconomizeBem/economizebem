@@ -147,6 +147,9 @@ async def search_google_shopping(
         shopping_results = data.get("shopping_results", [])
         
         for item in shopping_results[:num_results]:
+            # Obter URL da oferta - prioriza link, depois product_link
+            offer_link = item.get("link") or item.get("product_link") or ""
+            
             product = {
                 "id": item.get("product_id", str(hash(item.get("title", "")))),
                 "name": item.get("title", ""),
@@ -154,7 +157,7 @@ async def search_google_shopping(
                 "original_price": extract_price(item.get("extracted_old_price")),
                 "image": item.get("thumbnail", ""),
                 "store": item.get("source", ""),
-                "link": item.get("link", ""),
+                "link": offer_link,
                 "rating": item.get("rating"),
                 "reviews": item.get("reviews"),
                 "delivery": item.get("delivery", ""),
