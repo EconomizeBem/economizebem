@@ -121,7 +121,7 @@ export const ProductCard = ({ product, onFavoriteChange }) => {
                         </div>
                         <div className="flex items-center gap-1">
                             <Truck className="w-4 h-4" />
-                            <span>{bestStore?.shipping === 0 ? 'Frete grátis' : `R$ ${bestStore?.shipping}`}</span>
+                            <span>{bestStore?.shipping === 0 ? 'Frete grátis' : (bestStore?.shipping ? `R$ ${bestStore.shipping}` : 'Consultar')}</span>
                         </div>
                         <span className="font-medium text-sky-600">{bestStore?.store}</span>
                     </div>
