@@ -444,90 +444,98 @@ async def delete_expense(expense_id: str, user: dict = Depends(get_current_user)
         raise HTTPException(status_code=404, detail="Despesa não encontrada")
     return {"message": "Despesa removida"}
 
-# ==================== PRODUCTS ROUTES (MOCK DATA) ====================
+# ==================== PRODUCTS ROUTES (REAL DATA via SerpAPI) ====================
 
-MOCK_PRODUCTS = [
-    {"id": "1", "name": "iPhone 15 Pro 128GB", "category": "smartphones", "image": "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=400", "stores": [
-        {"store": "Amazon", "price": 7999.00, "original_price": 8999.00, "rating": 4.8, "delivery_days": 2, "shipping": 0, "url": "https://amazon.com.br"},
-        {"store": "Magazine Luiza", "price": 8199.00, "original_price": 8999.00, "rating": 4.7, "delivery_days": 3, "shipping": 0, "url": "https://magazineluiza.com.br"},
-        {"store": "Mercado Livre", "price": 7899.00, "original_price": 8500.00, "rating": 4.6, "delivery_days": 4, "shipping": 29.90, "url": "https://mercadolivre.com.br"},
-        {"store": "Casas Bahia", "price": 8299.00, "original_price": 8999.00, "rating": 4.5, "delivery_days": 5, "shipping": 0, "url": "https://casasbahia.com.br"},
-    ]},
-    {"id": "2", "name": "Samsung Galaxy S24 Ultra 256GB", "category": "smartphones", "image": "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=400", "stores": [
-        {"store": "Amazon", "price": 6999.00, "original_price": 7999.00, "rating": 4.9, "delivery_days": 1, "shipping": 0, "url": "https://amazon.com.br"},
-        {"store": "Shopee", "price": 6799.00, "original_price": 7500.00, "rating": 4.4, "delivery_days": 7, "shipping": 19.90, "url": "https://shopee.com.br"},
-        {"store": "Magazine Luiza", "price": 7199.00, "original_price": 7999.00, "rating": 4.7, "delivery_days": 2, "shipping": 0, "url": "https://magazineluiza.com.br"},
-    ]},
-    {"id": "3", "name": "Smart TV LG 55\" 4K OLED", "category": "tvs", "image": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400", "stores": [
-        {"store": "Amazon", "price": 4299.00, "original_price": 5999.00, "rating": 4.8, "delivery_days": 3, "shipping": 0, "url": "https://amazon.com.br"},
-        {"store": "Casas Bahia", "price": 4499.00, "original_price": 5999.00, "rating": 4.6, "delivery_days": 5, "shipping": 0, "url": "https://casasbahia.com.br"},
-        {"store": "Magazine Luiza", "price": 4399.00, "original_price": 5999.00, "rating": 4.7, "delivery_days": 4, "shipping": 0, "url": "https://magazineluiza.com.br"},
-    ]},
-    {"id": "4", "name": "PlayStation 5 Digital Edition", "category": "games", "image": "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400", "stores": [
-        {"store": "Amazon", "price": 3499.00, "original_price": 3999.00, "rating": 4.9, "delivery_days": 2, "shipping": 0, "url": "https://amazon.com.br"},
-        {"store": "Magazine Luiza", "price": 3599.00, "original_price": 3999.00, "rating": 4.8, "delivery_days": 3, "shipping": 0, "url": "https://magazineluiza.com.br"},
-        {"store": "Mercado Livre", "price": 3399.00, "original_price": 3800.00, "rating": 4.5, "delivery_days": 5, "shipping": 39.90, "url": "https://mercadolivre.com.br"},
-    ]},
-    {"id": "5", "name": "MacBook Air M3 13\" 256GB", "category": "notebooks", "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400", "stores": [
-        {"store": "Amazon", "price": 10999.00, "original_price": 12999.00, "rating": 4.9, "delivery_days": 2, "shipping": 0, "url": "https://amazon.com.br"},
-        {"store": "Magazine Luiza", "price": 11299.00, "original_price": 12999.00, "rating": 4.8, "delivery_days": 3, "shipping": 0, "url": "https://magazineluiza.com.br"},
-    ]},
-    {"id": "6", "name": "Airfryer Philips Walita 4.1L", "category": "eletrodomesticos", "image": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=400", "stores": [
-        {"store": "Amazon", "price": 399.00, "original_price": 599.00, "rating": 4.7, "delivery_days": 1, "shipping": 0, "url": "https://amazon.com.br"},
-        {"store": "Casas Bahia", "price": 449.00, "original_price": 599.00, "rating": 4.5, "delivery_days": 4, "shipping": 0, "url": "https://casasbahia.com.br"},
-        {"store": "Shopee", "price": 379.00, "original_price": 550.00, "rating": 4.3, "delivery_days": 8, "shipping": 15.90, "url": "https://shopee.com.br"},
-    ]},
-    {"id": "7", "name": "Fone JBL Tune 520BT Bluetooth", "category": "acessorios", "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400", "stores": [
-        {"store": "Amazon", "price": 199.00, "original_price": 299.00, "rating": 4.6, "delivery_days": 1, "shipping": 0, "url": "https://amazon.com.br"},
-        {"store": "Mercado Livre", "price": 179.00, "original_price": 280.00, "rating": 4.4, "delivery_days": 3, "shipping": 9.90, "url": "https://mercadolivre.com.br"},
-        {"store": "Magazine Luiza", "price": 219.00, "original_price": 299.00, "rating": 4.7, "delivery_days": 2, "shipping": 0, "url": "https://magazineluiza.com.br"},
-    ]},
-    {"id": "8", "name": "Cafeteira Nespresso Essenza Mini", "category": "eletrodomesticos", "image": "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=400", "stores": [
-        {"store": "Amazon", "price": 499.00, "original_price": 699.00, "rating": 4.8, "delivery_days": 2, "shipping": 0, "url": "https://amazon.com.br"},
-        {"store": "Casas Bahia", "price": 549.00, "original_price": 699.00, "rating": 4.6, "delivery_days": 4, "shipping": 0, "url": "https://casasbahia.com.br"},
-    ]},
+# Categorias disponíveis para busca
+PRODUCT_CATEGORIES = [
+    {"id": "smartphones", "name": "Smartphones", "icon": "smartphone", "query": "smartphone celular"},
+    {"id": "tvs", "name": "TVs", "icon": "tv", "query": "smart tv televisão"},
+    {"id": "notebooks", "name": "Notebooks", "icon": "laptop", "query": "notebook laptop"},
+    {"id": "games", "name": "Games", "icon": "gamepad", "query": "video game console"},
+    {"id": "eletrodomesticos", "name": "Eletrodomésticos", "icon": "home", "query": "eletrodoméstico"},
+    {"id": "acessorios", "name": "Acessórios", "icon": "headphones", "query": "fone bluetooth acessório"},
 ]
 
 @api_router.get("/products")
 async def get_products(search: Optional[str] = None, category: Optional[str] = None):
-    products = MOCK_PRODUCTS
-    if search:
-        search_lower = search.lower()
-        products = [p for p in products if search_lower in p["name"].lower()]
-    if category:
-        products = [p for p in products if p["category"] == category]
+    """
+    Busca produtos via Google Shopping (SerpAPI)
+    Usa cache de 24h para otimizar custos
+    """
+    # Se não houver busca, retorna produtos populares
+    if not search and not category:
+        products = await product_service.get_popular_products(limit=12)
+    else:
+        # Busca específica
+        query = search or ""
+        if category:
+            cat_info = next((c for c in PRODUCT_CATEGORIES if c["id"] == category), None)
+            if cat_info and not search:
+                query = cat_info["query"]
+        
+        products = await product_service.search_google_shopping(
+            query=query,
+            category=category,
+            num_results=20
+        )
     
-    # Add best price info
+    # Formatar resposta para compatibilidade com frontend
+    formatted_products = []
     for p in products:
-        prices = [s["price"] for s in p["stores"]]
-        p["best_price"] = min(prices)
-        p["worst_price"] = max(prices)
+        formatted_products.append({
+            "id": p.get("id", ""),
+            "name": p.get("name", ""),
+            "category": category or "geral",
+            "image": p.get("image", ""),
+            "best_price": p.get("price"),
+            "worst_price": p.get("original_price") or p.get("price"),
+            "stores": [{
+                "store": p.get("store", ""),
+                "price": p.get("price"),
+                "original_price": p.get("original_price"),
+                "rating": p.get("rating"),
+                "delivery_days": None,
+                "shipping": 0 if "grátis" in (p.get("delivery") or "").lower() else None,
+                "url": p.get("link", "")
+            }]
+        })
     
-    return products
+    return formatted_products
 
-@api_router.get("/products/{product_id}")
-async def get_product(product_id: str):
-    for p in MOCK_PRODUCTS:
-        if p["id"] == product_id:
-            prices = [s["price"] for s in p["stores"]]
-            p["best_price"] = min(prices)
-            p["worst_price"] = max(prices)
-            return p
-    raise HTTPException(status_code=404, detail="Produto não encontrado")
+@api_router.get("/products/search")
+async def search_products(q: str, limit: int = 20):
+    """Endpoint de busca direta"""
+    products = await product_service.search_google_shopping(
+        query=q,
+        num_results=limit
+    )
+    return products
 
 @api_router.get("/products/categories/list")
 async def get_categories():
-    categories = list(set(p["category"] for p in MOCK_PRODUCTS))
-    return [
-        {"id": "smartphones", "name": "Smartphones", "icon": "smartphone"},
-        {"id": "tvs", "name": "TVs", "icon": "tv"},
-        {"id": "notebooks", "name": "Notebooks", "icon": "laptop"},
-        {"id": "games", "name": "Games", "icon": "gamepad"},
-        {"id": "eletrodomesticos", "name": "Eletrodomésticos", "icon": "home"},
-        {"id": "acessorios", "name": "Acessórios", "icon": "headphones"},
-    ]
+    """Retorna categorias disponíveis"""
+    return PRODUCT_CATEGORIES
 
-# ==================== PLANS ROUTES (MOCK DATA) ====================
+@api_router.get("/products/{product_id}")
+async def get_product(product_id: str):
+    """Busca detalhes de um produto específico"""
+    product = await product_service.get_product_details(product_id)
+    if not product:
+        raise HTTPException(status_code=404, detail="Produto não encontrado")
+    return product
+
+@api_router.get("/products/cache/stats")
+async def get_cache_stats():
+    """Retorna estatísticas do cache de produtos"""
+    return await product_service.get_cache_stats()
+
+@api_router.post("/products/cache/clear")
+async def clear_cache():
+    """Limpa cache expirado"""
+    deleted = await product_service.clear_expired_cache()
+    return {"message": f"{deleted} entradas de cache removidas"}
+
+# ==================== PLANS ROUTES (MOCK DATA - mantido por enquanto) ====================
 
 MOCK_INTERNET_PLANS = [
     {"id": "int1", "provider": "Vivo Fibra", "name": "300 Mega", "speed": 300, "price": 99.99, "features": ["Wi-Fi 6", "Instalação grátis", "Sem fidelidade"], "loyalty_months": 0, "rating": 4.5, "popular": True},
