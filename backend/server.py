@@ -42,6 +42,8 @@ db = client[os.environ['DB_NAME']]
 product_service.set_database(db)
 alert_service.set_database(db)
 
+# Note: Email function will be injected after send_email is defined
+
 # JWT Config
 JWT_SECRET = os.environ.get('JWT_SECRET', 'economizai-secret-key-change-in-production')
 JWT_ALGORITHM = "HS256"
@@ -189,6 +191,9 @@ def send_email_sync(to: str, subject: str, html: str):
 async def send_email(to: str, subject: str, html: str):
     """Envia email via SMTP (assíncrono)"""
     return await asyncio.to_thread(send_email_sync, to, subject, html)
+
+# Inject email function into alert service
+alert_service.set_email_function(send_email)
 
 async def send_welcome_email(to: str, user_name: str):
     """Envia email de boas-vindas"""
@@ -535,6 +540,28 @@ async def clear_cache():
     deleted = await product_service.clear_expired_cache()
     return {"message": f"{deleted} entradas de cache removidas"}
 
+# ==================== PRICE ALERT CHECK ROUTES ====================
+
+@api_router.post("/alerts/check")
+async def trigger_price_alert_check(background_tasks: BackgroundTasks):
+    """
+    Dispara verificação de todos os alertas de preço ativos
+    Pode ser chamado manualmente ou via cron job externo
+    """
+    background_tasks.add_task(alert_service.check_price_alerts)
+    return {"message": "Verificação de alertas iniciada em segundo plano"}
+
+@api_router.post("/alerts/check-favorites")
+async def trigger_favorite_check(background_tasks: BackgroundTasks):
+    """Verifica preços de produtos favoritados"""
+    background_tasks.add_task(alert_service.check_favorite_prices)
+    return {"message": "Verificação de favoritos iniciada em segundo plano"}
+
+@api_router.get("/alerts/check-history")
+async def get_alert_check_history(limit: int = 10):
+    """Retorna histórico de verificações de alertas"""
+    return await alert_service.get_alert_check_history(limit)
+
 # ==================== PLANS ROUTES (MOCK DATA - mantido por enquanto) ====================
 
 MOCK_INTERNET_PLANS = [
@@ -652,22 +679,33 @@ async def send_weekly_newsletter_to_all(background_tasks: BackgroundTasks):
         {"_id": 0, "id": 1, "name": 1, "email": 1}
     ).to_list(10000)
     
-    # Preparar ofertas (pegar os produtos com maior desconto)
+    # Buscar produtos populares reais via SerpAPI para a newsletter
+    popular_products = await product_service.get_popular_products(limit=6)
+    
+    # Preparar ofertas
     deals = []
-    for product in MOCK_PRODUCTS:
-        best_store = min(product["stores"], key=lambda x: x["price"])
-        if best_store.get("original_price") and best_store["original_price"] > best_store["price"]:
+    for product in popular_products:
+        if product.get("original_price") and product.get("price") and product["original_price"] > product["price"]:
             deals.append({
-                "name": product["name"],
-                "image": product["image"],
-                "price": best_store["price"],
-                "original_price": best_store["original_price"],
-                "store": best_store["store"],
-                "url": best_store["url"]
+                "name": product.get("name", ""),
+                "image": product.get("image", ""),
+                "price": product.get("price"),
+                "original_price": product.get("original_price"),
+                "store": product.get("store", ""),
+                "url": product.get("link", "")
             })
     
-    # Ordenar por desconto
-    deals.sort(key=lambda x: (x["original_price"] - x["price"]) / x["original_price"], reverse=True)
+    # Se não houver produtos com desconto, usar os produtos normais
+    if not deals:
+        for product in popular_products[:6]:
+            deals.append({
+                "name": product.get("name", ""),
+                "image": product.get("image", ""),
+                "price": product.get("price"),
+                "original_price": product.get("price"),
+                "store": product.get("store", ""),
+                "url": product.get("link", "")
+            })
     
     # Enviar para cada usuário
     sent_count = 0
