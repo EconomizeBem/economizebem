@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
+// URL base da API - usa variável de ambiente ou fallback para localhost
+const baseURL = process.env.REACT_APP_API_URL || process.env.REACT_APP_BACKEND_URL || "http://localhost:8000";
+const API = `${baseURL}/api`;
 
 const getAuthHeader = () => {
     const token = localStorage.getItem('token');
