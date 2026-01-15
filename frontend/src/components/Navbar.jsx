@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { Button } from './ui/button';
+import { Badge } from './ui/badge';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -21,13 +22,14 @@ import {
     Bell, 
     Settings,
     Wallet,
-    LayoutDashboard
+    LayoutDashboard,
+    Clock
 } from 'lucide-react';
 
 const navLinks = [
     { href: '/', label: 'Início' },
     { href: '/products', label: 'Comparar Produtos' },
-    { href: '/plans', label: 'Comparar Planos' },
+    { href: '/plans', label: 'Comparar Planos', comingSoon: true },
     { href: '/calculator', label: 'Calculadora' },
 ];
 
@@ -64,12 +66,17 @@ export const Navbar = () => {
                         <Link
                             key={link.href}
                             to={link.href}
-                            className={`text-sm font-medium transition-colors hover:text-sky-500 ${
+                            className={`text-sm font-medium transition-colors hover:text-sky-500 flex items-center gap-1.5 ${
                                 isActive(link.href) ? 'text-sky-500 nav-link-active' : 'text-muted-foreground'
                             }`}
                             data-testid={`nav-${link.label.toLowerCase().replace(' ', '-')}`}
                         >
                             {link.label}
+                            {link.comingSoon && (
+                                <Badge variant="secondary" className="bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 text-[10px] px-1.5 py-0 h-4">
+                                    Em breve
+                                </Badge>
+                            )}
                         </Link>
                     ))}
                 </div>
@@ -153,11 +160,16 @@ export const Navbar = () => {
                                         key={link.href}
                                         to={link.href}
                                         onClick={() => setMobileOpen(false)}
-                                        className={`text-lg font-medium ${
+                                        className={`text-lg font-medium flex items-center gap-2 ${
                                             isActive(link.href) ? 'text-sky-500' : ''
                                         }`}
                                     >
                                         {link.label}
+                                        {link.comingSoon && (
+                                            <Badge variant="secondary" className="bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 text-xs">
+                                                Em breve
+                                            </Badge>
+                                        )}
                                     </Link>
                                 ))}
                                 <hr className="my-2" />
