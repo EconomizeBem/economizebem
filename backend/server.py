@@ -487,6 +487,12 @@ async def get_products(search: Optional[str] = None, category: Optional[str] = N
     # Formatar resposta para compatibilidade com frontend
     formatted_products = []
     for p in products:
+        # Pegar a URL da oferta (link do SerpAPI)
+        offer_url = p.get("link") or p.get("url") or None
+        # Validar que é uma URL válida
+        if offer_url and not offer_url.startswith("http"):
+            offer_url = None
+            
         formatted_products.append({
             "id": p.get("id", ""),
             "name": p.get("name", ""),
@@ -494,6 +500,7 @@ async def get_products(search: Optional[str] = None, category: Optional[str] = N
             "image": p.get("image", ""),
             "best_price": p.get("price"),
             "worst_price": p.get("original_price") or p.get("price"),
+            "offer_url": offer_url,  # URL padronizada no nível do produto
             "stores": [{
                 "store": p.get("store", ""),
                 "price": p.get("price"),
@@ -501,7 +508,8 @@ async def get_products(search: Optional[str] = None, category: Optional[str] = N
                 "rating": p.get("rating"),
                 "delivery_days": None,
                 "shipping": 0 if "grátis" in (p.get("delivery") or "").lower() else None,
-                "url": p.get("link", "")
+                "url": offer_url,  # Mesmo URL para a loja
+                "offer_url": offer_url  # Campo adicional padronizado
             }]
         })
     
