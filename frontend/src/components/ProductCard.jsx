@@ -29,6 +29,27 @@ export const ProductCard = ({ product, onFavoriteChange }) => {
         ? ((bestStore.original_price - bestStore.price) / bestStore.original_price * 100).toFixed(0)
         : 0;
 
+    // Obter URL da oferta (prioriza offer_url do produto, depois da loja)
+    const getOfferUrl = () => {
+        const url = product.offer_url || bestStore?.offer_url || bestStore?.url;
+        // Validar que é uma URL válida
+        if (url && url.startsWith('http')) {
+            return url;
+        }
+        return null;
+    };
+
+    const handleViewOffer = () => {
+        const offerUrl = getOfferUrl();
+        console.log("offer_url:", offerUrl); // Log temporário para debug
+        
+        if (offerUrl) {
+            window.open(offerUrl, '_blank');
+        } else {
+            toast.error('Oferta indisponível no momento');
+        }
+    };
+
     const handleFavorite = async () => {
         if (!isAuthenticated) {
             toast.error('Faça login para favoritar produtos');
