@@ -108,4 +108,4 @@ GET  /api/expenses/summary
 ## Notes
 - Todos os dados de produtos e planos são MOCKADOS
 - E-mail de envio configurado como onboarding@resend.dev (modo teste)
-- Frontend URL: https://comparabr.preview.emergentagent.com
+- Frontend URL: https://economizebem.preview.emergentagent.com
