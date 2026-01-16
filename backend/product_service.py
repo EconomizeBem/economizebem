@@ -158,6 +158,7 @@ async def search_google_shopping(
                 "image": item.get("thumbnail", ""),
                 "store": item.get("source", ""),
                 "link": offer_link,
+                "product_link": item.get("product_link", ""),  # Salvar product_link separadamente
                 "rating": item.get("rating"),
                 "reviews": item.get("reviews"),
                 "delivery": item.get("delivery", ""),
