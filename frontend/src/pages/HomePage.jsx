@@ -144,7 +144,7 @@ export default function HomePage() {
                                     </Button>
                                 </Link>
                                 <Link to="/register">
-                                    <Button variant="outline" className="rounded-xl h-12 px-8 text-base" data-testid="create-account-btn">
+                                    <Button variant="outline" className="rounded-xl h-12 px-8 text-base border-slate-300 dark:border-slate-600 dark:text-slate-100 dark:hover:bg-slate-800" data-testid="create-account-btn">
                                         Criar conta gratuita
                                     </Button>
                                 </Link>
