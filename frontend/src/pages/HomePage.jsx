@@ -112,21 +112,31 @@ export default function HomePage() {
                             </p>
                             
                             {/* Search Bar */}
-                            <div className="relative max-w-xl">
+                            <form onSubmit={handleSearch} className="relative max-w-xl">
                                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                                 <input
                                     type="text"
                                     placeholder="Buscar produtos..."
                                     className="input-search"
                                     data-testid="hero-search-input"
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    onKeyDown={handleKeyDown}
+                                    disabled={isSearching}
                                 />
                                 <Button 
+                                    type="submit"
                                     className="absolute right-2 top-1/2 -translate-y-1/2 btn-primary rounded-xl h-10 px-6"
                                     data-testid="hero-search-button"
+                                    disabled={isSearching}
                                 >
-                                    Buscar
+                                    {isSearching ? (
+                                        <Loader2 className="w-4 h-4 animate-spin" />
+                                    ) : (
+                                        'Buscar'
+                                    )}
                                 </Button>
-                            </div>
+                            </form>
 
                             {/* CTAs */}
                             <div className="flex flex-wrap gap-4">
