@@ -234,7 +234,7 @@ export default function ProductsPage() {
                         <Badge
                             key={cat.id}
                             variant={category === cat.id ? 'default' : 'outline'}
-                            className={`cursor-pointer px-4 py-2 text-sm ${category === cat.id ? 'bg-emerald-600 hover:bg-emerald-700' : 'hover:bg-zinc-100 dark:hover:bg-zinc-800'}`}
+                            className={`cursor-pointer px-4 py-2 text-sm ${category === cat.id ? 'bg-sky-500 dark:bg-cyan-600 hover:bg-sky-600 dark:hover:bg-cyan-500' : 'hover:bg-slate-100 dark:hover:bg-slate-800 dark:border-slate-600'}`}
                             onClick={() => handleCategoryChange(cat.id)}
                             data-testid={`category-${cat.id}`}
                         >
