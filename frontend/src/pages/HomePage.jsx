@@ -95,7 +95,7 @@ export default function HomePage() {
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         {/* Left Content */}
                         <div className="space-y-8 slide-up">
-                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-100 dark:bg-sky-900/30 text-sky-600 dark:text-sky-400 text-sm font-medium">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-100 dark:bg-cyan-900/30 text-sky-600 dark:text-cyan-400 text-sm font-medium">
                                 <BadgePercent className="w-4 h-4" />
                                 Economia inteligente para você
                             </div>
