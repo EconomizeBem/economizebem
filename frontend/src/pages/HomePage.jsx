@@ -67,17 +67,14 @@ export default function HomePage() {
             toast.error('Digite pelo menos 2 caracteres para buscar');
             return;
         }
-
-        console.log('[HomePage Search] Query capturada:', query);
         
         setIsSearching(true);
         
         try {
             // Navegar para a página de produtos com o termo de busca
-            console.log('[HomePage Search] Redirecionando para /products com search:', query);
             navigate(`/products?search=${encodeURIComponent(query)}`);
         } catch (error) {
-            console.error('[HomePage Search] Erro:', error);
+            console.error('Erro ao buscar:', error);
             toast.error('Erro ao buscar produtos. Tente novamente.');
         } finally {
             setIsSearching(false);

@@ -75,21 +75,15 @@ export default function ProductsPage() {
         const query = search?.trim() || '';
         const categoryParam = cat !== 'all' ? cat : null;
         
-        console.log('[ProductsPage] Buscando produtos:', { query, category: categoryParam });
-        
         try {
             const response = await productsApi.getAll(query, categoryParam);
-            console.log('[ProductsPage] Resposta:', { 
-                status: 'success', 
-                count: response.data?.length || 0 
-            });
             setProducts(response.data || []);
             
             if (response.data?.length === 0 && query) {
                 toast.info(`Nenhum produto encontrado para "${query}"`);
             }
         } catch (err) {
-            console.error('[ProductsPage] Erro ao buscar produtos:', err);
+            console.error('Erro ao buscar produtos:', err);
             setError('Erro ao buscar produtos. Tente novamente.');
             toast.error('Erro ao buscar produtos. Tente novamente.');
             setProducts([]);
@@ -101,8 +95,6 @@ export default function ProductsPage() {
     const handleSearch = (e) => {
         e.preventDefault();
         const query = searchTerm.trim();
-        
-        console.log('[ProductsPage] handleSearch:', query);
         
         setSearchParams(prev => {
             if (query) prev.set('search', query);
