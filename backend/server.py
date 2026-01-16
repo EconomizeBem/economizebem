@@ -487,15 +487,30 @@ async def get_products(search: Optional[str] = None, category: Optional[str] = N
     # Formatar resposta para compatibilidade com frontend
     formatted_products = []
     for p in products:
-        # Pegar a URL da oferta (link do SerpAPI)
-        offer_url = p.get("link") or p.get("url") or None
-        # Validar que é uma URL válida
-        if offer_url and not offer_url.startswith("http"):
-            offer_url = None
+        product_name = p.get("name", "")
+        
+        # Pegar a URL da oferta com múltiplos fallbacks
+        offer_url = None
+        
+        # 1. Tentar link direto
+        link = p.get("link", "")
+        if link and link.startswith("http"):
+            offer_url = link
+        
+        # 2. Se não houver link direto, tentar product_link
+        if not offer_url:
+            product_link = p.get("product_link", "")
+            if product_link and product_link.startswith("http"):
+                offer_url = product_link
+        
+        # 3. Fallback: gerar link de busca do Google Shopping
+        if not offer_url and product_name:
+            from urllib.parse import quote
+            offer_url = f"https://www.google.com/search?tbm=shop&q={quote(product_name)}"
             
         formatted_products.append({
             "id": p.get("id", ""),
-            "name": p.get("name", ""),
+            "name": product_name,
             "category": category or "geral",
             "image": p.get("image", ""),
             "best_price": p.get("price"),
