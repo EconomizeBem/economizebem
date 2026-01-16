@@ -551,13 +551,19 @@ async def clear_cache():
 # ==================== PRICE ALERT CHECK ROUTES ====================
 
 @api_router.post("/alerts/check")
-async def trigger_price_alert_check(background_tasks: BackgroundTasks):
+async def trigger_price_alert_check(background_tasks: BackgroundTasks, force: bool = False):
     """
     Dispara verificação de todos os alertas de preço ativos
     Pode ser chamado manualmente ou via cron job externo
+    
+    Args:
+        force: Se True, ignora cooldown de 24h e verifica todos os alertas
     """
-    background_tasks.add_task(alert_service.check_price_alerts)
-    return {"message": "Verificação de alertas iniciada em segundo plano"}
+    background_tasks.add_task(alert_service.check_price_alerts, force)
+    return {
+        "message": "Verificação de alertas iniciada em segundo plano",
+        "force_mode": force
+    }
 
 @api_router.post("/alerts/check-favorites")
 async def trigger_favorite_check(background_tasks: BackgroundTasks):
