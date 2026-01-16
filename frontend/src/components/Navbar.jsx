@@ -140,7 +140,11 @@ export const Navbar = () => {
                             <Button variant="ghost" onClick={() => navigate('/login')} data-testid="login-btn">
                                 Entrar
                             </Button>
-                            <Button className="btn-primary rounded-full" onClick={() => navigate('/register')} data-testid="register-btn">
+                            <Button 
+                                className="rounded-full bg-sky-500 hover:bg-sky-600 text-white dark:bg-sky-500 dark:hover:bg-sky-400 dark:text-white" 
+                                onClick={() => navigate('/register')} 
+                                data-testid="register-btn"
+                            >
                                 Criar Conta
                             </Button>
                         </div>

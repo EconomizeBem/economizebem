@@ -106,31 +106,15 @@ export default function HomePage() {
                         </div>
 
                         {/* Right - Stats Cards */}
-                        <div className="hidden md:block relative">
-                            <div className="grid grid-cols-2 gap-4">
-                                {/* Main Card */}
-                                <div className="col-span-2 bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-xl border border-slate-100 dark:border-slate-800">
-                                    <div className="flex items-center gap-4 mb-4">
-                                        <div className="w-12 h-12 bg-sky-100 dark:bg-sky-900/30 rounded-xl flex items-center justify-center">
-                                            <BarChart3 className="w-6 h-6 text-sky-500" />
-                                        </div>
-                                        <div>
-                                            <p className="text-sm text-muted-foreground">Economia média mensal</p>
-                                            <p className="text-2xl font-bold text-sky-500">R$ 287,00</p>
-                                        </div>
-                                    </div>
-                                    <div className="h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
-                                        <div className="h-full w-3/4 bg-gradient-to-r from-sky-500 to-violet-500 rounded-full"></div>
-                                    </div>
-                                </div>
-                                
+                        <div className="hidden md:flex relative items-center justify-center">
+                            <div className="grid grid-cols-2 gap-4 max-w-sm">
                                 {/* Stat Card 1 */}
                                 <div className="bg-white dark:bg-slate-900 rounded-2xl p-5 shadow-lg border border-slate-100 dark:border-slate-800 float-animation">
                                     <div className="w-10 h-10 bg-violet-100 dark:bg-violet-900/30 rounded-xl flex items-center justify-center mb-3">
                                         <Zap className="w-5 h-5 text-violet-500" />
                                     </div>
-                                    <p className="text-2xl font-bold">+50.000</p>
-                                    <p className="text-sm text-muted-foreground">Comparações</p>
+                                    <p className="text-2xl font-bold">Rápido</p>
+                                    <p className="text-sm text-muted-foreground">Compare em segundos</p>
                                 </div>
                                 
                                 {/* Stat Card 2 */}
@@ -138,8 +122,21 @@ export default function HomePage() {
                                     <div className="w-10 h-10 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center mb-3">
                                         <PiggyBank className="w-5 h-5 text-amber-500" />
                                     </div>
-                                    <p className="text-2xl font-bold">6 lojas</p>
+                                    <p className="text-2xl font-bold">6+ lojas</p>
                                     <p className="text-sm text-muted-foreground">Monitoradas</p>
+                                </div>
+                                
+                                {/* Stat Card 3 */}
+                                <div className="bg-white dark:bg-slate-900 rounded-2xl p-5 shadow-lg border border-slate-100 dark:border-slate-800 float-animation col-span-2" style={{ animationDelay: '0.5s' }}>
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 bg-sky-100 dark:bg-sky-900/30 rounded-xl flex items-center justify-center">
+                                            <ShieldCheck className="w-5 h-5 text-sky-500" />
+                                        </div>
+                                        <div>
+                                            <p className="text-lg font-bold">100% Gratuito</p>
+                                            <p className="text-sm text-muted-foreground">Sem cadastro obrigatório</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
