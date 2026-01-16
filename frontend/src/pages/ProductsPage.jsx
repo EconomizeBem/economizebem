@@ -214,7 +214,7 @@ export default function ProductsPage() {
                                                 <Badge
                                                     key={cat.id}
                                                     variant={category === cat.id ? 'default' : 'outline'}
-                                                    className={`cursor-pointer ${category === cat.id ? 'bg-emerald-600' : ''}`}
+                                                    className={`cursor-pointer ${category === cat.id ? 'bg-sky-500 dark:bg-cyan-600' : 'dark:border-slate-600'}`}
                                                     onClick={() => handleCategoryChange(cat.id)}
                                                 >
                                                     {cat.name}
