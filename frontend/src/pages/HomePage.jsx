@@ -198,15 +198,15 @@ export default function HomePage() {
                             <Link 
                                 key={idx} 
                                 to={cat.link}
-                                className="relative flex flex-col items-center gap-3 p-6 rounded-2xl bg-slate-50 dark:bg-slate-900 hover:bg-sky-50 dark:hover:bg-sky-900/20 border border-transparent hover:border-sky-200 dark:hover:border-sky-800 transition-all group"
+                                className="relative flex flex-col items-center gap-3 p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-sky-50 dark:hover:bg-cyan-900/20 border border-transparent hover:border-sky-200 dark:hover:border-cyan-700/50 transition-all group"
                             >
                                 {cat.comingSoon && (
-                                    <Badge variant="secondary" className="absolute top-2 right-2 bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 text-xs px-2 py-0.5">
+                                    <Badge variant="secondary" className="absolute top-2 right-2 bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400 text-xs px-2 py-0.5">
                                         <Clock className="w-3 h-3 mr-1" />
                                         Em breve
                                     </Badge>
                                 )}
-                                <div className="text-slate-400 group-hover:text-sky-500 transition-colors">
+                                <div className="text-slate-400 group-hover:text-sky-500 dark:group-hover:text-cyan-400 transition-colors">
                                     {cat.icon}
                                 </div>
                                 <span className="font-medium">{cat.name}</span>
@@ -233,16 +233,16 @@ export default function HomePage() {
                         {features.map((feature, idx) => (
                             <div 
                                 key={idx}
-                                className="feature-card group p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 card-hover relative"
+                                className="feature-card group p-6 rounded-2xl bg-white dark:bg-slate-800/60 border border-slate-100 dark:border-slate-700 card-hover relative"
                                 style={{ animationDelay: `${idx * 0.1}s` }}
                             >
                                 {feature.comingSoon && (
-                                    <Badge variant="secondary" className="absolute top-3 right-3 bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 text-xs px-2 py-0.5">
+                                    <Badge variant="secondary" className="absolute top-3 right-3 bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400 text-xs px-2 py-0.5">
                                         <Clock className="w-3 h-3 mr-1" />
                                         Em breve
                                     </Badge>
                                 )}
-                                <div className="w-12 h-12 rounded-xl bg-sky-100 dark:bg-sky-900/30 flex items-center justify-center text-sky-500 mb-4 group-hover:scale-110 transition-transform">
+                                <div className="w-12 h-12 rounded-xl bg-sky-100 dark:bg-cyan-900/40 flex items-center justify-center text-sky-500 dark:text-cyan-400 mb-4 group-hover:scale-110 transition-transform">
                                     {feature.icon}
                                 </div>
                                 <h3 className="font-semibold mb-2">{feature.title}</h3>
@@ -254,7 +254,7 @@ export default function HomePage() {
             </section>
 
             {/* Trust Section */}
-            <section className="py-20 bg-slate-50 dark:bg-slate-950" data-testid="trust-section">
+            <section className="py-20 bg-slate-50 dark:bg-slate-900/50" data-testid="trust-section">
                 <div className="container-main">
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         <div>
