@@ -45,25 +45,54 @@ export default function ProductsPage() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
     const [category, setCategory] = useState(searchParams.get('category') || 'all');
     const [sortBy, setSortBy] = useState('price_asc');
     const [viewMode, setViewMode] = useState('grid');
 
+    // Efeito para buscar produtos quando a página carrega ou quando os parâmetros mudam
     useEffect(() => {
-        fetchProducts();
-    }, [category]);
+        const searchFromUrl = searchParams.get('search') || '';
+        const categoryFromUrl = searchParams.get('category') || 'all';
+        
+        // Atualizar estados locais se vieram da URL
+        if (searchFromUrl !== searchTerm) {
+            setSearchTerm(searchFromUrl);
+        }
+        if (categoryFromUrl !== category) {
+            setCategory(categoryFromUrl);
+        }
+        
+        // Buscar produtos
+        fetchProducts(searchFromUrl, categoryFromUrl);
+    }, [searchParams]);
 
-    const fetchProducts = async () => {
+    const fetchProducts = async (search = searchTerm, cat = category) => {
         setLoading(true);
+        setError(null);
+        
+        const query = search?.trim() || '';
+        const categoryParam = cat !== 'all' ? cat : null;
+        
+        console.log('[ProductsPage] Buscando produtos:', { query, category: categoryParam });
+        
         try {
-            const response = await productsApi.getAll(
-                searchTerm,
-                category !== 'all' ? category : null
-            );
-            setProducts(response.data);
-        } catch (error) {
-            console.error('Error fetching products:', error);
+            const response = await productsApi.getAll(query, categoryParam);
+            console.log('[ProductsPage] Resposta:', { 
+                status: 'success', 
+                count: response.data?.length || 0 
+            });
+            setProducts(response.data || []);
+            
+            if (response.data?.length === 0 && query) {
+                toast.info(`Nenhum produto encontrado para "${query}"`);
+            }
+        } catch (err) {
+            console.error('[ProductsPage] Erro ao buscar produtos:', err);
+            setError('Erro ao buscar produtos. Tente novamente.');
+            toast.error('Erro ao buscar produtos. Tente novamente.');
+            setProducts([]);
         } finally {
             setLoading(false);
         }
@@ -71,9 +100,12 @@ export default function ProductsPage() {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        fetchProducts();
+        const query = searchTerm.trim();
+        
+        console.log('[ProductsPage] handleSearch:', query);
+        
         setSearchParams(prev => {
-            if (searchTerm) prev.set('search', searchTerm);
+            if (query) prev.set('search', query);
             else prev.delete('search');
             return prev;
         });
