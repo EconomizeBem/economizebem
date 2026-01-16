@@ -101,32 +101,36 @@
         @apply bg-clip-text text-transparent bg-gradient-to-r from-sky-500 to-violet-500;
     }
     
+    .dark .text-gradient {
+        @apply bg-gradient-to-r from-cyan-400 to-violet-400;
+    }
+    
     .text-gradient-warm {
         @apply bg-clip-text text-transparent bg-gradient-to-r from-sky-500 to-cyan-400;
     }
     
     .glass-effect {
-        @apply bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border border-white/20 dark:border-white/10;
+        @apply bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border border-white/20 dark:border-slate-700/50;
     }
     
     .card-hover {
-        @apply shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_32px_rgba(14,165,233,0.15)] transition-all duration-300;
+        @apply shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_32px_rgba(14,165,233,0.15)] dark:shadow-[0_2px_8px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_12px_32px_rgba(8,145,178,0.2)] transition-all duration-300;
     }
     
     .btn-primary {
-        @apply bg-sky-500 hover:bg-sky-600 text-white shadow-lg shadow-sky-500/25 transition-all duration-200 active:scale-95;
+        @apply bg-sky-500 hover:bg-sky-600 text-white shadow-lg shadow-sky-500/25 dark:bg-cyan-600 dark:hover:bg-cyan-500 dark:shadow-cyan-600/20 transition-all duration-200 active:scale-95;
     }
     
     .btn-secondary {
-        @apply bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-900 dark:text-white transition-colors duration-200;
+        @apply bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-900 dark:text-slate-100 transition-colors duration-200;
     }
     
     .input-search {
-        @apply h-14 pl-12 pr-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-sm focus:ring-2 focus:ring-sky-500/20 focus:border-sky-500 w-full text-lg transition-colors duration-200;
+        @apply h-14 pl-12 pr-4 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-600 shadow-sm focus:ring-2 focus:ring-sky-500/20 dark:focus:ring-cyan-500/30 focus:border-sky-500 dark:focus:border-cyan-500 w-full text-lg transition-colors duration-200;
     }
     
     .price-highlight {
-        @apply text-2xl font-bold text-sky-600 dark:text-sky-400;
+        @apply text-2xl font-bold text-sky-600 dark:text-cyan-400;
     }
     
     .fade-in {
