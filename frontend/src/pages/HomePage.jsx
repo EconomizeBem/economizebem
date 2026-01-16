@@ -14,7 +14,6 @@ import {
     Zap,
     PiggyBank,
     Wallet,
-    BarChart3,
     BadgePercent,
     Clock
 } from 'lucide-react';
