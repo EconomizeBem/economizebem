@@ -282,7 +282,7 @@ export default function HomePage() {
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
-                                    <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-500 flex-shrink-0">
+                                    <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center text-amber-500 dark:text-amber-400 flex-shrink-0">
                                         <Bell className="w-5 h-5" />
                                     </div>
                                     <div>
@@ -293,20 +293,20 @@ export default function HomePage() {
                             </div>
                         </div>
                         <div className="relative">
-                            <div className="bg-gradient-to-br from-sky-500 to-violet-500 rounded-3xl p-8 text-white">
+                            <div className="bg-gradient-to-br from-sky-500 to-violet-500 dark:from-cyan-600 dark:to-violet-600 rounded-3xl p-8 text-white">
                                 <Wallet className="w-12 h-12 mb-4" />
                                 <h3 className="text-2xl font-bold mb-2">Comparação em tempo real</h3>
-                                <p className="text-sky-100 mb-6">
+                                <p className="text-sky-100 dark:text-cyan-100 mb-6">
                                     Buscamos os melhores preços nas principais lojas do Brasil para você economizar.
                                 </p>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="bg-white/10 rounded-xl p-4">
                                         <p className="text-3xl font-bold">6+</p>
-                                        <p className="text-sm text-sky-100">Lojas monitoradas</p>
+                                        <p className="text-sm text-sky-100 dark:text-cyan-100">Lojas monitoradas</p>
                                     </div>
                                     <div className="bg-white/10 rounded-xl p-4">
                                         <p className="text-3xl font-bold">24h</p>
-                                        <p className="text-sm text-sky-100">Atualização de preços</p>
+                                        <p className="text-sm text-sky-100 dark:text-cyan-100">Atualização de preços</p>
                                     </div>
                                 </div>
                             </div>
@@ -318,7 +318,7 @@ export default function HomePage() {
             {/* CTA Section */}
             <section className="py-20" data-testid="cta-section">
                 <div className="container-main">
-                    <div className="bg-gradient-to-r from-sky-500 to-sky-600 rounded-3xl p-8 md:p-16 text-center text-white relative overflow-hidden">
+                    <div className="bg-gradient-to-r from-sky-500 to-sky-600 dark:from-cyan-700 dark:to-cyan-600 rounded-3xl p-8 md:p-16 text-center text-white relative overflow-hidden">
                         {/* Background decoration */}
                         <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
                         <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
@@ -327,7 +327,7 @@ export default function HomePage() {
                             <h2 className="text-3xl md:text-4xl font-bold mb-4 font-['Outfit']">
                                 Pronto para começar a economizar?
                             </h2>
-                            <p className="text-lg text-sky-100 mb-8 max-w-xl mx-auto">
+                            <p className="text-lg text-sky-100 dark:text-cyan-100 mb-8 max-w-xl mx-auto">
                                 Crie sua conta gratuita e tenha acesso a todas as ferramentas de economia.
                             </p>
                             <div className="flex flex-wrap justify-center gap-4">
