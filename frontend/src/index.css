@@ -202,7 +202,54 @@
 
 /* Focus states */
 :focus-visible {
-    @apply outline-none ring-2 ring-sky-500 ring-offset-2 ring-offset-background;
+    @apply outline-none ring-2 ring-sky-500 dark:ring-cyan-500 ring-offset-2 ring-offset-background;
+}
+
+/* Hero gradients */
+.hero-gradient-light {
+    @apply bg-gradient-to-br from-slate-50 via-sky-50/50 to-violet-50/30;
+}
+
+.hero-gradient-dark {
+    @apply bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800;
+}
+
+/* Dark mode specific overrides for sky colors */
+.dark .text-sky-500 {
+    @apply text-cyan-400;
+}
+
+.dark .text-sky-600 {
+    @apply text-cyan-500;
+}
+
+.dark .bg-sky-100 {
+    @apply bg-cyan-900/30;
+}
+
+.dark .bg-sky-500 {
+    @apply bg-cyan-600;
+}
+
+.dark .hover\:bg-sky-600:hover {
+    @apply bg-cyan-500;
+}
+
+.dark .border-sky-200 {
+    @apply border-cyan-800/50;
+}
+
+.dark .hover\:border-sky-200:hover {
+    @apply border-cyan-700/50;
+}
+
+.dark .shadow-sky-500\/25 {
+    @apply shadow-cyan-600/20;
+}
+
+/* Dark mode icon backgrounds */
+.dark .bg-sky-900\/30 {
+    @apply bg-cyan-900/40;
 }
 
 @layer base {
