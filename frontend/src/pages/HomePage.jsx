@@ -90,7 +90,7 @@ export default function HomePage() {
     return (
         <div className="min-h-screen">
             {/* Hero Section */}
-            <section className="relative overflow-hidden hero-gradient-light dark:hero-gradient-dark" data-testid="hero-section">
+            <section className="relative overflow-hidden hero-gradient" data-testid="hero-section">
                 <div className="container-main py-20 md:py-28">
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         {/* Left Content */}
