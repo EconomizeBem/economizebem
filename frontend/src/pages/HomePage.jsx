@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
+import { toast } from 'sonner';
 import { 
     Search, 
     TrendingDown, 
@@ -15,7 +17,8 @@ import {
     PiggyBank,
     Wallet,
     BadgePercent,
-    Clock
+    Clock,
+    Loader2
 } from 'lucide-react';
 
 const features = [
