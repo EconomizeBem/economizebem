@@ -53,6 +53,43 @@ const categories = [
 ];
 
 export default function HomePage() {
+    const navigate = useNavigate();
+    const [searchQuery, setSearchQuery] = useState('');
+    const [isSearching, setIsSearching] = useState(false);
+
+    const handleSearch = async (e) => {
+        e?.preventDefault();
+        
+        const query = searchQuery.trim();
+        
+        // Validação: mínimo 2 caracteres
+        if (query.length < 2) {
+            toast.error('Digite pelo menos 2 caracteres para buscar');
+            return;
+        }
+
+        console.log('[HomePage Search] Query capturada:', query);
+        
+        setIsSearching(true);
+        
+        try {
+            // Navegar para a página de produtos com o termo de busca
+            console.log('[HomePage Search] Redirecionando para /products com search:', query);
+            navigate(`/products?search=${encodeURIComponent(query)}`);
+        } catch (error) {
+            console.error('[HomePage Search] Erro:', error);
+            toast.error('Erro ao buscar produtos. Tente novamente.');
+        } finally {
+            setIsSearching(false);
+        }
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch(e);
+        }
+    };
+
     return (
         <div className="min-h-screen">
             {/* Hero Section */}
