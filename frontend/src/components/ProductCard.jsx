@@ -106,7 +106,7 @@ export const ProductCard = ({ product, onFavoriteChange }) => {
                 )}
 
                 {/* Image */}
-                <div className="aspect-square p-4 bg-slate-50 dark:bg-slate-900">
+                <div className="aspect-square p-4 bg-slate-50 dark:bg-slate-800/50">
                     <img 
                         src={product.image} 
                         alt={product.name}
@@ -123,7 +123,7 @@ export const ProductCard = ({ product, onFavoriteChange }) => {
 
                     {/* Best Price */}
                     <div className="flex items-baseline gap-2">
-                        <span className="price-highlight" data-testid="product-price">
+                        <span className="text-2xl font-bold text-sky-600 dark:text-cyan-400" data-testid="product-price">
                             R$ {product.best_price?.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                         </span>
                         {bestStore?.original_price > bestStore?.price && (
@@ -143,18 +143,18 @@ export const ProductCard = ({ product, onFavoriteChange }) => {
                             <Truck className="w-4 h-4" />
                             <span>{bestStore?.shipping === 0 ? 'Frete grátis' : (bestStore?.shipping ? `R$ ${bestStore.shipping}` : 'Consultar')}</span>
                         </div>
-                        <span className="font-medium text-sky-600">{bestStore?.store}</span>
+                        <span className="font-medium text-sky-600 dark:text-cyan-400">{bestStore?.store}</span>
                     </div>
 
                     {/* Store comparisons */}
-                    <div className="space-y-2 pt-2 border-t">
+                    <div className="space-y-2 pt-2 border-t dark:border-slate-700">
                         <p className="text-xs text-muted-foreground">Comparar em {product.stores?.length} lojas</p>
                         <div className="flex flex-wrap gap-1">
                             {product.stores?.slice(0, 4).map((store, idx) => (
                                 <Badge 
                                     key={idx} 
                                     variant={store.price === product.best_price ? "default" : "secondary"}
-                                    className={store.price === product.best_price ? "bg-sky-500" : ""}
+                                    className={store.price === product.best_price ? "bg-sky-500 dark:bg-cyan-600" : "dark:bg-slate-700 dark:text-slate-300"}
                                 >
                                     {store.store}: R$ {store.price?.toLocaleString('pt-BR')}
                                 </Badge>
