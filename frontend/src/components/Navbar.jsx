@@ -52,11 +52,11 @@ export const Navbar = () => {
             <nav className="container-main h-16 flex items-center justify-between">
                 {/* Logo */}
                 <Link to="/" className="flex items-center gap-2.5" data-testid="logo-link">
-                    <div className="w-9 h-9 bg-gradient-to-br from-sky-500 to-sky-600 rounded-xl flex items-center justify-center shadow-lg shadow-sky-500/25">
+                    <div className="w-9 h-9 bg-gradient-to-br from-sky-500 to-sky-600 dark:from-cyan-600 dark:to-cyan-700 rounded-xl flex items-center justify-center shadow-lg shadow-sky-500/25 dark:shadow-cyan-600/20">
                         <Wallet className="w-5 h-5 text-white" />
                     </div>
                     <span className="text-xl logo-text">
-                        Economize<span className="text-sky-500">Bem</span>
+                        Economize<span className="text-sky-500 dark:text-cyan-400">Bem</span>
                     </span>
                 </Link>
 
@@ -66,14 +66,14 @@ export const Navbar = () => {
                         <Link
                             key={link.href}
                             to={link.href}
-                            className={`text-sm font-medium transition-colors hover:text-sky-500 flex items-center gap-1.5 ${
-                                isActive(link.href) ? 'text-sky-500 nav-link-active' : 'text-muted-foreground'
+                            className={`text-sm font-medium transition-colors hover:text-sky-500 dark:hover:text-cyan-400 flex items-center gap-1.5 ${
+                                isActive(link.href) ? 'text-sky-500 dark:text-cyan-400 nav-link-active' : 'text-muted-foreground'
                             }`}
                             data-testid={`nav-${link.label.toLowerCase().replace(' ', '-')}`}
                         >
                             {link.label}
                             {link.comingSoon && (
-                                <Badge variant="secondary" className="bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 text-[10px] px-1.5 py-0 h-4">
+                                <Badge variant="secondary" className="bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400 text-[10px] px-1.5 py-0 h-4">
                                     Em breve
                                 </Badge>
                             )}
