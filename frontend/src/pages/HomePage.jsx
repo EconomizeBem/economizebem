@@ -295,18 +295,18 @@ export default function HomePage() {
                         <div className="relative">
                             <div className="bg-gradient-to-br from-sky-500 to-violet-500 rounded-3xl p-8 text-white">
                                 <Wallet className="w-12 h-12 mb-4" />
-                                <h3 className="text-2xl font-bold mb-2">Sua economia começa aqui</h3>
+                                <h3 className="text-2xl font-bold mb-2">Comparação em tempo real</h3>
                                 <p className="text-sky-100 mb-6">
-                                    Milhares de brasileiros já economizam usando nossa plataforma. Junte-se a eles!
+                                    Buscamos os melhores preços nas principais lojas do Brasil para você economizar.
                                 </p>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="bg-white/10 rounded-xl p-4">
-                                        <p className="text-3xl font-bold">R$ 2M+</p>
-                                        <p className="text-sm text-sky-100">Economizados</p>
+                                        <p className="text-3xl font-bold">6+</p>
+                                        <p className="text-sm text-sky-100">Lojas monitoradas</p>
                                     </div>
                                     <div className="bg-white/10 rounded-xl p-4">
-                                        <p className="text-3xl font-bold">15k+</p>
-                                        <p className="text-sm text-sky-100">Usuários</p>
+                                        <p className="text-3xl font-bold">24h</p>
+                                        <p className="text-sm text-sky-100">Atualização de preços</p>
                                     </div>
                                 </div>
                             </div>
