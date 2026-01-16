@@ -4,6 +4,7 @@ import { Search, Filter, Grid, List, SlidersHorizontal } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Badge } from '../components/ui/badge';
+import { toast } from 'sonner';
 import {
     Select,
     SelectContent,
