@@ -219,12 +219,12 @@
 }
 
 /* Hero gradients */
-.hero-gradient-light {
+.hero-gradient {
     @apply bg-gradient-to-br from-slate-50 via-sky-50/50 to-violet-50/30;
 }
 
-.hero-gradient-dark {
-    @apply bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800;
+.dark .hero-gradient {
+    @apply bg-gradient-to-br from-slate-950 via-slate-900 to-slate-900;
 }
 
 /* Dark mode specific overrides for sky colors */
