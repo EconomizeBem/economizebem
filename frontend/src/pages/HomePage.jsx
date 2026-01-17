@@ -190,13 +190,6 @@ export default function HomePage() {
                 </div>
             </section>
 
-            {/* AdSense Banner - Abaixo do Hero */}
-            <section className="py-4 bg-slate-50 dark:bg-slate-900/30">
-                <div className="container-main">
-                    <AdSenseBanner adSlot="SLOT_HERO_BANNER" />
-                </div>
-            </section>
-
             {/* Quick Categories */}
             <section className="py-12 border-b dark:border-slate-800" data-testid="categories-section">
                 <div className="container-main">
