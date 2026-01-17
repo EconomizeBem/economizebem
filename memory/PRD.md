@@ -65,19 +65,23 @@ Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade púb
 - CRUD de favoritos, alertas, despesas
 - **Integração SerpAPI para busca de produtos reais**
 - **Sistema de cache de 24 horas para resultados da API**
-- **Endpoints para verificação de alertas de preço**
+- **Endpoints para verificação de alertas de preço (idempotentes)**
+- **Script `run_price_alerts.py` para cron-job**
 - Dados mockados para planos (internet, mobile, streaming)
 
 ### Frontend
-- 6 páginas principais (Home, Produtos, Planos, Calculadora, Auth, Dashboard)
-- Sistema de temas (dark/light)
+- 8 páginas principais (Home, Produtos, Planos, Calculadora, Auth, Dashboard, Termos, Privacidade)
+- Sistema de temas (dark/light) com paleta refinada
 - Componentes reutilizáveis com Shadcn UI
 - Gráficos com Recharts (pizza para gastos)
 - Navegação responsiva com menu mobile
+- **Google AdSense (Auto Ads) integrado**
+- **Páginas legais completas (Termos de Uso e Política de Privacidade)**
 
 ### Integrações
 - **SerpAPI (Google Shopping)**: ✅ FUNCIONANDO - Busca produtos reais
 - **SMTP Zoho Mail**: ✅ FUNCIONANDO - Envio de e-mails transacionais
+- **Google AdSense**: ✅ INTEGRADO - Auto Ads configurado
 
 ## Prioritized Backlog
 
