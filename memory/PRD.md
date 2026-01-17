@@ -86,9 +86,13 @@ Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade púb
 - [x] Implementar cache de 24 horas
 - [x] Implementar verificação de alertas de preço
 - [x] Configurar MongoDB Atlas para produção
+- [x] Integrar Google AdSense (Auto Ads)
+- [x] Criar páginas legais (Termos de Uso e Privacidade)
 
 ### P1 (Alta Prioridade)
-- [ ] Implementar cron job externo para verificação diária de alertas
+- [x] Implementar cron job externo para verificação diária de alertas (configurado pelo usuário no Render)
+- [ ] Implementar backend para "Comparador de Planos"
+- [ ] Implementar backend para "Calculadora Financeira"
 
 ### P2 (Média Prioridade)
 - [ ] Substituir dados mockados de planos por dados reais
