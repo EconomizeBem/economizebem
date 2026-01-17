@@ -182,18 +182,29 @@ GET  /api/expenses/summary
 │   ├── server.py
 │   ├── email_templates.py
 │   ├── product_service.py    # SerpAPI integration
-│   └── alert_service.py      # Price alert checks
+│   ├── alert_service.py      # Price alert checks (idempotente)
+│   └── run_price_alerts.py   # Script para cron-job
 ├── frontend/
 │   ├── .env
 │   ├── package.json
+│   ├── public/
+│   │   └── index.html        # Google AdSense script
 │   └── src/
 │       ├── pages/
 │       │   ├── ProductsPage.jsx
 │       │   ├── PlansPage.jsx
+│       │   ├── TermsPage.jsx     # Termos de Uso
+│       │   ├── PrivacyPage.jsx   # Política de Privacidade
 │       │   └── ...
 │       └── components/
 │           ├── ProductCard.jsx
+│           ├── Footer.jsx        # Links para páginas legais
 │           └── ...
-└── tests/
-    └── test_serpapi_integration.py
+└── memory/
+    └── PRD.md
 ```
+
+## Última Atualização
+- **Data**: Janeiro 2025
+- **Sessão**: Verificação das páginas legais e limpeza de arquivos órfãos
+- **Status**: ✅ Todas as funcionalidades P0 implementadas e testadas
