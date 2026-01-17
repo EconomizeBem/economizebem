@@ -50,8 +50,8 @@ export const Footer = () => {
                         © 2024 EconomizeBem. Todos os direitos reservados.
                     </p>
                     <div className="flex items-center gap-4 text-muted-foreground">
-                        <Link to="#" className="hover:text-sky-500 dark:hover:text-cyan-400 transition-colors">Termos de Uso</Link>
-                        <Link to="#" className="hover:text-sky-500 dark:hover:text-cyan-400 transition-colors">Privacidade</Link>
+                        <Link to="/termos" className="hover:text-sky-500 dark:hover:text-cyan-400 transition-colors">Termos de Uso</Link>
+                        <Link to="/privacidade" className="hover:text-sky-500 dark:hover:text-cyan-400 transition-colors">Privacidade</Link>
                     </div>
                 </div>
             </div>
