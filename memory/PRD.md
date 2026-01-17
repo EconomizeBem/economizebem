@@ -47,8 +47,7 @@ Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade púb
 - [ ] Integrar dados reais para "Comparador de Planos" (atualmente mockado)
 - [ ] Implementar backend completo para "Calculadora Financeira"
 - [ ] Integrar APIs de afiliados (Amazon, Magazine Luiza, Mercado Livre)
-- [ ] Configurar SEO avançado
-- [ ] Configurar MongoDB Atlas para produção
+- [ ] Configurar SEO avançado (meta tags dinâmicas, robots.txt, sitemap.xml)
 
 ## Tech Stack
 - **Backend**: FastAPI + Python
