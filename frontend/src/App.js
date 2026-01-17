@@ -11,6 +11,8 @@ import HomePage from "./pages/HomePage";
 import ProductsPage from "./pages/ProductsPage";
 import PlansPage from "./pages/PlansPage";
 import CalculatorPage from "./pages/CalculatorPage";
+import TermsPage from "./pages/TermsPage";
+import PrivacyPage from "./pages/PrivacyPage";
 import LoginPage, { RegisterPage, ForgotPasswordPage, ResetPasswordPage } from "./pages/AuthPages";
 import DashboardLayout, { 
     DashboardOverview, 
@@ -33,6 +35,8 @@ function App() {
                                 <Route path="/products" element={<ProductsPage />} />
                                 <Route path="/plans" element={<PlansPage />} />
                                 <Route path="/calculator" element={<CalculatorPage />} />
+                                <Route path="/termos" element={<TermsPage />} />
+                                <Route path="/privacidade" element={<PrivacyPage />} />
                                 
                                 {/* Auth Routes */}
                                 <Route path="/login" element={<LoginPage />} />
