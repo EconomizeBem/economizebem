@@ -267,8 +267,16 @@ export default function ProductsPage() {
                     />
                 ) : (
                     <div className={`grid gap-6 ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1'}`} data-testid="products-grid">
-                        {sortedProducts.map(product => (
-                            <ProductCard key={product.id} product={product} />
+                        {sortedProducts.map((product, index) => (
+                            <>
+                                <ProductCard key={product.id} product={product} />
+                                {/* Inserir anúncio a cada 8 produtos */}
+                                {(index + 1) % 8 === 0 && index < sortedProducts.length - 1 && (
+                                    <div key={`ad-${index}`} className="col-span-full">
+                                        <AdSenseInFeed adSlot="SLOT_PRODUCTS_INFEED" />
+                                    </div>
+                                )}
+                            </>
                         ))}
                     </div>
                 )}
