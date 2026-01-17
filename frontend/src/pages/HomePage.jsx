@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { toast } from 'sonner';
-import { AdSenseBanner } from '../components/AdSenseBlock';
 import { 
     Search, 
     TrendingDown, 
