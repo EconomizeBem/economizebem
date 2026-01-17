@@ -23,7 +23,6 @@ import { ProductCard } from '../components/ProductCard';
 import { LoadingSkeleton } from '../components/LoadingSkeleton';
 import { EmptyState } from '../components/EmptyState';
 import { productsApi } from '../lib/api';
-import { AdSenseInFeed } from '../components/AdSenseBlock';
 
 const categories = [
     { id: 'all', name: 'Todos' },
