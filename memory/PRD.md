@@ -27,12 +27,15 @@ Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade púb
 - ✅ Sistema de autenticação JWT (cadastro, login, logout, recuperação de senha)
 - ✅ **Comparador de preços de produtos COM DADOS REAIS via SerpAPI (Google Shopping)**
 - ✅ Cache de 24 horas para resultados da SerpAPI
-- ✅ Sistema de verificação de alertas de preço
+- ✅ Sistema de verificação de alertas de preço (com cron-job configurado pelo usuário)
 - ✅ Sistema de favoritos (produtos e planos)
 - ✅ Sistema de e-mail via SMTP Zoho (boas-vindas, recuperação de senha, alertas)
-- ✅ Dark/Light mode toggle
+- ✅ Dark/Light mode toggle (paleta refinada)
 - ✅ Design responsivo (desktop e mobile)
 - ✅ Calculadora financeira (gastos, simulador "vale a pena")
+- ✅ **Google AdSense (Auto Ads) integrado**
+- ✅ **Páginas legais: Termos de Uso e Política de Privacidade**
+- ✅ **MongoDB Atlas configurado para produção**
 
 ### Em breve (Mockado removido) 🔜
 - 🔜 Comparador de planos (Internet, Celular, Streaming) - **Página mostra "Em breve"**
