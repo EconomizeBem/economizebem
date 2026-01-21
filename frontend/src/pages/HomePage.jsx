@@ -18,7 +18,13 @@ import {
     Wallet,
     BadgePercent,
     Clock,
-    Loader2
+    Loader2,
+    Refrigerator,
+    UtensilsCrossed,
+    Shirt,
+    Sparkles,
+    PawPrint,
+    ChevronRight
 } from 'lucide-react';
 
 const features = [
