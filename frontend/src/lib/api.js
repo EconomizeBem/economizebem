@@ -11,14 +11,25 @@ const getAuthHeader = () => {
 
 // Products API
 export const productsApi = {
-    getAll: (search, category) => {
+    getAll: (search, category, page = 1, pageSize = 20) => {
         const params = new URLSearchParams();
         if (search) params.append('search', search);
         if (category) params.append('category', category);
+        params.append('page', page);
+        params.append('page_size', pageSize);
         return axios.get(`${API}/products?${params}`);
     },
+    search: (q, category, page = 1, pageSize = 20) => {
+        const params = new URLSearchParams();
+        params.append('q', q);
+        if (category) params.append('category', category);
+        params.append('page', page);
+        params.append('page_size', pageSize);
+        return axios.get(`${API}/products/search?${params}`);
+    },
     getById: (id) => axios.get(`${API}/products/${id}`),
-    getCategories: () => axios.get(`${API}/products/categories/list`)
+    getCategories: () => axios.get(`${API}/products/categories/list`),
+    getCacheStats: () => axios.get(`${API}/products/cache/stats`)
 };
 
 // Plans API
