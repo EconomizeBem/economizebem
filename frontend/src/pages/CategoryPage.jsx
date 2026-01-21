@@ -69,6 +69,7 @@ export default function CategoryPage({
     // Ref para debounce
     const debounceRef = useRef(null);
     const currentQueryRef = useRef('');
+    const lastFetchRef = useRef('');
 
     // SEO meta description
     const seoDescription = metaDescription || `Compare preços de ${title} nas melhores lojas do Brasil. Encontre ofertas, descontos e economize em ${title.toLowerCase()} com o EconomizeBem.`;
