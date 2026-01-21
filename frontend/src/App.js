@@ -44,9 +44,20 @@ function App() {
                                 {/* Public Routes */}
                                 <Route path="/" element={<HomePage />} />
                                 <Route path="/products" element={<ProductsPage />} />
+                                
+                                {/* Category Routes - New Structure */}
+                                <Route path="/categoria/eletronicos" element={<EletronicosPage />} />
+                                <Route path="/categoria/eletrodomesticos" element={<EletrodomesticosPage />} />
+                                <Route path="/categoria/casa-cozinha" element={<CasaCozinhaPage />} />
+                                <Route path="/categoria/vestuario" element={<VestuarioPageNew />} />
+                                <Route path="/categoria/beleza-saude" element={<BelezaSaudePage />} />
+                                <Route path="/categoria/pets" element={<PetsPage />} />
+                                
+                                {/* Legacy routes - Keep for backwards compatibility */}
                                 <Route path="/vestuario" element={<VestuarioPage />} />
                                 <Route path="/geladeiras" element={<GeladeirasPage />} />
                                 <Route path="/cozinha" element={<CozinhaPage />} />
+                                
                                 <Route path="/plans" element={<PlansPage />} />
                                 <Route path="/calculator" element={<CalculatorPage />} />
                                 <Route path="/termos" element={<TermsPage />} />
