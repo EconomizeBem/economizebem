@@ -216,7 +216,43 @@ export const Navbar = () => {
                         </SheetTrigger>
                         <SheetContent side="right" className="w-80">
                             <div className="flex flex-col gap-6 mt-8">
-                                {navLinks.map(link => (
+                                {navLinks.slice(0, 2).map(link => (
+                                    <Link
+                                        key={link.href}
+                                        to={link.href}
+                                        onClick={() => setMobileOpen(false)}
+                                        className={`text-lg font-medium flex items-center gap-2 ${
+                                            isActive(link.href) ? 'text-sky-500' : ''
+                                        }`}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                ))}
+                                
+                                {/* Categories Section */}
+                                <div className="space-y-3">
+                                    <p className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                                        <ShoppingBag className="w-4 h-4" />
+                                        Categorias
+                                    </p>
+                                    <div className="pl-4 space-y-3 border-l-2 border-slate-200 dark:border-slate-700">
+                                        {categoryLinks.map(cat => (
+                                            <Link
+                                                key={cat.href}
+                                                to={cat.href}
+                                                onClick={() => setMobileOpen(false)}
+                                                className={`flex items-center gap-2 ${
+                                                    isActive(cat.href) ? 'text-sky-500 dark:text-cyan-400' : 'text-muted-foreground hover:text-foreground'
+                                                }`}
+                                            >
+                                                <cat.icon className="w-4 h-4" />
+                                                {cat.label}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
+                                
+                                {navLinks.slice(2).map(link => (
                                     <Link
                                         key={link.href}
                                         to={link.href}
