@@ -202,16 +202,19 @@ GET  /api/expenses/summary
 │   └── src/
 │       ├── pages/
 │       │   ├── ProductsPage.jsx
-│       │   ├── CategoryPage.jsx    # Componente base para categorias
-│       │   ├── VestuarioPage.jsx   # /vestuario
-│       │   ├── GeladeirasPage.jsx  # /geladeiras
-│       │   ├── CozinhaPage.jsx     # /cozinha
+│       │   ├── CategoryPage.jsx       # Componente base com SEO
+│       │   ├── EletronicosPage.jsx    # /categoria/eletronicos
+│       │   ├── EletrodomesticosPage.jsx # /categoria/eletrodomesticos
+│       │   ├── CasaCozinhaPage.jsx    # /categoria/casa-cozinha
+│       │   ├── VestuarioPageNew.jsx   # /categoria/vestuario
+│       │   ├── BelezaSaudePage.jsx    # /categoria/beleza-saude
+│       │   ├── PetsPage.jsx           # /categoria/pets
 │       │   ├── PlansPage.jsx
 │       │   ├── TermsPage.jsx
 │       │   ├── PrivacyPage.jsx
 │       │   └── ...
 │       └── components/
-│           ├── Navbar.jsx          # Menu com dropdown de categorias
+│           ├── Navbar.jsx             # Menu com 6 categorias
 │           ├── ProductCard.jsx
 │           ├── Footer.jsx
 │           └── ...
@@ -221,12 +224,20 @@ GET  /api/expenses/summary
 
 ## Última Atualização
 - **Data**: Janeiro 2025
-- **Sessão**: Implementação de páginas de categoria segmentadas (Vestuário, Geladeiras, Cozinha)
+- **Sessão**: Expansão para 6 categorias de produtos com URLs SEO-friendly
 - **Status**: ✅ Todas as funcionalidades implementadas e testadas (100% de sucesso)
 
-## Novas Rotas de Categoria
-| Rota | Título | Busca Padrão | Subcategorias |
-|------|--------|--------------|---------------|
-| /vestuario | Vestuário | roupas moda | Camisetas, Calças, Vestidos, Tênis, Sapatos, Sandálias, Jaquetas, Moletons |
-| /geladeiras | Geladeiras | geladeira | Frost Free, Duplex, Inverse, Side by Side, Compacta, French Door |
-| /cozinha | Acessórios de Cozinha | acessórios cozinha | Panelas, Talheres, Utensílios, Organizadores, Eletroportáteis, Pratos e Louças, Copos e Taças |
+## Categorias de Produtos
+| Rota | Categoria | Busca Padrão | Subcategorias |
+|------|-----------|--------------|---------------|
+| /categoria/eletronicos | Eletrônicos | eletrônicos | Celulares, TVs, Notebooks, Fones de Ouvido, Smartwatches, Consoles |
+| /categoria/eletrodomesticos | Eletrodomésticos | eletrodomésticos | Geladeiras, Máquinas de Lavar, Fogões/Cooktops, Micro-ondas, Ar-condicionado, Aspiradores |
+| /categoria/casa-cozinha | Casa & Cozinha | casa cozinha | Panelas, Talheres, Utensílios, Cafeteiras, Organização, Pratos e Louças, Copos e Taças |
+| /categoria/vestuario | Vestuário | roupas moda | Tênis, Roupas Masculinas/Femininas, Calçados, Camisetas, Jaquetas, Vestidos |
+| /categoria/beleza-saude | Beleza & Saúde | beleza saúde | Maquiagem, Skincare, Cabelo, Higiene, Perfumes, Saúde e Bem-estar |
+| /categoria/pets | Pets | produtos para pets | Ração Cachorro/Gato, Petiscos, Acessórios, Higiene Pet, Brinquedos |
+
+### Rotas Legacy (mantidas para compatibilidade)
+- /vestuario → VestuarioPage.jsx
+- /geladeiras → GeladeirasPage.jsx
+- /cozinha → CozinhaPage.jsx
