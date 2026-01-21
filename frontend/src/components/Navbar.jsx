@@ -10,6 +10,7 @@ import {
     DropdownMenuItem,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
+    DropdownMenuLabel,
 } from './ui/dropdown-menu';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { 
@@ -24,9 +25,13 @@ import {
     Wallet,
     LayoutDashboard,
     ChevronDown,
-    Shirt,
+    ChevronRight,
+    Smartphone,
     Refrigerator,
     UtensilsCrossed,
+    Shirt,
+    Sparkles,
+    PawPrint,
     ShoppingBag
 } from 'lucide-react';
 
@@ -38,9 +43,12 @@ const navLinks = [
 ];
 
 const categoryLinks = [
-    { href: '/vestuario', label: 'Vestuário', icon: Shirt, description: 'Roupas e calçados' },
-    { href: '/geladeiras', label: 'Geladeiras', icon: Refrigerator, description: 'Refrigeradores' },
-    { href: '/cozinha', label: 'Cozinha', icon: UtensilsCrossed, description: 'Utensílios e acessórios' },
+    { href: '/categoria/eletronicos', label: 'Eletrônicos', icon: Smartphone, description: 'Celulares, TVs, notebooks' },
+    { href: '/categoria/eletrodomesticos', label: 'Eletrodomésticos', icon: Refrigerator, description: 'Geladeiras, máquinas de lavar' },
+    { href: '/categoria/casa-cozinha', label: 'Casa & Cozinha', icon: UtensilsCrossed, description: 'Panelas, utensílios' },
+    { href: '/categoria/vestuario', label: 'Vestuário', icon: Shirt, description: 'Roupas e calçados' },
+    { href: '/categoria/beleza-saude', label: 'Beleza & Saúde', icon: Sparkles, description: 'Maquiagem, skincare' },
+    { href: '/categoria/pets', label: 'Pets', icon: PawPrint, description: 'Ração, acessórios' },
 ];
 
 export const Navbar = () => {
