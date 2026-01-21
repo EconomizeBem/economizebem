@@ -97,9 +97,11 @@ Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade púb
 - [x] Configurar MongoDB Atlas para produção
 - [x] Integrar Google AdSense (Auto Ads)
 - [x] Criar páginas legais (Termos de Uso e Privacidade)
+- [x] Criar páginas de categoria segmentadas (Vestuário, Geladeiras, Cozinha)
 
 ### P1 (Alta Prioridade)
 - [x] Implementar cron job externo para verificação diária de alertas (configurado pelo usuário no Render)
+- [x] Criar menu de categorias com dropdown no navbar
 - [ ] Implementar backend para "Comparador de Planos"
 - [ ] Implementar backend para "Calculadora Financeira"
 
