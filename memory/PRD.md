@@ -73,9 +73,11 @@ Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade púb
 - Dados mockados para planos (internet, mobile, streaming)
 
 ### Frontend
-- 8 páginas principais (Home, Produtos, Planos, Calculadora, Auth, Dashboard, Termos, Privacidade)
+- 11 páginas principais (Home, Produtos, Vestuário, Geladeiras, Cozinha, Planos, Calculadora, Auth, Dashboard, Termos, Privacidade)
 - Sistema de temas (dark/light) com paleta refinada
 - Componentes reutilizáveis com Shadcn UI
+- **Páginas de categoria segmentadas com filtros rápidos**
+- **Menu de categorias com dropdown no navbar e seção no mobile**
 - Gráficos com Recharts (pizza para gastos)
 - Navegação responsiva com menu mobile
 - **Google AdSense (Auto Ads) integrado**
