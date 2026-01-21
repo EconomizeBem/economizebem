@@ -682,8 +682,13 @@ async def get_product(product_id: str):
 
 @api_router.get("/products/cache/stats")
 async def get_cache_stats():
-    """Retorna estatísticas do cache de produtos"""
+    """Retorna estatísticas do cache de produtos e métricas de busca"""
     return await product_service.get_cache_stats()
+
+@api_router.get("/products/search/logs")
+async def get_search_logs(limit: int = 100):
+    """Retorna logs de busca recentes para monitoramento"""
+    return await product_service.get_search_logs(limit)
 
 @api_router.post("/products/cache/clear")
 async def clear_cache():
