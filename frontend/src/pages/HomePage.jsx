@@ -52,10 +52,12 @@ const features = [
 ];
 
 const categories = [
-    { icon: <Smartphone className="w-8 h-8" />, name: 'Smartphones', link: '/products?category=smartphones' },
-    { icon: <Tv className="w-8 h-8" />, name: 'TVs', link: '/products?category=tvs' },
-    { icon: <Wifi className="w-8 h-8" />, name: 'Planos', link: '/plans', comingSoon: true },
-    { icon: <Calculator className="w-8 h-8" />, name: 'Calculadora', link: '/calculator' },
+    { icon: <Smartphone className="w-8 h-8" />, name: 'Eletrônicos', link: '/categoria/eletronicos', description: 'Celulares, TVs, notebooks' },
+    { icon: <Refrigerator className="w-8 h-8" />, name: 'Eletrodomésticos', link: '/categoria/eletrodomesticos', description: 'Geladeiras, lavadoras' },
+    { icon: <UtensilsCrossed className="w-8 h-8" />, name: 'Casa & Cozinha', link: '/categoria/casa-cozinha', description: 'Panelas, utensílios' },
+    { icon: <Shirt className="w-8 h-8" />, name: 'Vestuário', link: '/categoria/vestuario', description: 'Roupas, calçados' },
+    { icon: <Sparkles className="w-8 h-8" />, name: 'Beleza & Saúde', link: '/categoria/beleza-saude', description: 'Maquiagem, skincare' },
+    { icon: <PawPrint className="w-8 h-8" />, name: 'Pets', link: '/categoria/pets', description: 'Ração, acessórios' },
 ];
 
 export default function HomePage() {
