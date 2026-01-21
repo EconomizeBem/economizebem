@@ -201,23 +201,31 @@ export default function HomePage() {
             {/* Quick Categories */}
             <section className="py-12 border-b dark:border-slate-800" data-testid="categories-section">
                 <div className="container-main">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="flex items-center justify-between mb-8">
+                        <div>
+                            <h2 className="text-2xl md:text-3xl font-bold">Explore por Categoria</h2>
+                            <p className="text-muted-foreground mt-1">Encontre os melhores preços em cada segmento</p>
+                        </div>
+                        <Link to="/products" className="hidden md:flex items-center gap-1 text-sky-500 dark:text-cyan-400 hover:underline text-sm font-medium">
+                            Ver todos os produtos
+                            <ChevronRight className="w-4 h-4" />
+                        </Link>
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                         {categories.map((cat, idx) => (
                             <Link 
                                 key={idx} 
                                 to={cat.link}
-                                className="relative flex flex-col items-center gap-3 p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-sky-50 dark:hover:bg-cyan-900/20 border border-transparent hover:border-sky-200 dark:hover:border-cyan-700/50 transition-all group"
+                                className="relative flex flex-col items-center gap-3 p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-sky-50 dark:hover:bg-cyan-900/20 border border-transparent hover:border-sky-200 dark:hover:border-cyan-700/50 transition-all group"
+                                data-testid={`category-card-${cat.name.toLowerCase().replace(/\s+/g, '-').replace('&', 'e')}`}
                             >
-                                {cat.comingSoon && (
-                                    <Badge variant="secondary" className="absolute top-2 right-2 bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-400 text-xs px-2 py-0.5">
-                                        <Clock className="w-3 h-3 mr-1" />
-                                        Em breve
-                                    </Badge>
-                                )}
                                 <div className="text-slate-400 group-hover:text-sky-500 dark:group-hover:text-cyan-400 transition-colors">
                                     {cat.icon}
                                 </div>
-                                <span className="font-medium">{cat.name}</span>
+                                <div className="text-center">
+                                    <span className="font-medium text-sm">{cat.name}</span>
+                                    <p className="text-xs text-muted-foreground mt-0.5 hidden md:block">{cat.description}</p>
+                                </div>
                             </Link>
                         ))}
                     </div>
