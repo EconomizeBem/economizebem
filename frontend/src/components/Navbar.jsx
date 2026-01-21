@@ -23,7 +23,11 @@ import {
     Settings,
     Wallet,
     LayoutDashboard,
-    Clock
+    ChevronDown,
+    Shirt,
+    Refrigerator,
+    UtensilsCrossed,
+    ShoppingBag
 } from 'lucide-react';
 
 const navLinks = [
@@ -31,6 +35,12 @@ const navLinks = [
     { href: '/products', label: 'Comparar Produtos' },
     { href: '/plans', label: 'Comparar Planos', comingSoon: true },
     { href: '/calculator', label: 'Calculadora' },
+];
+
+const categoryLinks = [
+    { href: '/vestuario', label: 'Vestuário', icon: Shirt, description: 'Roupas e calçados' },
+    { href: '/geladeiras', label: 'Geladeiras', icon: Refrigerator, description: 'Refrigeradores' },
+    { href: '/cozinha', label: 'Cozinha', icon: UtensilsCrossed, description: 'Utensílios e acessórios' },
 ];
 
 export const Navbar = () => {
