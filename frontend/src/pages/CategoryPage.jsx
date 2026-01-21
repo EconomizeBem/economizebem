@@ -169,30 +169,42 @@ export default function CategoryPage({
     });
 
     return (
-        <div className="min-h-screen py-8" data-testid={`category-page-${title.toLowerCase().replace(/\s/g, '-')}`}>
-            <div className="container-main">
-                {/* Header com ícone e breadcrumb */}
-                <div className="mb-8">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
-                        <a href="/" className="hover:text-sky-500 dark:hover:text-cyan-400 transition-colors">Início</a>
-                        <ChevronRight className="w-4 h-4" />
-                        <a href="/products" className="hover:text-sky-500 dark:hover:text-cyan-400 transition-colors">Produtos</a>
-                        <ChevronRight className="w-4 h-4" />
-                        <span className="text-foreground font-medium">{title}</span>
-                    </div>
-                    
-                    <div className="flex items-center gap-4">
-                        {Icon && (
-                            <div className={`w-14 h-14 rounded-2xl flex items-center justify-center bg-sky-100 dark:bg-cyan-900/40`}>
-                                <Icon className={`w-7 h-7 text-sky-600 dark:text-cyan-400`} />
-                            </div>
-                        )}
-                        <div>
-                            <h1 className="text-3xl md:text-4xl font-bold font-['Manrope']">
-                                Compare preços de {title}
-                            </h1>
-                            <p className="text-muted-foreground mt-1">
-                                {subtitle}
+        <>
+            {/* SEO Meta Tags */}
+            <Helmet>
+                <title>{`${title} - Compare Preços | EconomizeBem`}</title>
+                <meta name="description" content={seoDescription} />
+                <meta name="keywords" content={`${title.toLowerCase()}, comparar preços, ofertas, descontos, ${defaultSearch}`} />
+                <link rel="canonical" href={`https://economizebem.com.br/categoria/${categorySlug || title.toLowerCase().replace(/\s+/g, '-').replace(/&/g, 'e')}`} />
+                <meta property="og:title" content={`${title} - Compare Preços | EconomizeBem`} />
+                <meta property="og:description" content={seoDescription} />
+                <meta property="og:type" content="website" />
+            </Helmet>
+
+            <div className="min-h-screen py-8" data-testid={`category-page-${title.toLowerCase().replace(/\s/g, '-')}`}>
+                <div className="container-main">
+                    {/* Header com ícone e breadcrumb */}
+                    <div className="mb-8">
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+                            <a href="/" className="hover:text-sky-500 dark:hover:text-cyan-400 transition-colors">Início</a>
+                            <ChevronRight className="w-4 h-4" />
+                            <a href="/products" className="hover:text-sky-500 dark:hover:text-cyan-400 transition-colors">Produtos</a>
+                            <ChevronRight className="w-4 h-4" />
+                            <span className="text-foreground font-medium">{title}</span>
+                        </div>
+                        
+                        <div className="flex items-center gap-4">
+                            {Icon && (
+                                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center bg-sky-100 dark:bg-cyan-900/40`}>
+                                    <Icon className={`w-7 h-7 text-sky-600 dark:text-cyan-400`} />
+                                </div>
+                            )}
+                            <div>
+                                <h1 className="text-3xl md:text-4xl font-bold font-['Manrope']">
+                                    Compare preços de {title}
+                                </h1>
+                                <p className="text-muted-foreground mt-1">
+                                    {subtitle}
                             </p>
                         </div>
                     </div>
