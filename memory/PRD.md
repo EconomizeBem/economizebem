@@ -218,5 +218,12 @@ GET  /api/expenses/summary
 
 ## Última Atualização
 - **Data**: Janeiro 2025
-- **Sessão**: Verificação das páginas legais e limpeza de arquivos órfãos
-- **Status**: ✅ Todas as funcionalidades P0 implementadas e testadas
+- **Sessão**: Implementação de páginas de categoria segmentadas (Vestuário, Geladeiras, Cozinha)
+- **Status**: ✅ Todas as funcionalidades implementadas e testadas (100% de sucesso)
+
+## Novas Rotas de Categoria
+| Rota | Título | Busca Padrão | Subcategorias |
+|------|--------|--------------|---------------|
+| /vestuario | Vestuário | roupas moda | Camisetas, Calças, Vestidos, Tênis, Sapatos, Sandálias, Jaquetas, Moletons |
+| /geladeiras | Geladeiras | geladeira | Frost Free, Duplex, Inverse, Side by Side, Compacta, French Door |
+| /cozinha | Acessórios de Cozinha | acessórios cozinha | Panelas, Talheres, Utensílios, Organizadores, Eletroportáteis, Pratos e Louças, Copos e Taças |
