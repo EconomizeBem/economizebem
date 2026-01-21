@@ -199,13 +199,18 @@ GET  /api/expenses/summary
 │   └── src/
 │       ├── pages/
 │       │   ├── ProductsPage.jsx
+│       │   ├── CategoryPage.jsx    # Componente base para categorias
+│       │   ├── VestuarioPage.jsx   # /vestuario
+│       │   ├── GeladeirasPage.jsx  # /geladeiras
+│       │   ├── CozinhaPage.jsx     # /cozinha
 │       │   ├── PlansPage.jsx
-│       │   ├── TermsPage.jsx     # Termos de Uso
-│       │   ├── PrivacyPage.jsx   # Política de Privacidade
+│       │   ├── TermsPage.jsx
+│       │   ├── PrivacyPage.jsx
 │       │   └── ...
 │       └── components/
+│           ├── Navbar.jsx          # Menu com dropdown de categorias
 │           ├── ProductCard.jsx
-│           ├── Footer.jsx        # Links para páginas legais
+│           ├── Footer.jsx
 │           └── ...
 └── memory/
     └── PRD.md
