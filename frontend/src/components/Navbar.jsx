@@ -71,8 +71,55 @@ export const Navbar = () => {
                 </Link>
 
                 {/* Desktop Navigation */}
-                <div className="hidden md:flex items-center gap-8">
-                    {navLinks.map(link => (
+                <div className="hidden md:flex items-center gap-6">
+                    {navLinks.slice(0, 2).map(link => (
+                        <Link
+                            key={link.href}
+                            to={link.href}
+                            className={`text-sm font-medium transition-colors hover:text-sky-500 dark:hover:text-cyan-400 flex items-center gap-1.5 ${
+                                isActive(link.href) ? 'text-sky-500 dark:text-cyan-400 nav-link-active' : 'text-muted-foreground'
+                            }`}
+                            data-testid={`nav-${link.label.toLowerCase().replace(' ', '-')}`}
+                        >
+                            {link.label}
+                        </Link>
+                    ))}
+                    
+                    {/* Categories Dropdown */}
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <button 
+                                className={`text-sm font-medium transition-colors hover:text-sky-500 dark:hover:text-cyan-400 flex items-center gap-1 ${
+                                    ['/vestuario', '/geladeiras', '/cozinha'].includes(location.pathname) 
+                                        ? 'text-sky-500 dark:text-cyan-400' 
+                                        : 'text-muted-foreground'
+                                }`}
+                                data-testid="nav-categorias"
+                            >
+                                <ShoppingBag className="w-4 h-4" />
+                                Categorias
+                                <ChevronDown className="w-3 h-3" />
+                            </button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="center" className="w-56">
+                            {categoryLinks.map(cat => (
+                                <DropdownMenuItem key={cat.href} onClick={() => navigate(cat.href)} className="cursor-pointer">
+                                    <cat.icon className="w-4 h-4 mr-3 text-sky-500 dark:text-cyan-400" />
+                                    <div>
+                                        <p className="font-medium">{cat.label}</p>
+                                        <p className="text-xs text-muted-foreground">{cat.description}</p>
+                                    </div>
+                                </DropdownMenuItem>
+                            ))}
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem onClick={() => navigate('/products')} className="cursor-pointer">
+                                <ShoppingBag className="w-4 h-4 mr-3" />
+                                <span>Ver todos os produtos</span>
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+
+                    {navLinks.slice(2).map(link => (
                         <Link
                             key={link.href}
                             to={link.href}
