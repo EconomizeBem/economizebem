@@ -98,7 +98,7 @@ export const Navbar = () => {
                         <DropdownMenuTrigger asChild>
                             <button 
                                 className={`text-sm font-medium transition-colors hover:text-sky-500 dark:hover:text-cyan-400 flex items-center gap-1 ${
-                                    ['/vestuario', '/geladeiras', '/cozinha'].includes(location.pathname) 
+                                    location.pathname.startsWith('/categoria') 
                                         ? 'text-sky-500 dark:text-cyan-400' 
                                         : 'text-muted-foreground'
                                 }`}
@@ -109,14 +109,18 @@ export const Navbar = () => {
                                 <ChevronDown className="w-3 h-3" />
                             </button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="center" className="w-56">
+                        <DropdownMenuContent align="center" className="w-64">
+                            <DropdownMenuLabel className="text-xs text-muted-foreground">
+                                Explore por categoria
+                            </DropdownMenuLabel>
                             {categoryLinks.map(cat => (
-                                <DropdownMenuItem key={cat.href} onClick={() => navigate(cat.href)} className="cursor-pointer">
-                                    <cat.icon className="w-4 h-4 mr-3 text-sky-500 dark:text-cyan-400" />
-                                    <div>
-                                        <p className="font-medium">{cat.label}</p>
-                                        <p className="text-xs text-muted-foreground">{cat.description}</p>
+                                <DropdownMenuItem key={cat.href} onClick={() => navigate(cat.href)} className="cursor-pointer py-2.5">
+                                    <cat.icon className="w-4 h-4 mr-3 text-sky-500 dark:text-cyan-400 flex-shrink-0" />
+                                    <div className="flex-1 min-w-0">
+                                        <p className="font-medium text-sm">{cat.label}</p>
+                                        <p className="text-xs text-muted-foreground truncate">{cat.description}</p>
                                     </div>
+                                    <ChevronRight className="w-3 h-3 text-muted-foreground ml-2" />
                                 </DropdownMenuItem>
                             ))}
                             <DropdownMenuSeparator />
