@@ -41,6 +41,8 @@ const sortOptions = [
  * @param {Array} props.subcategories - Lista de subcategorias/filtros rápidos
  * @param {React.Component} props.icon - Ícone da categoria
  * @param {string} props.accentColor - Cor de destaque (sky, emerald, amber, etc.)
+ * @param {string} props.metaDescription - Descrição para SEO
+ * @param {string} props.categorySlug - Slug da categoria para breadcrumb
  */
 export default function CategoryPage({ 
     title, 
@@ -48,7 +50,9 @@ export default function CategoryPage({
     defaultSearch, 
     subcategories = [], 
     icon: Icon,
-    accentColor = 'sky'
+    accentColor = 'sky',
+    metaDescription,
+    categorySlug
 }) {
     const [searchParams, setSearchParams] = useSearchParams();
     const [products, setProducts] = useState([]);
@@ -59,6 +63,9 @@ export default function CategoryPage({
     const [sortBy, setSortBy] = useState('price_asc');
     const [viewMode, setViewMode] = useState('grid');
     const [hasSearched, setHasSearched] = useState(false);
+
+    // SEO meta description
+    const seoDescription = metaDescription || `Compare preços de ${title} nas melhores lojas do Brasil. Encontre ofertas, descontos e economize em ${title.toLowerCase()} com o EconomizeBem.`;
 
     // Cores dinâmicas baseadas no accentColor
     const colorClasses = useMemo(() => ({
