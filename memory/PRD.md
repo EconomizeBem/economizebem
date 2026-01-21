@@ -36,8 +36,11 @@ Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade púb
 - ✅ **Google AdSense (Auto Ads) integrado**
 - ✅ **Páginas legais: Termos de Uso e Política de Privacidade**
 - ✅ **MongoDB Atlas configurado para produção**
-- ✅ **Páginas de categoria segmentadas: Vestuário, Geladeiras, Cozinha**
-- ✅ **Menu de categorias com dropdown no navbar**
+- ✅ **6 Categorias de produtos: Eletrônicos, Eletrodomésticos, Casa & Cozinha, Vestuário, Beleza & Saúde, Pets**
+- ✅ **URLs amigáveis para SEO: /categoria/xxx**
+- ✅ **Meta tags SEO dinâmicos via react-helmet**
+- ✅ **Menu de categorias expandido no navbar**
+- ✅ **Homepage com seção "Explore por Categoria"**
 - ✅ **Filtros rápidos (subcategorias) em cada página de categoria**
 
 ### Em breve (Mockado removido) 🔜
