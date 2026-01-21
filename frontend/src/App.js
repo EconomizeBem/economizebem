@@ -13,6 +13,14 @@ import PlansPage from "./pages/PlansPage";
 import CalculatorPage from "./pages/CalculatorPage";
 import TermsPage from "./pages/TermsPage";
 import PrivacyPage from "./pages/PrivacyPage";
+// Category Pages
+import EletronicosPage from "./pages/EletronicosPage";
+import EletrodomesticosPage from "./pages/EletrodomesticosPage";
+import CasaCozinhaPage from "./pages/CasaCozinhaPage";
+import VestuarioPageNew from "./pages/VestuarioPageNew";
+import BelezaSaudePage from "./pages/BelezaSaudePage";
+import PetsPage from "./pages/PetsPage";
+// Legacy category pages (redirects)
 import VestuarioPage from "./pages/VestuarioPage";
 import GeladeirasPage from "./pages/GeladeirasPage";
 import CozinhaPage from "./pages/CozinhaPage";
