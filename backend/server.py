@@ -461,61 +461,144 @@ PRODUCT_CATEGORIES = [
     {"id": "acessorios", "name": "Acessórios", "icon": "headphones", "query": "fone bluetooth acessório"},
 ]
 
+# Queries fixas para categorias (cache-friendly)
+CATEGORY_FIXED_QUERIES = {
+    "eletronicos": "eletrônicos",
+    "eletrodomesticos": "eletrodomésticos",
+    "casa-cozinha": "casa cozinha",
+    "vestuario": "roupas moda",
+    "beleza-saude": "beleza saúde",
+    "pets": "produtos para pets",
+    # Subcategorias específicas
+    "smartphones": "smartphone",
+    "tvs": "smart tv",
+    "notebooks": "notebook",
+    "fones": "fone bluetooth",
+    "smartwatches": "smartwatch",
+    "consoles": "console videogame",
+    "geladeiras": "geladeira frost free",
+    "maquinas-lavar": "máquina de lavar roupa",
+    "fogoes": "fogão cooktop",
+    "micro-ondas": "micro-ondas",
+    "ar-condicionado": "ar condicionado",
+    "panelas": "jogo de panelas",
+    "talheres": "talheres inox",
+    "utensilios": "utensílios de cozinha",
+    "cafeteiras": "cafeteira",
+    "tenis": "tênis",
+    "maquiagem": "maquiagem",
+    "skincare": "skincare",
+    "racao-cachorro": "ração para cachorro",
+    "racao-gato": "ração para gato",
+}
+
+def get_client_ip(request) -> str:
+    """Extrai IP do cliente da requisição"""
+    forwarded = request.headers.get("X-Forwarded-For")
+    if forwarded:
+        return forwarded.split(",")[0].strip()
+    return request.client.host if request.client else "unknown"
+
 @api_router.get("/products")
-async def get_products(search: Optional[str] = None, category: Optional[str] = None):
+async def get_products(
+    request: Request,
+    search: Optional[str] = None, 
+    category: Optional[str] = None,
+    page: int = 1,
+    page_size: int = 20
+):
     """
     Busca produtos via Google Shopping (SerpAPI)
     Usa cache de 24h para otimizar custos
+    
+    Parâmetros:
+    - search: Termo de busca
+    - category: Categoria para filtrar
+    - page: Página (1-3)
+    - page_size: Itens por página (máx 20)
     """
-    # Se não houver busca, retorna produtos populares
+    client_ip = get_client_ip(request)
+    
+    # Se não houver busca, retorna produtos populares (sem paginação)
     if not search and not category:
         products = await product_service.get_popular_products(limit=12)
-    else:
-        # Busca específica
-        query = search or ""
-        if category:
-            cat_info = next((c for c in PRODUCT_CATEGORIES if c["id"] == category), None)
-            if cat_info and not search:
-                query = cat_info["query"]
-        
-        products = await product_service.search_google_shopping(
-            query=query,
-            category=category,
-            num_results=20
-        )
+        return format_products_response(products, category, page=1, has_more=False)
     
-    # Formatar resposta para compatibilidade com frontend
+    # Determinar query
+    query = search or ""
+    if category:
+        # Usar query fixa da categoria se não houver busca
+        if not search and category in CATEGORY_FIXED_QUERIES:
+            query = CATEGORY_FIXED_QUERIES[category]
+        elif not search:
+            cat_info = next((c for c in PRODUCT_CATEGORIES if c["id"] == category), None)
+            if cat_info:
+                query = cat_info["query"]
+    
+    # Busca paginada
+    result = await product_service.search_google_shopping_paginated(
+        query=query,
+        category=category,
+        page=page,
+        page_size=min(page_size, 20),
+        ip=client_ip
+    )
+    
+    return format_products_response(
+        result.get("products", []),
+        category,
+        page=result.get("page", 1),
+        has_more=result.get("has_more", False),
+        total_pages=result.get("total_pages", 1),
+        message=result.get("message")
+    )
+
+def format_products_response(
+    products: list, 
+    category: Optional[str],
+    page: int = 1,
+    has_more: bool = False,
+    total_pages: int = 1,
+    message: Optional[str] = None
+) -> dict:
+    """Formata resposta de produtos para compatibilidade com frontend"""
     formatted_products = []
+    seen_ids = set()
+    
     for p in products:
+        product_id = p.get("id", "")
+        
+        # Deduplicar por ID
+        if product_id in seen_ids:
+            continue
+        seen_ids.add(product_id)
+        
         product_name = p.get("name", "")
         
         # Pegar a URL da oferta com múltiplos fallbacks
         offer_url = None
         
-        # 1. Tentar link direto
         link = p.get("link", "")
         if link and link.startswith("http"):
             offer_url = link
         
-        # 2. Se não houver link direto, tentar product_link
         if not offer_url:
             product_link = p.get("product_link", "")
             if product_link and product_link.startswith("http"):
                 offer_url = product_link
         
-        # 3. Fallback: gerar link de busca do Google Shopping
         if not offer_url and product_name:
             from urllib.parse import quote
             offer_url = f"https://www.google.com/search?tbm=shop&q={quote(product_name)}"
             
         formatted_products.append({
-            "id": p.get("id", ""),
+            "id": product_id,
             "name": product_name,
             "category": category or "geral",
             "image": p.get("image", ""),
             "best_price": p.get("price"),
             "worst_price": p.get("original_price") or p.get("price"),
-            "offer_url": offer_url,  # URL padronizada no nível do produto
+            "offer_url": offer_url,
             "stores": [{
                 "store": p.get("store", ""),
                 "price": p.get("price"),
@@ -523,21 +606,66 @@ async def get_products(search: Optional[str] = None, category: Optional[str] = N
                 "rating": p.get("rating"),
                 "delivery_days": None,
                 "shipping": 0 if "grátis" in (p.get("delivery") or "").lower() else None,
-                "url": offer_url,  # Mesmo URL para a loja
-                "offer_url": offer_url  # Campo adicional padronizado
+                "url": offer_url,
+                "offer_url": offer_url
             }]
         })
     
-    return formatted_products
+    return {
+        "products": formatted_products,
+        "page": page,
+        "page_size": len(formatted_products),
+        "has_more": has_more,
+        "total_pages": total_pages,
+        "message": message
+    }
 
 @api_router.get("/products/search")
-async def search_products(q: str, limit: int = 20):
-    """Endpoint de busca direta"""
-    products = await product_service.search_google_shopping(
+async def search_products(
+    request: Request,
+    q: str, 
+    category: Optional[str] = None,
+    page: int = 1,
+    page_size: int = 20
+):
+    """
+    Endpoint de busca direta com paginação
+    
+    Parâmetros:
+    - q: Termo de busca (obrigatório, mínimo 3 caracteres)
+    - category: Categoria opcional
+    - page: Página (1-3, default=1)
+    - page_size: Itens por página (máx 20)
+    """
+    client_ip = get_client_ip(request)
+    
+    # Validar query
+    if not q or len(q.strip()) < 3:
+        return {
+            "products": [],
+            "page": 1,
+            "page_size": 0,
+            "has_more": False,
+            "total_pages": 0,
+            "message": "Busca deve ter pelo menos 3 caracteres"
+        }
+    
+    result = await product_service.search_google_shopping_paginated(
         query=q,
-        num_results=limit
+        category=category,
+        page=page,
+        page_size=min(page_size, 20),
+        ip=client_ip
     )
-    return products
+    
+    return format_products_response(
+        result.get("products", []),
+        category,
+        page=result.get("page", 1),
+        has_more=result.get("has_more", False),
+        total_pages=result.get("total_pages", 1),
+        message=result.get("message")
+    )
 
 @api_router.get("/products/categories/list")
 async def get_categories():
