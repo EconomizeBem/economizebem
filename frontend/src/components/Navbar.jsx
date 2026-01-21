@@ -247,18 +247,18 @@ export const Navbar = () => {
                                         <ShoppingBag className="w-4 h-4" />
                                         Categorias
                                     </p>
-                                    <div className="pl-4 space-y-3 border-l-2 border-slate-200 dark:border-slate-700">
+                                    <div className="pl-4 space-y-2.5 border-l-2 border-slate-200 dark:border-slate-700 max-h-[280px] overflow-y-auto">
                                         {categoryLinks.map(cat => (
                                             <Link
                                                 key={cat.href}
                                                 to={cat.href}
                                                 onClick={() => setMobileOpen(false)}
-                                                className={`flex items-center gap-2 ${
-                                                    isActive(cat.href) ? 'text-sky-500 dark:text-cyan-400' : 'text-muted-foreground hover:text-foreground'
+                                                className={`flex items-center gap-2 py-1 ${
+                                                    location.pathname === cat.href ? 'text-sky-500 dark:text-cyan-400' : 'text-muted-foreground hover:text-foreground'
                                                 }`}
                                             >
-                                                <cat.icon className="w-4 h-4" />
-                                                {cat.label}
+                                                <cat.icon className="w-4 h-4 flex-shrink-0" />
+                                                <span className="text-sm">{cat.label}</span>
                                             </Link>
                                         ))}
                                     </div>
