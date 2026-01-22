@@ -53,9 +53,8 @@ export default function CategoryPage({
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [loadingMore, setLoadingMore] = useState(false);
-    const [error, setError] = useState(null);
-    const [searchTerm, setSearchTerm] = useState(searchParams.get('q') || '');
-    const [activeSubcategory, setActiveSubcategory] = useState(searchParams.get('sub') || 'all');
+    const [searchTerm, setSearchTerm] = useState('');
+    const [activeSubcategory, setActiveSubcategory] = useState('all');
     const [sortBy, setSortBy] = useState('price_asc');
     const [viewMode, setViewMode] = useState('grid');
     const [hasSearched, setHasSearched] = useState(false);
@@ -63,47 +62,47 @@ export default function CategoryPage({
     // Paginação
     const [currentPage, setCurrentPage] = useState(1);
     const [hasMore, setHasMore] = useState(false);
-    const [totalPages, setTotalPages] = useState(1);
     const [endMessage, setEndMessage] = useState(null);
     
-    // Ref para debounce
+    // Refs para controle
     const debounceRef = useRef(null);
-    const currentQueryRef = useRef('');
-    const lastFetchRef = useRef('');
+    const fetchingRef = useRef(false);
+    const mountedRef = useRef(true);
 
     // SEO meta description
     const seoDescription = metaDescription || `Compare preços de ${title} nas melhores lojas do Brasil. Encontre ofertas, descontos e economize em ${title.toLowerCase()} com o EconomizeBem.`;
 
-    // Cores dinâmicas baseadas no accentColor
-    const colorClasses = useMemo(() => ({
-        bg: `bg-${accentColor}-500 dark:bg-${accentColor === 'sky' ? 'cyan' : accentColor}-600`,
-        bgLight: `bg-${accentColor}-100 dark:bg-${accentColor === 'sky' ? 'cyan' : accentColor}-900/40`,
-        text: `text-${accentColor}-600 dark:text-${accentColor === 'sky' ? 'cyan' : accentColor}-400`,
-        hover: `hover:bg-${accentColor}-600 dark:hover:bg-${accentColor === 'sky' ? 'cyan' : accentColor}-500`,
-        border: `border-${accentColor}-500 dark:border-${accentColor === 'sky' ? 'cyan' : accentColor}-600`,
-    }), [accentColor]);
+    // Cleanup on unmount
+    useEffect(() => {
+        mountedRef.current = true;
+        return () => {
+            mountedRef.current = false;
+            if (debounceRef.current) clearTimeout(debounceRef.current);
+        };
+    }, []);
 
-    // Função de busca com suporte a paginação
-    const fetchProducts = useCallback(async (search, page = 1, append = false) => {
+    // Função de busca
+    const fetchProducts = useCallback(async (query, page, append = false) => {
+        // Evitar requests duplicados
+        if (fetchingRef.current && !append) return;
+        
+        fetchingRef.current = true;
+        
         if (page === 1) {
             setLoading(true);
+            setEndMessage(null);
         } else {
             setLoadingMore(true);
         }
-        setError(null);
-        setEndMessage(null);
-        
-        const query = search?.trim() || defaultSearch;
-        currentQueryRef.current = query;
         
         try {
             const response = await productsApi.getAll(query, null, page, PAGE_SIZE);
-            const data = response.data;
             
-            // Extrair dados da resposta
-            const newProducts = data.products || data || [];
+            if (!mountedRef.current) return;
+            
+            const data = response.data;
+            const newProducts = data.products || [];
             const responseHasMore = data.has_more ?? false;
-            const responseTotalPages = data.total_pages ?? 1;
             const responseMessage = data.message;
             
             if (append) {
@@ -118,7 +117,6 @@ export default function CategoryPage({
             }
             
             setHasMore(responseHasMore);
-            setTotalPages(responseTotalPages);
             setCurrentPage(page);
             setHasSearched(true);
             
@@ -126,35 +124,37 @@ export default function CategoryPage({
                 setEndMessage(responseMessage);
             }
             
-            if (newProducts.length === 0 && page === 1 && query) {
+            if (newProducts.length === 0 && page === 1) {
                 toast.info(`Nenhum produto encontrado para "${query}"`);
             }
         } catch (err) {
             console.error('Erro ao buscar produtos:', err);
-            setError('Erro ao buscar produtos. Tente novamente.');
-            toast.error('Erro ao buscar produtos. Tente novamente.');
-            if (!append) setProducts([]);
+            if (mountedRef.current) {
+                toast.error('Erro ao buscar produtos. Tente novamente.');
+                if (!append) setProducts([]);
+            }
         } finally {
-            setLoading(false);
-            setLoadingMore(false);
+            if (mountedRef.current) {
+                setLoading(false);
+                setLoadingMore(false);
+            }
+            fetchingRef.current = false;
         }
-    }, [defaultSearch]);
+    }, []);
 
-    // Buscar produtos quando a página carrega ou quando os parâmetros mudam
+    // Efeito inicial - buscar ao montar ou quando params mudam
     useEffect(() => {
         const searchFromUrl = searchParams.get('q') || '';
         const subFromUrl = searchParams.get('sub') || 'all';
         
         setSearchTerm(searchFromUrl);
         setActiveSubcategory(subFromUrl);
-        
-        // Resetar paginação
         setCurrentPage(1);
         setHasMore(false);
+        setProducts([]);
         
-        // Determinar o termo de busca
+        // Determinar query
         let queryTerm = searchFromUrl;
-        
         if (!queryTerm) {
             if (subFromUrl && subFromUrl !== 'all') {
                 const sub = subcategories.find(s => s.id === subFromUrl);
@@ -172,20 +172,13 @@ export default function CategoryPage({
         const value = e.target.value;
         setSearchTerm(value);
         
-        // Limpar debounce anterior
-        if (debounceRef.current) {
-            clearTimeout(debounceRef.current);
-        }
+        if (debounceRef.current) clearTimeout(debounceRef.current);
         
-        // Debounce de 400ms
         debounceRef.current = setTimeout(() => {
             if (value.length >= 3 || value.length === 0) {
-                setSearchParams(prev => {
-                    if (value) prev.set('q', value);
-                    else prev.delete('q');
-                    prev.delete('sub');
-                    return prev;
-                });
+                const newParams = new URLSearchParams();
+                if (value) newParams.set('q', value);
+                setSearchParams(newParams);
                 setActiveSubcategory('all');
             }
         }, DEBOUNCE_MS);
@@ -193,40 +186,27 @@ export default function CategoryPage({
 
     const handleSearch = (e) => {
         e.preventDefault();
+        if (debounceRef.current) clearTimeout(debounceRef.current);
+        
         const query = searchTerm.trim();
-        
-        // Limpar debounce
-        if (debounceRef.current) {
-            clearTimeout(debounceRef.current);
-        }
-        
-        setSearchParams(prev => {
-            if (query) prev.set('q', query);
-            else prev.delete('q');
-            prev.delete('sub');
-            return prev;
-        });
-        
+        const newParams = new URLSearchParams();
+        if (query) newParams.set('q', query);
+        setSearchParams(newParams);
         setActiveSubcategory('all');
     };
 
     const handleSubcategoryChange = (subId) => {
         setActiveSubcategory(subId);
         setSearchTerm('');
-        setCurrentPage(1);
-        setHasMore(false);
         
-        setSearchParams(prev => {
-            prev.delete('q');
-            if (subId !== 'all') prev.set('sub', subId);
-            else prev.delete('sub');
-            return prev;
-        });
+        const newParams = new URLSearchParams();
+        if (subId !== 'all') newParams.set('sub', subId);
+        setSearchParams(newParams);
     };
 
     // Handler para "Carregar mais"
-    const handleLoadMore = () => {
-        if (!hasMore || loadingMore) return;
+    const handleLoadMore = useCallback(() => {
+        if (!hasMore || loadingMore || fetchingRef.current) return;
         
         const searchFromUrl = searchParams.get('q') || '';
         const subFromUrl = searchParams.get('sub') || 'all';
@@ -242,8 +222,9 @@ export default function CategoryPage({
         }
         
         fetchProducts(queryTerm, currentPage + 1, true);
-    };
+    }, [hasMore, loadingMore, searchParams, subcategories, defaultSearch, currentPage, fetchProducts]);
 
+    // Ordenação
     const sortedProducts = useMemo(() => {
         return [...products].sort((a, b) => {
             switch (sortBy) {
@@ -266,7 +247,6 @@ export default function CategoryPage({
 
     return (
         <>
-            {/* SEO Meta Tags */}
             <Helmet>
                 <title>{`${title} - Compare Preços | EconomizeBem`}</title>
                 <meta name="description" content={seoDescription} />
@@ -279,7 +259,7 @@ export default function CategoryPage({
 
             <div className="min-h-screen py-8" data-testid={`category-page-${title.toLowerCase().replace(/\s/g, '-')}`}>
                 <div className="container-main">
-                    {/* Header com ícone e breadcrumb */}
+                    {/* Header */}
                     <div className="mb-8">
                         <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
                             <a href="/" className="hover:text-sky-500 dark:hover:text-cyan-400 transition-colors">Início</a>
@@ -291,22 +271,20 @@ export default function CategoryPage({
                         
                         <div className="flex items-center gap-4">
                             {Icon && (
-                                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center bg-sky-100 dark:bg-cyan-900/40`}>
-                                    <Icon className={`w-7 h-7 text-sky-600 dark:text-cyan-400`} />
+                                <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-sky-100 dark:bg-cyan-900/40">
+                                    <Icon className="w-7 h-7 text-sky-600 dark:text-cyan-400" />
                                 </div>
                             )}
                             <div>
                                 <h1 className="text-3xl md:text-4xl font-bold font-['Manrope']">
                                     Compare preços de {title}
                                 </h1>
-                                <p className="text-muted-foreground mt-1">
-                                    {subtitle}
-                                </p>
+                                <p className="text-muted-foreground mt-1">{subtitle}</p>
                             </div>
                         </div>
                     </div>
 
-                    {/* Subcategorias/Filtros Rápidos */}
+                    {/* Subcategorias */}
                     {subcategories.length > 0 && (
                         <div className="mb-6">
                             <div className="flex items-center gap-2 mb-3">
@@ -371,9 +349,7 @@ export default function CategoryPage({
                                 </SelectTrigger>
                                 <SelectContent>
                                     {sortOptions.map(opt => (
-                                        <SelectItem key={opt.value} value={opt.value}>
-                                            {opt.label}
-                                        </SelectItem>
+                                        <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
                                     ))}
                                 </SelectContent>
                             </Select>
@@ -397,7 +373,6 @@ export default function CategoryPage({
                                 </Button>
                             </div>
 
-                            {/* Mobile Filters */}
                             <Sheet>
                                 <SheetTrigger asChild className="md:hidden">
                                     <Button variant="outline" size="icon" className="h-12 w-12">
@@ -444,7 +419,6 @@ export default function CategoryPage({
                             {activeSubcategory !== 'all' && subcategories.find(s => s.id === activeSubcategory) && (
                                 <span> em <strong>{subcategories.find(s => s.id === activeSubcategory)?.name}</strong></span>
                             )}
-                            {currentPage > 1 && <span> (página {currentPage})</span>}
                         </p>
                     )}
 
@@ -460,9 +434,7 @@ export default function CategoryPage({
                                 <Button onClick={() => { 
                                     setSearchTerm(''); 
                                     setActiveSubcategory('all'); 
-                                    setSearchParams({});
-                                    setCurrentPage(1);
-                                    fetchProducts(defaultSearch, 1, false); 
+                                    setSearchParams(new URLSearchParams());
                                 }}>
                                     Limpar filtros
                                 </Button>
@@ -484,7 +456,7 @@ export default function CategoryPage({
                                         disabled={loadingMore}
                                         variant="outline"
                                         size="lg"
-                                        className="min-w-[200px]"
+                                        className="min-w-[220px]"
                                         data-testid="load-more-button"
                                     >
                                         {loadingMore ? (
@@ -501,9 +473,15 @@ export default function CategoryPage({
                                     </Button>
                                 )}
                                 
-                                {(endMessage || (!hasMore && currentPage >= 1 && sortedProducts.length >= PAGE_SIZE)) && (
+                                {endMessage && (
                                     <p className="text-sm text-muted-foreground text-center px-4 py-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-                                        {endMessage || "Refine sua busca para ver mais resultados."}
+                                        {endMessage}
+                                    </p>
+                                )}
+                                
+                                {!hasMore && !endMessage && sortedProducts.length >= PAGE_SIZE && (
+                                    <p className="text-sm text-muted-foreground text-center px-4 py-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                                        Refine sua busca para ver mais resultados.
                                     </p>
                                 )}
                             </div>
