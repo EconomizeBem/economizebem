@@ -26,7 +26,10 @@ Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade púb
 ### Implementados ✅
 - ✅ Sistema de autenticação JWT (cadastro, login, logout, recuperação de senha)
 - ✅ **Comparador de preços de produtos COM DADOS REAIS via SerpAPI (Google Shopping)**
-- ✅ Cache de 24 horas para resultados da SerpAPI
+- ✅ **Cache agressivo de 24h por query+page (~70% hit rate)**
+- ✅ **Paginação com botão "Carregar mais" (máx 3 páginas = 60 produtos)**
+- ✅ **Rate limit (10 req/min por IP) e Debounce (400ms frontend, 2s backend)**
+- ✅ **Deduplicação de produtos e logs de busca para monitoramento**
 - ✅ Sistema de verificação de alertas de preço (com cron-job configurado pelo usuário)
 - ✅ Sistema de favoritos (produtos e planos)
 - ✅ Sistema de e-mail via SMTP Zoho (boas-vindas, recuperação de senha, alertas)
