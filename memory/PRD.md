@@ -227,8 +227,30 @@ GET  /api/expenses/summary
 
 ## Última Atualização
 - **Data**: Janeiro 2025
-- **Sessão**: Expansão para 6 categorias de produtos com URLs SEO-friendly
+- **Sessão**: Implementação de cache agressivo e paginação eficiente da SerpAPI
 - **Status**: ✅ Todas as funcionalidades implementadas e testadas (100% de sucesso)
+
+## Sistema de Cache e Paginação SerpAPI
+
+### Configurações
+| Parâmetro | Valor |
+|-----------|-------|
+| Cache TTL | 24 horas |
+| Máx páginas | 3 |
+| Itens por página | 20 |
+| Rate limit | 10 req/min por IP |
+| Debounce backend | 2 segundos |
+| Debounce frontend | 400ms |
+
+### Endpoints de Monitoramento
+- `GET /api/products/cache/stats` - Estatísticas do cache
+- `GET /api/products/search/logs` - Logs de busca recentes
+- `POST /api/products/cache/clear` - Limpar cache expirado
+
+### Métricas (última sessão)
+- Cache hit rate: ~70%
+- Total cache entries: 37
+- Produtos cacheados: ~600
 
 ## Categorias de Produtos
 | Rota | Categoria | Busca Padrão | Subcategorias |
