@@ -228,7 +228,7 @@ async def search_google_shopping_paginated(
         }
     
     # Verificar debounce
-    if not check_debounce(query):
+    if not check_debounce(query, page):
         # Se for busca repetida muito rápida, retornar do cache se existir
         cache_key = generate_cache_key(query, category, page, page_size)
         cached = await get_cached_search(cache_key)
