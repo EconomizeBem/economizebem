@@ -30,6 +30,8 @@ Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade púb
 - ✅ **Paginação com botão "Carregar mais" (máx 3 páginas = 60 produtos)**
 - ✅ **Rate limit (10 req/min por IP) e Debounce (400ms frontend, 2s backend)**
 - ✅ **Deduplicação de produtos e logs de busca para monitoramento**
+- ✅ **Busca da Home funcionando (navega para /products?search=)**
+- ✅ **Todas as categorias carregando produtos automaticamente (defaultSearch otimizado)**
 - ✅ Sistema de verificação de alertas de preço (com cron-job configurado pelo usuário)
 - ✅ Sistema de favoritos (produtos e planos)
 - ✅ Sistema de e-mail via SMTP Zoho (boas-vindas, recuperação de senha, alertas)
