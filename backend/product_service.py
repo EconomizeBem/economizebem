@@ -58,7 +58,7 @@ def generate_cache_key(query: str, category: Optional[str], page: int, page_size
     return hashlib.md5(key_string.encode()).hexdigest()
 
 
-def check_rate_limit(ip: str, max_requests: int = 5, window_seconds: int = 60) -> bool:
+def check_rate_limit(ip: str, max_requests: int = 10, window_seconds: int = 60) -> bool:
     """
     Verifica rate limit por IP
     Retorna True se permitido, False se bloqueado
@@ -77,7 +77,7 @@ def check_rate_limit(ip: str, max_requests: int = 5, window_seconds: int = 60) -
     return True
 
 
-def check_debounce(query: str, debounce_seconds: int = 10) -> bool:
+def check_debounce(query: str, debounce_seconds: int = 2) -> bool:
     """
     Verifica debounce para queries idênticas
     Retorna True se permitido, False se deve aguardar
