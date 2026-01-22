@@ -15,7 +15,7 @@ export default function EletrodomesticosPage() {
         <CategoryPage
             title="Eletrodomésticos"
             subtitle="Geladeiras, máquinas de lavar, fogões e mais para sua casa"
-            defaultSearch="eletrodomésticos"
+            defaultSearch="geladeira"
             subcategories={subcategories}
             icon={Refrigerator}
             accentColor="sky"

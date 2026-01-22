@@ -15,7 +15,7 @@ export default function PetsPage() {
         <CategoryPage
             title="Pets"
             subtitle="Ração, petiscos, acessórios e produtos para seu pet"
-            defaultSearch="produtos para pets"
+            defaultSearch="racao cachorro"
             subcategories={subcategories}
             icon={PawPrint}
             accentColor="sky"
