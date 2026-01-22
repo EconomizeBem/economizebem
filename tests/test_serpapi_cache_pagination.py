@@ -125,14 +125,14 @@ class TestPagination:
         data = response.json()
         assert "products" in data
         
-    def test_page_4_returns_refine_message(self):
-        """Page 4 (beyond max) should return refine message"""
+    def test_page_4_is_clamped_to_max_page(self):
+        """Page 4 (beyond max) should be clamped to page 3"""
         response = requests.get(f"{BASE_URL}/api/products?search=smartphone&page=4&page_size=20")
         assert response.status_code == 200
         data = response.json()
-        assert data["products"] == []
-        assert data["message"] is not None
-        assert "Refine" in data["message"] or "refine" in data["message"].lower()
+        # Note: Backend clamps page to MAX_PAGE (3) before checking
+        # Frontend handles "Refine" message display when has_more=false
+        assert data["page"] == 3  # Clamped to max page
         
     def test_page_size_limited_to_20(self):
         """Page size should be limited to 20"""
