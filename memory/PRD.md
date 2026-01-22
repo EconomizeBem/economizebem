@@ -229,8 +229,15 @@ GET  /api/expenses/summary
 
 ## Última Atualização
 - **Data**: Janeiro 2025
-- **Sessão**: Implementação de cache agressivo e paginação eficiente da SerpAPI
-- **Status**: ✅ Todas as funcionalidades implementadas e testadas (100% de sucesso)
+- **Sessão**: Correção de bugs críticos (busca Home, categorias vazias, paginação)
+- **Status**: ✅ Todas as funcionalidades implementadas e testadas (100% de sucesso - 16/16 testes)
+
+## Bugs Corrigidos nesta Sessão
+| Bug | Causa | Solução |
+|-----|-------|---------|
+| Busca Home "Not Found" | ProductsPage não lidava com response.data.products | Reescrito ProductsPage com tratamento correto da resposta |
+| Categorias sem produtos | defaultSearch com termos compostos (ex: "roupas moda") | Simplificado para termos únicos (ex: "roupa") |
+| "Refine busca" prematuro | SerpAPI retorna poucos resultados para termos compostos | Termos otimizados + validação mínima 2 caracteres |
 
 ## Sistema de Cache e Paginação SerpAPI
 
@@ -243,6 +250,7 @@ GET  /api/expenses/summary
 | Rate limit | 10 req/min por IP |
 | Debounce backend | 2 segundos |
 | Debounce frontend | 400ms |
+| Min caracteres busca | 2 |
 
 ### Endpoints de Monitoramento
 - `GET /api/products/cache/stats` - Estatísticas do cache
@@ -254,15 +262,15 @@ GET  /api/expenses/summary
 - Total cache entries: 37
 - Produtos cacheados: ~600
 
-## Categorias de Produtos
+## Categorias de Produtos (defaultSearch otimizado)
 | Rota | Categoria | Busca Padrão | Subcategorias |
 |------|-----------|--------------|---------------|
-| /categoria/eletronicos | Eletrônicos | eletrônicos | Celulares, TVs, Notebooks, Fones de Ouvido, Smartwatches, Consoles |
-| /categoria/eletrodomesticos | Eletrodomésticos | eletrodomésticos | Geladeiras, Máquinas de Lavar, Fogões/Cooktops, Micro-ondas, Ar-condicionado, Aspiradores |
-| /categoria/casa-cozinha | Casa & Cozinha | casa cozinha | Panelas, Talheres, Utensílios, Cafeteiras, Organização, Pratos e Louças, Copos e Taças |
-| /categoria/vestuario | Vestuário | roupas moda | Tênis, Roupas Masculinas/Femininas, Calçados, Camisetas, Jaquetas, Vestidos |
-| /categoria/beleza-saude | Beleza & Saúde | beleza saúde | Maquiagem, Skincare, Cabelo, Higiene, Perfumes, Saúde e Bem-estar |
-| /categoria/pets | Pets | produtos para pets | Ração Cachorro/Gato, Petiscos, Acessórios, Higiene Pet, Brinquedos |
+| /categoria/eletronicos | Eletrônicos | celular | Celulares, TVs, Notebooks, Fones de Ouvido, Smartwatches, Consoles |
+| /categoria/eletrodomesticos | Eletrodomésticos | geladeira | Geladeiras, Máquinas de Lavar, Fogões/Cooktops, Micro-ondas, Ar-condicionado, Aspiradores |
+| /categoria/casa-cozinha | Casa & Cozinha | panela | Panelas, Talheres, Utensílios, Cafeteiras, Organização, Pratos e Louças, Copos e Taças |
+| /categoria/vestuario | Vestuário | roupa | Tênis, Roupas Masculinas/Femininas, Calçados, Camisetas, Jaquetas, Vestidos |
+| /categoria/beleza-saude | Beleza & Saúde | maquiagem | Maquiagem, Skincare, Cabelo, Higiene, Perfumes, Saúde e Bem-estar |
+| /categoria/pets | Pets | racao | Ração Cachorro/Gato, Petiscos, Acessórios, Higiene Pet, Brinquedos |
 
 ### Rotas Legacy (mantidas para compatibilidade)
 - /vestuario → VestuarioPage.jsx
