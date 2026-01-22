@@ -201,15 +201,15 @@ async def search_google_shopping_paginated(
         Dict com produtos, has_more, page, total_pages e mensagem
     """
     
-    # Validações
-    if not query or len(query.strip()) < 3:
+    # Validações - mínimo 2 caracteres para compatibilidade com frontend
+    if not query or len(query.strip()) < 2:
         return {
             "products": [],
             "page": 1,
             "page_size": page_size,
             "has_more": False,
             "total_pages": 0,
-            "message": "Busca deve ter pelo menos 3 caracteres"
+            "message": "Busca deve ter pelo menos 2 caracteres"
         }
     
     # Limitar parâmetros
