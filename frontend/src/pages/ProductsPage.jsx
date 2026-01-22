@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Search, Filter, Grid, List, SlidersHorizontal } from 'lucide-react';
+import { Search, Grid, List, SlidersHorizontal, ChevronDown, Loader2 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Badge } from '../components/ui/badge';
@@ -41,90 +41,148 @@ const sortOptions = [
     { value: 'discount', label: 'Maior desconto' },
 ];
 
+const PAGE_SIZE = 20;
+
 export default function ProductsPage() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
-    const [category, setCategory] = useState(searchParams.get('category') || 'all');
+    const [loadingMore, setLoadingMore] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [category, setCategory] = useState('all');
     const [sortBy, setSortBy] = useState('price_asc');
     const [viewMode, setViewMode] = useState('grid');
+    
+    // Paginação
+    const [currentPage, setCurrentPage] = useState(1);
+    const [hasMore, setHasMore] = useState(false);
+    const [endMessage, setEndMessage] = useState(null);
+    
+    const fetchingRef = useRef(false);
+    const debounceRef = useRef(null);
 
-    // Efeito para buscar produtos quando a página carrega ou quando os parâmetros mudam
-    useEffect(() => {
-        const searchFromUrl = searchParams.get('search') || '';
-        const categoryFromUrl = searchParams.get('category') || 'all';
+    // Função de busca
+    const fetchProducts = useCallback(async (search, cat, page = 1, append = false) => {
+        if (fetchingRef.current && !append) return;
+        fetchingRef.current = true;
         
-        // Atualizar estados locais se vieram da URL
-        if (searchFromUrl !== searchTerm) {
-            setSearchTerm(searchFromUrl);
+        if (page === 1) {
+            setLoading(true);
+            setEndMessage(null);
+        } else {
+            setLoadingMore(true);
         }
-        if (categoryFromUrl !== category) {
-            setCategory(categoryFromUrl);
-        }
-        
-        // Buscar produtos
-        fetchProducts(searchFromUrl, categoryFromUrl);
-    }, [searchParams]);
-
-    const fetchProducts = async (search = searchTerm, cat = category) => {
-        setLoading(true);
-        setError(null);
         
         const query = search?.trim() || '';
         const categoryParam = cat !== 'all' ? cat : null;
         
         try {
-            const response = await productsApi.getAll(query, categoryParam);
-            setProducts(response.data || []);
+            const response = await productsApi.getAll(query, categoryParam, page, PAGE_SIZE);
+            const data = response.data;
             
-            if (response.data?.length === 0 && query) {
+            // Extrair produtos da resposta
+            let newProducts = [];
+            if (data && typeof data === 'object') {
+                if (Array.isArray(data.products)) {
+                    newProducts = data.products;
+                } else if (Array.isArray(data)) {
+                    newProducts = data;
+                }
+            } else if (Array.isArray(data)) {
+                newProducts = data;
+            }
+            
+            const responseHasMore = data?.has_more ?? false;
+            const responseMessage = data?.message;
+            
+            if (append) {
+                setProducts(prev => {
+                    const existingIds = new Set(prev.map(p => p.id));
+                    const uniqueNew = newProducts.filter(p => !existingIds.has(p.id));
+                    return [...prev, ...uniqueNew];
+                });
+            } else {
+                setProducts(newProducts);
+            }
+            
+            setHasMore(responseHasMore);
+            setCurrentPage(page);
+            
+            if (responseMessage) {
+                setEndMessage(responseMessage);
+            }
+            
+            if (newProducts.length === 0 && page === 1 && query) {
                 toast.info(`Nenhum produto encontrado para "${query}"`);
             }
         } catch (err) {
             console.error('Erro ao buscar produtos:', err);
-            setError('Erro ao buscar produtos. Tente novamente.');
             toast.error('Erro ao buscar produtos. Tente novamente.');
-            setProducts([]);
+            if (!append) setProducts([]);
         } finally {
             setLoading(false);
+            setLoadingMore(false);
+            fetchingRef.current = false;
         }
-    };
+    }, []);
+
+    // Efeito para buscar quando parâmetros mudam
+    useEffect(() => {
+        const searchFromUrl = searchParams.get('search') || '';
+        const categoryFromUrl = searchParams.get('category') || 'all';
+        
+        setSearchTerm(searchFromUrl);
+        setCategory(categoryFromUrl);
+        setCurrentPage(1);
+        setHasMore(false);
+        setProducts([]);
+        
+        fetchProducts(searchFromUrl, categoryFromUrl, 1, false);
+    }, [searchParams, fetchProducts]);
 
     const handleSearch = (e) => {
         e.preventDefault();
         const query = searchTerm.trim();
         
-        setSearchParams(prev => {
-            if (query) prev.set('search', query);
-            else prev.delete('search');
-            return prev;
-        });
+        if (debounceRef.current) clearTimeout(debounceRef.current);
+        
+        const newParams = new URLSearchParams();
+        if (query) newParams.set('search', query);
+        if (category !== 'all') newParams.set('category', category);
+        setSearchParams(newParams);
     };
 
     const handleCategoryChange = (newCategory) => {
         setCategory(newCategory);
-        setSearchParams(prev => {
-            if (newCategory !== 'all') prev.set('category', newCategory);
-            else prev.delete('category');
-            return prev;
-        });
+        
+        const newParams = new URLSearchParams();
+        if (searchTerm) newParams.set('search', searchTerm);
+        if (newCategory !== 'all') newParams.set('category', newCategory);
+        setSearchParams(newParams);
     };
+
+    const handleLoadMore = useCallback(() => {
+        if (!hasMore || loadingMore || fetchingRef.current) return;
+        
+        const searchFromUrl = searchParams.get('search') || '';
+        const categoryFromUrl = searchParams.get('category') || 'all';
+        
+        fetchProducts(searchFromUrl, categoryFromUrl, currentPage + 1, true);
+    }, [hasMore, loadingMore, searchParams, currentPage, fetchProducts]);
 
     const sortedProducts = [...products].sort((a, b) => {
         switch (sortBy) {
-            case 'price_asc': return a.best_price - b.best_price;
-            case 'price_desc': return b.best_price - a.best_price;
+            case 'price_asc': return (a.best_price || 0) - (b.best_price || 0);
+            case 'price_desc': return (b.best_price || 0) - (a.best_price || 0);
             case 'rating': 
-                const ratingA = Math.max(...a.stores.map(s => s.rating));
-                const ratingB = Math.max(...b.stores.map(s => s.rating));
+                const ratingA = Math.max(...(a.stores?.map(s => s.rating || 0) || [0]));
+                const ratingB = Math.max(...(b.stores?.map(s => s.rating || 0) || [0]));
                 return ratingB - ratingA;
             case 'discount':
-                const discountA = a.stores[0]?.original_price ? 
-                    (a.stores[0].original_price - a.best_price) / a.stores[0].original_price : 0;
-                const discountB = b.stores[0]?.original_price ? 
-                    (b.stores[0].original_price - b.best_price) / b.stores[0].original_price : 0;
+                const discountA = a.stores?.[0]?.original_price ? 
+                    (a.stores[0].original_price - (a.best_price || 0)) / a.stores[0].original_price : 0;
+                const discountB = b.stores?.[0]?.original_price ? 
+                    (b.stores[0].original_price - (b.best_price || 0)) / b.stores[0].original_price : 0;
                 return discountB - discountA;
             default: return 0;
         }
@@ -176,7 +234,7 @@ export default function ProductsPage() {
                             </SelectContent>
                         </Select>
 
-                        <div className="hidden md:flex border rounded-lg">
+                        <div className="hidden md:flex border rounded-lg dark:border-slate-700">
                             <Button
                                 variant={viewMode === 'grid' ? 'secondary' : 'ghost'}
                                 size="icon"
@@ -259,17 +317,61 @@ export default function ProductsPage() {
                     <EmptyState 
                         type="products" 
                         action={
-                            <Button onClick={() => { setSearchTerm(''); setCategory('all'); fetchProducts(); }}>
+                            <Button onClick={() => { 
+                                setSearchTerm(''); 
+                                setCategory('all'); 
+                                setSearchParams(new URLSearchParams());
+                            }}>
                                 Limpar filtros
                             </Button>
                         }
                     />
                 ) : (
-                    <div className={`grid gap-6 ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1'}`} data-testid="products-grid">
-                        {sortedProducts.map((product) => (
-                            <ProductCard key={product.id} product={product} />
-                        ))}
-                    </div>
+                    <>
+                        <div className={`grid gap-6 ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' : 'grid-cols-1'}`} data-testid="products-grid">
+                            {sortedProducts.map((product) => (
+                                <ProductCard key={product.id} product={product} />
+                            ))}
+                        </div>
+                        
+                        {/* Botão Carregar Mais */}
+                        <div className="mt-10 flex flex-col items-center gap-4">
+                            {hasMore && !endMessage && (
+                                <Button
+                                    onClick={handleLoadMore}
+                                    disabled={loadingMore}
+                                    variant="outline"
+                                    size="lg"
+                                    className="min-w-[220px]"
+                                    data-testid="load-more-button"
+                                >
+                                    {loadingMore ? (
+                                        <>
+                                            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                            Carregando...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <ChevronDown className="w-4 h-4 mr-2" />
+                                            Carregar mais produtos
+                                        </>
+                                    )}
+                                </Button>
+                            )}
+                            
+                            {endMessage && (
+                                <p className="text-sm text-muted-foreground text-center px-4 py-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                                    {endMessage}
+                                </p>
+                            )}
+                            
+                            {!hasMore && !endMessage && sortedProducts.length >= PAGE_SIZE && (
+                                <p className="text-sm text-muted-foreground text-center px-4 py-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+                                    Refine sua busca para ver mais resultados.
+                                </p>
+                            )}
+                        </div>
+                    </>
                 )}
             </div>
         </div>
