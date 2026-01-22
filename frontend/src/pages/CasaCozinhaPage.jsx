@@ -16,7 +16,7 @@ export default function CasaCozinhaPage() {
         <CategoryPage
             title="Casa & Cozinha"
             subtitle="Panelas, talheres, utensílios e tudo para organizar sua casa"
-            defaultSearch="utensilios cozinha"
+            defaultSearch="panela"
             subcategories={subcategories}
             icon={UtensilsCrossed}
             accentColor="sky"
