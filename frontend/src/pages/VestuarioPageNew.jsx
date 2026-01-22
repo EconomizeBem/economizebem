@@ -16,7 +16,7 @@ export default function VestuarioPageNew() {
         <CategoryPage
             title="Vestuário"
             subtitle="Roupas, calçados e acessórios de moda com os melhores preços"
-            defaultSearch="roupas moda"
+            defaultSearch="roupa feminina masculina"
             subcategories={subcategories}
             icon={Shirt}
             accentColor="sky"
