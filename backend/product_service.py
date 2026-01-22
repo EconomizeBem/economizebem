@@ -77,13 +77,13 @@ def check_rate_limit(ip: str, max_requests: int = 10, window_seconds: int = 60) 
     return True
 
 
-def check_debounce(query: str, debounce_seconds: int = 2) -> bool:
+def check_debounce(query: str, page: int = 1, debounce_seconds: int = 2) -> bool:
     """
     Verifica debounce para queries idênticas
     Retorna True se permitido, False se deve aguardar
     """
     now = time.time()
-    cache_key = query.lower().strip()
+    cache_key = f"{query.lower().strip()}_{page}"
     
     if cache_key in _debounce_cache:
         last_time = _debounce_cache[cache_key]
