@@ -15,7 +15,7 @@ export default function BelezaSaudePage() {
         <CategoryPage
             title="Beleza & Saúde"
             subtitle="Maquiagem, skincare, cabelo e produtos de higiene"
-            defaultSearch="maquiagem perfume"
+            defaultSearch="maquiagem"
             subcategories={subcategories}
             icon={Sparkles}
             accentColor="sky"
