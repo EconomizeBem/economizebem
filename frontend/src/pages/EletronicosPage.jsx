@@ -15,7 +15,7 @@ export default function EletronicosPage() {
         <CategoryPage
             title="Eletrônicos"
             subtitle="Smartphones, TVs, notebooks e mais com os melhores preços"
-            defaultSearch="smartphone celular"
+            defaultSearch="celular"
             subcategories={subcategories}
             icon={Smartphone}
             accentColor="sky"
