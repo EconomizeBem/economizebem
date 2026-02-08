@@ -4,112 +4,109 @@ O usuário solicitou inicialmente a criação da plataforma web EconomizeBem. Os
 - Otimização do uso da SerpAPI com cache e paginação.
 - Criação de uma página dedicada () para ofertas de afiliados da Amazon.
 - Adição de um banner de destaque na página inicial para promover a página de ofertas.
-- **Solicitação Crítica Mais Recente:** Finalizar a tarefa crítica já iniciada. Corrigir a página de Ofertas Amazon para garantir que cada um dos 17 produtos listados exiba sua imagem OFICIAL da Amazon e aponte para o link de afiliado EXATO fornecido pelo usuário. O usuário reiterou que as imagens de fallback (fotos de estoque) não são aceitáveis, exigindo as imagens originais dos produtos. Todos os 17 produtos precisam ser direcionados para a página de afiliado correta, assim como todas as imagens dos produtos precisam estar iguais às dos links da Amazon.
+- **Solicitação Crítica Mais Recente:** O usuário instruiu a corrigir os 17 produtos da página de Ofertas da Amazon **um a um**. Cada produto deve exibir sua imagem OFICIAL da Amazon e apontar para o link de afiliado EXATO fornecido. O primeiro item a ser corrigido é a Mala Upscape, que deve usar o link  e exibir a imagem correspondente.
 
 **User's preferred language**: Portuguese (Português)
 
 **what currently exists?**
-Uma aplicação full-stack (React/FastAPI/MongoDB). A página  foi modificada para carregar imagens através de um proxy de backend () para contornar problemas de CORS. Todos os 17 links de afiliados estão corretos. No entanto, aproximadamente 8 dos 17 produtos ainda exibem imagens de fallback (um placeholder com iniciais) porque as URLs de imagem hardcoded no frontend estão desatualizadas ou incorretas, causando falhas no proxy (erros 404 e 520).
+Uma aplicação full-stack (React/FastAPI/MongoDB). A página  está implementada com os 17 links de afiliado corretos. No entanto, vários produtos (originalmente 8) exibem imagens de placeholder (com iniciais) porque as URLs de imagem hardcoded em  estão quebradas. O trabalho para corrigir essas imagens, uma a uma, começou.
 
 **Last working item**:
-    - Last item agent was working: O agente estava depurando por que 8 das 17 imagens de produtos na página  ainda não estavam sendo exibidas. Após várias tentativas de adivinhar os formatos de URL corretos, o agente usou o , que confirmou as falhas. Em seguida, o agente voltou à estratégia mais confiável: usar a ferramenta  em um dos links de afiliado que falharam (Kit Dolce Gusto) e extraiu com sucesso a URL da imagem oficial e funcional.
+    - Last item agent was working: O agente estava focado em corrigir a imagem da **Mala Upscape**. Após várias tentativas falhas de scraping direto devido às proteções da Amazon, o agente adotou a estratégia de rastrear a página de resultados de busca da Amazon. A última ação foi identificar uma URL de imagem promissora para a mala: .
     - Status: IN PROGRESS
-    - Agent Testing Done: Y
+    - Agent Testing Done: N
     - Which testing method agent to use? screenshot tool
     - User Testing Done: N
 
 **All Pending/In progress Issue list**:
-  - Issue 1:  **8 produtos na página de Ofertas Amazon exibem imagens de fallback em vez das imagens oficiais (P0)**: A causa raiz é que as URLs das imagens para esses produtos, que estão no arquivo , estão incorretas ou expiraram. O proxy de backend tenta buscá-las, mas recebe erros 404 (Não Encontrado) ou 520 (Bloqueado/Erro do Servidor de Origem).
-  
+  - Issue 1:  **(P0) 8 produtos na página de Ofertas Amazon exibem imagens de fallback em vez das imagens oficiais.**
+
   Issues Detail:
   - Issue 1: 
      - Attempted fixes:
-        1. Carregamento direto das imagens da Amazon: Falhou devido a erros de CORS.
-        2. Adivinhar/modificar sufixos de URL (, , etc.): Parcialmente bem-sucedido, mas não resolveu para todos os produtos, pois alguns IDs de imagem estavam fundamentalmente errados.
-        3. Uso do : Confirmou com sucesso quais 8 imagens estavam falhando.
-        4. O agente revalidou que o método mais eficaz é usar  no link de afiliado para obter a URL da imagem mais recente.
+        - Extração direta de URL da página do produto (, ): Falhou, bloqueado por CAPTCHA da Amazon.
+        - Atualização de código com URL extraída: A imagem não carregou, resultando em 404.
+        - Teste de múltiplas URLs de imagem dos resultados de busca: Todas retornaram 404.
      - Next debug checklist:
-        1. Revisar o relatório de teste em  para obter a lista exata dos 8 produtos com imagens quebradas.
-        2. Para CADA UM dos 8 produtos restantes, usar a ferramenta  em seu respectivo link de afiliado para obter a URL da imagem oficial e atual.
-        3. Editar  e substituir as 8 URLs de imagem antigas e quebradas pelas novas URLs corretas que foram extraídas.
-        4. Após a atualização do arquivo, tirar um  da página  para verificar visualmente se TODAS as 17 imagens dos produtos agora carregam corretamente.
-     - Why fix this issue and what will be achieved with the fix? Para cumprir a exigência mais crítica, inegociável e repetida do usuário. Isso garantirá a credibilidade da página e a satisfação do cliente, finalizando a tarefa principal.
+        1. Testar a validade da URL de imagem recém-encontrada: .
+        2. Se a URL for válida, usar  para atualizar o  da Mala de Viagem Upscape Samsonite no arquivo .
+        3. Usar a ferramenta  na página  para verificar visualmente se a imagem da mala agora carrega corretamente.
+        4. Informar ao usuário sobre a conclusão e solicitar o próximo item a ser corrigido.
+     - Why fix this issue and what will be achieved with the fix? É uma solicitação crítica e explícita do usuário. Corrigir este item demonstrará progresso na tarefa principal.
      - Status:  IN PROGRESS
-     - Is recurring issue? Y (A volatilidade das URLs de imagem da Amazon é o problema central e recorrente.)
+     - Is recurring issue? Y (As URLs de imagem da Amazon são voláteis e protegidas contra scraping, tornando a extração um desafio recorrente.)
      - Should Test frontend/backend/both after fix? frontend
      - Blocked on other issue: None
 
 **In progress Task List**:
-  - Task 1:  **Finalizar a substituição de imagens de fallback por imagens oficiais (P0)**
-     - Where to resume: O agente precisa executar a ferramenta  para os 7 produtos restantes com imagens quebradas, coletar as URLs corretas e, em seguida, editar o arquivo  para atualizar o array de produtos com as novas URLs.
-     - What will be achieved with this? A página de ofertas estará 100% em conformidade com a solicitação crítica do usuário.
+  - Task 1:  **(P0) Finalizar a correção da imagem para o produto Mala Upscape.**
+     - Where to resume: A partir da validação da URL da imagem (), atualização do código e verificação visual.
+     - What will be achieved with this? O primeiro dos itens problemáticos será corrigido, seguindo a nova abordagem um a um solicitada pelo usuário.
      - Status:  IN PROGRESS
      - Should Test frontend/backend/both after fix? frontend
      - Blocked on something: None
 
 **Upcoming and Future Tasks**
 - **Upcoming Tasks:**
-    - **(P1) Implementar backend para Comparador de Planos**: Desenvolver os endpoints da API para a página .
-    - **(P1) Implementar backend para Calculadora Financeira**: Desenvolver a API para a página .
+    - **(P0)** Corrigir as 7 imagens de produtos restantes na página , aguardando a instrução do usuário para cada item.
+    - **(P1)** Implementar backend para Comparador de Planos na página .
+    - **(P1)** Implementar backend para Calculadora Financeira na página .
 - **Future Tasks:**
-    - **(P2) Integrar APIs de afiliados**: Substituir os links de  da busca principal por links de afiliados reais.
-    - **(P2) Configurar SEO avançado**: Implementar  e .
+    - **(P2)** Integrar APIs de afiliados reais para substituir os links de  na busca principal.
+    - **(P2)** Configurar SEO avançado com  e .
 
 **Completed work in this session**
-- Reimplementado o uso do proxy de imagem do backend para resolver erros de CORS.
-- Corrigido com sucesso ~9 das 17 imagens de produtos através de um processo de depuração de URL e extração.
-- Utilizado o  para obter um relatório preciso sobre as imagens restantes que estavam falhando.
-- Confirmado que a estratégia de extrair a URL da imagem diretamente da página do link de afiliado () é a mais confiável.
+- Iniciou-se a correção das imagens quebradas seguindo a nova diretriz do usuário (um item por vez).
+- Explorou e descartou várias abordagens de scraping que falharam, refinando a estratégia para usar o rastreamento da página de busca da Amazon.
+- Identificou uma URL de imagem candidata para o primeiro item, a Mala Upscape.
 
 **Earlier issues found/mentioned but not fixed**
    - Issue 1:
-     - **Refatoração Pendente:** O arquivo  foi criado em vez de atualizar o  existente. Ele deve ser renomeado/consolidado para manter a consistência do código.
+     - **Refatoração Pendente:** O arquivo  foi criado em vez de atualizar . Ele deve ser renomeado/consolidado. (Prioridade Baixa).
      - Should Test frontend/backend/both after fix: frontend
      - Is recurring issue? N
 
 **Known issue recurrence from previous fork**
-  - A exibição confiável de imagens da Amazon continua sendo o problema central. A causa raiz não é o proxy em si, mas a volatilidade das URLs de imagem de origem da Amazon, que expiram ou mudam, exigindo re-extração.
+  - **Volatilidade das Imagens da Amazon:** A proteção da Amazon contra scraping continua sendo o principal desafio técnico. A estratégia de rastrear as páginas de resultados de pesquisa é a abordagem mais promissora até agora.
 
 **Code Architecture**
 
 
 **Key Technical Concepts**
-- **Backend Image Proxy**: Endpoint FastAPI em  que usa  para buscar imagens externas, contornando restrições de CORS. O proxy está funcional, mas depende de URLs de origem válidas.
-- **URL Extraction**: O uso da ferramenta  provou ser o método mais confiável para obter as URLs das imagens oficiais dos produtos diretamente das páginas de afiliados, superando a adivinhação de padrões de URL.
-- **Cyclical Debugging**: O agente seguiu um ciclo de: 1. Implementar URLs, 2. Testar (screenshot), 3. Observar falhas, 4. Verificar logs do backend, 5. Formular nova hipótese de URL, 6. Repetir.
+- **Amazon Anti-Scraping:** Principal barreira técnica que impede a extração direta de URLs de imagens de páginas de produtos.
+- **Estratégia de Rastreamento de Busca:** A abordagem atual e mais viável é usar a ferramenta  nas URLs de resultados de busca da Amazon () para extrair as URLs das imagens.
 
 **key DB schema**
-  - Nenhuma alteração no esquema do banco de dados nesta sessão.
+  - Nenhuma alteração de esquema de banco de dados foi realizada.
 
 **changes in tech stack**
-  - Nenhuma alteração de stack nesta sessão.
+  - Nenhuma alteração na stack de tecnologia.
 
 **All files of reference**
-- : O arquivo central da tarefa. Precisa ser editado para substituir as 8 URLs de imagem quebradas restantes.
-- : Contém o endpoint de proxy  que está sendo usado.
-- : Contém o relatório do teste que lista quais produtos estão com imagens falhando.
-
-**Areas that need refactoring**:
-- O arquivo  deve ser renomeado/consolidado para .
-
-**key api endpoints**
-- : Endpoint de proxy de imagem.
-
-**Critical Info for New Agent**
-- **A TAREFA É PRIORIDADE MÁXIMA:** O usuário quer a correção das imagens da página  acima de tudo.
-- **NÃO ADIVINHE URLs:** A única estratégia que se mostrou consistentemente confiável é usar a ferramenta  em cada link de afiliado dos produtos que estão falhando para obter a URL da imagem oficial e atual.
-- **USE O RELATÓRIO DE TESTE:** Comece lendo  para saber exatamente quais produtos precisam de correção.
-- **USE O PROXY:** Todas as URLs de imagem em  devem ser formatadas para usar o proxy do backend. Ex: .
-- Depois de atualizar o arquivo, a verificação final deve ser um  da página para confirmar que todas as 17 imagens carregam.
-
-**documents and test reports created in this job**
+- 
 - 
 
+**Areas that need refactoring**:
+- O arquivo  deve ser consolidado com  para evitar duplicidade.
+
+**key api endpoints**
+- 
+
+**Critical Info for New Agent**
+- **Siga a Estratégia Um a Um:** O usuário quer que você corrija as imagens uma de cada vez. Finalize a Mala Upscape, informe o usuário e espere por instruções sobre qual será o próximo item.
+- **NÃO USE FOTOS DE ESTOQUE:** O requisito do usuário para as imagens **oficiais da Amazon** é absoluto.
+- **A ESTRATÉGIA ATUAL É RASTREAR A BUSCA:** Não perca tempo com métodos de scraping que já falharam. A abordagem de usar  nas páginas de busca da Amazon é a mais viável.
+- **Ponto de Partida:** Sua primeira ação deve ser validar a URL  para a Mala Upscape.
+
+**documents and test reports created in this job**
+- Nenhum.
+
 **Last 10 User Messages and any pending HUMAN messages** 
- - **Usuário (DONE):** Finalize a tarefa critica ja iniciada. Ajustando os links conforme passado e ajustando as imagens corretas conforme as imagens dos links originais da amazon. Faça teste link a link dos 17 itens e se as imagens estao corretas conforme cada item e seus respectivos links da amazon. Todos os 17 produtos precisam ser direcionados para a pagina de filiado correta. Assim como todas as imagens dos produtos precisam estar iguais a dos links da amazon. - **Status: IN PROGRESS**
+ - **Usuário (Pendente):** Continue quando acabar a mala upscape com link e imagem correta me avise - **Status: IN PROGRESS**
+ - **Usuário:** Certo como voce esta com muitas dificuldades vamos ajustar os 17 itens somente o que nao estao com as imagens corretas um a um. Vamos comecar com o segundo item a mala upscape o link quando clicar em ver oferta na amazon deve ser direcionado para: https://amzn.to/4kjSbCY. A imagem da mala esta nesse link coloque a imagem da mala que esta faltando atraves desse link. Quando acabar com a mala me avisa que vamos para o proximo item 1 a 1. - **Status: ACKNOWLEDGED / IN PROGRESS**
 
 **Project Health Check:**
-- **Broken**: A funcionalidade principal em desenvolvimento () não atende ao requisito mais crítico do usuário, pois exibe imagens incorretas para cerca de metade dos produtos.
+- **Broken:** A página  está parcialmente quebrada, pois não atende ao requisito de exibição de imagens oficiais para todos os produtos.
 
 **3rd Party Integrations**
 - SerpAPI (Google Shopping)
@@ -118,14 +115,13 @@ Uma aplicação full-stack (React/FastAPI/MongoDB). A página  foi modificada pa
 - react-helmet
 
 **Testing status**
-  - Testing agent used after significant changes: YES
+  - Testing agent used after significant changes: NO
   - Troubleshoot agent used after agent stuck in loop: NO
   - Test files created: []
   - Known regressions: None
 
 **Credentials to test flow:**
-- As credenciais de SMTP, SerpAPI e MongoDB estão nos arquivos  do backend.
-- Para testes de login, um novo usuário pode ser criado através do formulário de registro.
+- Nenhum fluxo de login é necessário para visualizar a página de ofertas.
 
 **What agent forgot to execute**
-- A tarefa de refatoração de  continua pendente, o que é apropriado, pois a tarefa atual de correção das imagens tem prioridade máxima (P0).</analysis>
+- O agente anterior não concluiu a correção da imagem, mas estava ativamente no meio do processo de depuração e encontrou uma solução potencial antes do final da sessão.</analysis>
