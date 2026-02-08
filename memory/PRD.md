@@ -47,6 +47,7 @@ Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade púb
 - ✅ **Menu de categorias expandido no navbar**
 - ✅ **Homepage com seção "Explore por Categoria"**
 - ✅ **Filtros rápidos (subcategorias) em cada página de categoria**
+- ✅ **Página de Ofertas Amazon com 13 produtos curados e links de afiliado (`/ofertas-amazon`)**
 
 ### Em breve (Mockado removido) 🔜
 - 🔜 Comparador de planos (Internet, Celular, Streaming) - **Página mostra "Em breve"**
