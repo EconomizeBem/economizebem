@@ -147,7 +147,7 @@ const amazonProducts = [
         name: "Aspirador de Pó Vertical WAP",
         description: "Aspirador compacto, potente e prático. Limpeza silenciosa com alto poder de sucção.",
         link: "https://amzn.to/3LXAw7F",
-        image: "https://m.media-amazon.com/images/I/61w9jXMICaL._AC_UL320_.jpg",
+        image: "https://m.media-amazon.com/images/I/61m5wUE9XzL._AC_UL320_.jpg",
         badge: "Top Avaliado",
         badgeColor: "bg-blue-500"
     },
