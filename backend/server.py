@@ -700,6 +700,76 @@ async def clear_cache():
     deleted = await product_service.clear_expired_cache()
     return {"message": f"{deleted} entradas de cache removidas"}
 
+# ==================== IMAGE PROXY FOR AMAZON ====================
+
+# Cache de imagens em memória (simples, para evitar requisições repetidas)
+_image_cache = {}
+
+@api_router.get("/proxy/image")
+async def proxy_image(url: str):
+    """
+    Proxy para carregar imagens externas (Amazon, etc.) evitando problemas de CORS.
+    Retorna a imagem como streaming response.
+    """
+    if not url:
+        raise HTTPException(status_code=400, detail="URL da imagem não fornecida")
+    
+    # Validar que é uma URL de imagem permitida (Amazon)
+    allowed_domains = [
+        "m.media-amazon.com",
+        "images-na.ssl-images-amazon.com", 
+        "images-eu.ssl-images-amazon.com",
+        "ws-na.amazon-adsystem.com",
+        "images.amazon.com"
+    ]
+    
+    is_allowed = any(domain in url for domain in allowed_domains)
+    if not is_allowed:
+        raise HTTPException(status_code=403, detail="Domínio de imagem não permitido")
+    
+    # Verificar cache em memória
+    if url in _image_cache:
+        cached = _image_cache[url]
+        return StreamingResponse(
+            BytesIO(cached["content"]),
+            media_type=cached["content_type"]
+        )
+    
+    try:
+        async with httpx.AsyncClient(timeout=10.0, follow_redirects=True) as client:
+            response = await client.get(url, headers={
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+                "Accept": "image/webp,image/apng,image/*,*/*;q=0.8",
+                "Referer": "https://www.amazon.com.br/"
+            })
+            
+            if response.status_code != 200:
+                raise HTTPException(status_code=404, detail="Imagem não encontrada")
+            
+            content_type = response.headers.get("content-type", "image/jpeg")
+            content = response.content
+            
+            # Armazenar em cache (máximo 100 imagens para não consumir muita memória)
+            if len(_image_cache) < 100:
+                _image_cache[url] = {
+                    "content": content,
+                    "content_type": content_type
+                }
+            
+            return StreamingResponse(
+                BytesIO(content),
+                media_type=content_type,
+                headers={
+                    "Cache-Control": "public, max-age=86400",  # Cache de 24h no browser
+                    "Access-Control-Allow-Origin": "*"
+                }
+            )
+    except httpx.TimeoutException:
+        raise HTTPException(status_code=504, detail="Timeout ao carregar imagem")
+    except Exception as e:
+        logging.error(f"Erro ao fazer proxy de imagem: {e}")
+        raise HTTPException(status_code=500, detail="Erro ao carregar imagem")
+
 # ==================== PRICE ALERT CHECK ROUTES ====================
 
 @api_router.post("/alerts/check")
