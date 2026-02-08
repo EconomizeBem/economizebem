@@ -240,6 +240,7 @@ export default function AmazonOffersPage() {
                                         src={product.image}
                                         alt={product.name}
                                         productId={product.id}
+                                        useProxy={product.useProxy}
                                     />
                                 </div>
                                 
