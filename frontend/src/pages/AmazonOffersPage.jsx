@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet';
 import { ExternalLink, Tag, Star, Clock, TrendingUp, Zap, ShoppingCart } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
+import { useState } from 'react';
 
 // URL base da API para proxy de imagens
 const API_URL = process.env.REACT_APP_BACKEND_URL || '';
@@ -12,14 +13,14 @@ const getAmazonImageProxy = (amazonImageUrl) => {
 };
 
 // Produtos com links de afiliado Amazon e imagens OFICIAIS
-// Usando imagens do CDN da Amazon com tamanho otimizado (_AC_SL500_)
+// Imagens verificadas do CDN da Amazon (formato que funciona)
 const amazonProducts = [
     {
         id: 1,
         name: "Ventilador WAP Flow Turbo",
         description: "Potente, econômico e ideal para os dias quentes. Circulação de ar eficiente com baixo consumo de energia.",
         link: "https://amzn.to/45UX6o8",
-        // ASIN: B0BT4Z9LZB
+        // Imagem verificada que funciona
         image: "https://m.media-amazon.com/images/I/8194vs7pwxL._AC_SL500_.jpg",
         badge: "Mais Vendido",
         badgeColor: "bg-amber-500"
@@ -133,6 +134,31 @@ const amazonProducts = [
         badgeColor: "bg-emerald-500"
     }
 ];
+
+// Componente de imagem com fallback
+const ProductImage = ({ src, alt, productId }) => {
+    const [imgSrc, setImgSrc] = useState(getAmazonImageProxy(src));
+    const [hasError, setHasError] = useState(false);
+    
+    const handleError = () => {
+        if (!hasError) {
+            setHasError(true);
+            // Fallback para placeholder com iniciais do produto
+            const initials = alt.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase();
+            setImgSrc(`https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=0ea5e9&color=fff&size=300&font-size=0.4&bold=true`);
+        }
+    };
+    
+    return (
+        <img 
+            src={imgSrc} 
+            alt={alt}
+            className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+            onError={handleError}
+        />
+    );
+};
 
 export default function AmazonOffersPage() {
     return (
