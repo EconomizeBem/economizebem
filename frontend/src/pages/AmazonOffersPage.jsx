@@ -181,7 +181,7 @@ const amazonProducts = [
         description: "Ventilador potente, econômico e ideal para os dias quentes. Circulação de ar eficiente.",
         link: "https://amzn.to/45UX6o8",
         image: "https://m.media-amazon.com/images/I/71Y1x6qEdrL._AC_SL1500_.jpg",
-        fallbackImage: "https://images.unsplash.com/photo-1631368192614-50b81d0c3aba?w=400&h=400&fit=crop",
+        fallbackImage: "https://images.unsplash.com/photo-1754818046542-d2a352bfff09?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjd8MHwxfHNlYXJjaHwyfHxwb3J0YWJsZSUyMGZhbiUyMGNvb2xpbmd8ZW58MHx8fHwxNzcwNTc4MTcwfDA&ixlib=rb-4.1.0&q=85",
         badge: "Mais Vendido",
         badgeColor: "bg-amber-500"
     }
