@@ -196,10 +196,15 @@ export default function AmazonOffersPage() {
                                 {/* Image */}
                                 <div className="relative aspect-square bg-white p-4 flex items-center justify-center">
                                     <img 
-                                        src={product.image} 
+                                        src={getAmazonImageProxy(product.image)} 
                                         alt={product.name}
                                         className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
                                         loading="lazy"
+                                        onError={(e) => {
+                                            // Fallback para uma imagem placeholder se o proxy falhar
+                                            e.target.onerror = null;
+                                            e.target.src = `https://via.placeholder.com/300x300?text=${encodeURIComponent(product.name.substring(0, 20))}`;
+                                        }}
                                     />
                                 </div>
                                 
