@@ -111,7 +111,7 @@ const amazonProducts = [
         description: "Kit de lápis pretos de alta qualidade para escrita e desenho. Grafite macio e durável.",
         link: "https://amzn.to/46xjFzh",
         image: "https://m.media-amazon.com/images/I/81yiOQf7oOL._AC_SL1500_.jpg",
-        fallbackImage: "https://images.unsplash.com/photo-1580570209561-3c60f64e7644?w=400&h=400&fit=crop",
+        fallbackImage: "https://images.unsplash.com/photo-1565359184520-fcff70f99c24?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwxfHxncmFwaGl0ZSUyMHBlbmNpbHMlMjBkcmF3aW5nfGVufDB8fHx8MTc3MDU3ODA5N3ww&ixlib=rb-4.1.0&q=85",
         badge: null,
         badgeColor: null
     },
