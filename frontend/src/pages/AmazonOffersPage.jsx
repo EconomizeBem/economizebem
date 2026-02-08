@@ -91,7 +91,7 @@ const amazonProducts = [
         description: "Cafeteira para até 30 xícaras, prática para o dia a dia. Perfeita para famílias e escritórios.",
         link: "https://amzn.to/4tpsWTW",
         image: "https://m.media-amazon.com/images/I/61pFT5V0iyL._AC_SL1200_.jpg",
-        fallbackImage: "https://images.unsplash.com/photo-1517353117350-4f4e99aa59e8?w=400&h=400&fit=crop",
+        fallbackImage: "https://images.unsplash.com/photo-1565452344518-47faca79dc69?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzd8MHwxfHNlYXJjaHwzfHxjb2ZmZWUlMjBtYWtlciUyMGVsZWN0cmljfGVufDB8fHx8MTc3MDU3ODA4Nnww&ixlib=rb-4.1.0&q=85",
         badge: null,
         badgeColor: null
     },
