@@ -1,150 +1,136 @@
 <analysis>**original_problem_statement:**
-O usuário solicitou inicialmente a criação de uma plataforma web chamada EconomizeBem para comparação de preços. Ao longo do desenvolvimento, os requisitos foram expandidos para incluir:
-- **Novas Categorias (Fase 1):** Adicionar abas para Vestuário, Geladeiras e Acessórios de Cozinha.
-- **Expansão de Categorias (Fase 2):** Implementar uma estrutura de navegação completa com 6 categorias principais (Eletrônicos, Eletrodomésticos, etc.) e múltiplas subcategorias com buscas pré-definidas.
-- **Remoção de Branding:** Remover qualquer menção visível à marca Emergent do site.
-- **Otimização da SerpAPI:** Implementar uma estratégia de cache e paginação para minimizar o consumo da API, que está em um plano gratuito com limite de 100 buscas/mês.
-- **Correção de Bugs Críticos:** Resolver bugs que surgiram após a otimização da SerpAPI, incluindo buscas que retornavam Not Found, páginas de categoria que apareciam vazias e paginação que não funcionava.
-- **Página de Ofertas Amazon:** Criar uma nova página dedicada e isolada () para exibir uma curadoria de produtos com links de afiliado da Amazon, sem alterar o resto do site.
+O usuário solicitou inicialmente a criação da plataforma web EconomizeBem. Os requisitos foram expandidos para incluir:
+- Novas categorias de produtos e uma estrutura de navegação completa.
+- Otimização do uso da SerpAPI com cache e paginação para gerenciar o limite de um plano gratuito.
+- Criação de uma página dedicada e isolada para ofertas de afiliados da Amazon ().
+- Adição de um banner de destaque na página inicial para direcionar tráfego para a página de ofertas.
+- **Solicitação Crítica Mais Recente:** Corrigir a página de Ofertas Amazon para garantir que cada um dos 17 produtos listados exiba sua imagem OFICIAL da Amazon e aponte para o link de afiliado EXATO fornecido pelo usuário. A correspondência 1:1 entre produto, imagem oficial e link é um requisito absoluto e inegociável.
 
 **User's preferred language**: Portuguese (Português)
 
 **what currently exists?**
-Uma aplicação full-stack funcional (React/FastAPI/MongoDB Atlas) chamada EconomizeBem. O sistema possui autenticação de usuários, alertas de preço por e-mail, e integração com AdSense. A busca de produtos, alimentada pela SerpAPI, foi otimizada com um sistema de cache agressivo (24h) e paginação controlada (Carregar mais) para gerenciar o uso da API. A navegação foi expandida para incluir 6 categorias principais com dezenas de subcategorias, cada uma com buscas pré-definidas e SEO básico (títulos e meta tags). Todos os bugs críticos relacionados a rotas, buscas e paginação foram corrigidos e validados. Uma nova página de ofertas da Amazon foi criada, mas ainda não foi totalmente verificada.
+Uma aplicação full-stack (React/FastAPI/MongoDB) funcional. O sistema possui busca de produtos via SerpAPI (com cache e paginação), autenticação de usuários e navegação por categorias. Foi criada uma página de Ofertas Amazon () e um banner na HomePage para promovê-la. Para contornar restrições de CORS ao exibir imagens da Amazon, foi implementado um endpoint de proxy no backend (). A página de ofertas foi recentemente atualizada para refletir uma nova lista de 17 produtos fornecida pelo usuário, mas nem todas as imagens oficiais estão sendo exibidas corretamente.
 
 **Last working item**:
-    - Last item agent was working: Criação de uma nova página de ofertas da Amazon. O agente criou o componente  com os produtos, descrições e links de afiliado solicitados, e adicionou a rota  no .
+    - Last item agent was working: O agente estava implementando a correção crítica na página de Ofertas Amazon. A tarefa era atualizar a página com uma nova lista de 17 produtos, garantindo que cada um usasse o link de afiliado exato e a imagem oficial da Amazon correspondente. O agente atualizou o componente  com os novos dados, mas descobriu que algumas imagens não carregavam porque os links de afiliado fornecidos estavam quebrados ou as URLs das imagens eram inválidas.
     - Status: IN PROGRESS
-    - Agent Testing Done: N
+    - Agent Testing Done: Y (O agente usou screenshots e verificou os logs do backend, confirmando que algumas imagens carregavam via proxy, mas muitas outras resultavam em erro 404.)
     - Which testing method agent to use? screenshot tool
     - User Testing Done: N
 
 **All Pending/In progress Issue list**:
-  - Issue 1:  **Verificar a nova página de Ofertas Amazon (P0)**: A página foi criada, mas precisa ser testada para garantir que renderiza corretamente, é responsiva, e que os links de afiliado funcionam sem quebrar o resto da aplicação.
+  - Issue 1:  **Imagens oficiais ausentes na página de Ofertas Amazon (P0)**: Vários produtos na página  não exibem a imagem oficial da Amazon, mostrando uma imagem de fallback. Isso viola diretamente o requisito crítico e obrigatório do usuário. A causa raiz é que alguns links de afiliado fornecidos pelo usuário parecem estar expirados ou incorretos (redirecionando para a Amazon.com em vez de .com.br), e os IDs de imagem extraídos não são mais válidos.
   
   Issues Detail:
   - Issue 1: 
-     - Attempted fixes: O arquivo do componente e a rota foram criados.
+     - Attempted fixes: 
+        1. Criação de um proxy de imagem no backend () para contornar erros de CORS.
+        2. Uso da ferramenta  para obter os URLs das imagens a partir dos links de afiliado.
+        3. Atualização do componente  com as URLs de imagem encontradas, usando um fallback para as que falham.
      - Next debug checklist: 
-        1.  Acessar a URL  diretamente.
-        2.  Verificar visualmente se o layout, as imagens e os textos correspondem ao solicitado.
-        3.  Testar a responsividade da página em uma visualização mobile.
-        4.  Clicar em alguns botões Ver oferta na Amazon para confirmar que redirecionam para os links corretos.
-        5.  Navegar para outras seções do site (Home, Categorias) para garantir que nenhuma funcionalidade foi afetada.
-     - Why fix this issue and what will be achieved with the fix? Para completar a última solicitação do usuário e disponibilizar a nova página de monetização.
+        1. Identificar e listar para o usuário exatamente quais produtos/links de afiliado estão causando erros 404.
+        2. Solicitar ao usuário que verifique e forneça os links de afiliado corretos e ativos para o mercado brasileiro (Amazon.com.br) para os produtos com falha.
+        3. Após receber os links corrigidos, executar novamente a extração das URLs das imagens.
+        4. Verificar se o proxy de imagem está lidando corretamente com os cabeçalhos (ex: ) para evitar ser bloqueado pela Amazon.
+     - Why fix this issue and what will be achieved with the fix? Para cumprir uma exigência crítica e inegociável do usuário, garantir a credibilidade da página de ofertas e possivelmente cumprir os termos do programa de Associados da Amazon.
      - Status:  IN PROGRESS
-     - Is recurring issue? N
-     - Should Test frontend/backend/both after fix? frontend
-     - Blocked on other issue: None
+     - Is recurring issue? Y (A dificuldade em obter e exibir imagens da Amazon de forma consistente tem sido um problema recorrente nesta sessão.)
+     - Should Test frontend/backend/both after fix? both
+     - Blocked on other issue: Aguardando links de afiliado válidos do usuário para os produtos com falha.
 
 **In progress Task List**:
-  - Task 1:  **Finalizar e validar a página de Ofertas Amazon (P0)**
-     - Where to resume: A página () e a rota () existem. O próximo passo é testar visualmente e funcionalmente.
-     - What will be achieved with this? Uma nova página de destino com links de afiliado, criando uma nova fonte de receita para o site.
+  - Task 1:  **Finalizar a correção crítica da página de Ofertas Amazon (P0)**
+     - Where to resume: O componente  está parcialmente correto. O próximo passo é resolver o Issue 1 obtendo as imagens oficiais restantes.
+     - What will be achieved with this? A página de ofertas estará 100% em conformidade com a solicitação do usuário, aumentando a confiança e a taxa de conversão.
      - Status:  IN PROGRESS
-     - Should Test frontend/backend/both after fix? frontend
-     - Blocked on something: None
+     - Should Test frontend/backend/both after fix? both
+     - Blocked on something: Issue 1 (Imagens oficiais ausentes).
 
 **Upcoming and Future Tasks**
 - **Upcoming Tasks:**
-    - **(P1) Implementar backend para Comparador de Planos**: Desenvolver os endpoints da API e a lógica de negócio para a página , que atualmente exibe Em breve.
-    - **(P1) Implementar backend para Calculadora Financeira**: Desenvolver a API para a página , que atualmente é apenas uma interface sem funcionalidade.
+    - **(P1) Implementar backend para Comparador de Planos**: Desenvolver os endpoints da API para a página .
+    - **(P1) Implementar backend para Calculadora Financeira**: Desenvolver a API para a página .
 - **Future Tasks:**
-    - **(P2) Integrar APIs de afiliados**: Substituir os links de  da busca principal (atualmente do Google Shopping) por links de afiliados reais quando o usuário fornecer as credenciais.
-    - **(P2) Configurar SEO avançado**: Implementar  e  para melhorar a indexação.
+    - **(P2) Integrar APIs de afiliados**: Substituir os links de  da busca principal por links de afiliados reais.
+    - **(P2) Configurar SEO avançado**: Implementar  e .
 
 **Completed work in this session**
-- **Otimização da SerpAPI**: Implementado um sistema de cache de 24h e paginação Carregar mais (limitada a 3 páginas) para proteger a cota da API. O backend agora inclui rate limiting, e o frontend foi adaptado para consumir a API paginada.
-- **Correção de Bugs Críticos**: Resolvidos todos os bugs relatados: a busca na página inicial não causa mais Not Found; as páginas de categoria (ex: Vestuário) agora exibem produtos corretamente; e a paginação Carregar mais funciona como esperado.
-- **Expansão Massiva de Categorias**: O site agora suporta 6 categorias principais (Eletrônicos, Eletrodomésticos, etc.) e dezenas de subcategorias, cada uma com uma página dedicada, URL amigável (), busca automática e SEO básico (título e meta description). A  foi atualizada para exibir as novas categorias.
-- **Remoção de Branding**: O badge Made with Emergent foi completamente removido do .
-- **Limpeza de Código**: Arquivos órfãos do AdSense (, ) foram deletados.
-- **Validação de Páginas Legais**: Confirmado que as páginas de Termos de Uso e Privacidade, e seus links no rodapé, funcionam corretamente.
+- **Adicionado Banner na HomePage**: Um banner de destaque foi criado na página inicial para direcionar os usuários para a página de Ofertas Amazon. A implementação foi validada em desktop e mobile.
+- **Implementado Proxy de Imagem**: Um endpoint () foi adicionado ao backend FastAPI para buscar imagens da Amazon no lado do servidor e retransmiti-las ao frontend, evitando problemas de CORS.
+- **Tentativas de Correção de Imagem**: Foram feitas várias tentativas para corrigir as imagens na página de ofertas, incluindo o uso de imagens de estoque (rejeitado pelo usuário), a implementação do proxy e a criação de um componente de fallback de imagem.
+- **Atualização da Página de Ofertas**: A página foi reescrita para incluir uma nova lista de 17 produtos com seus respectivos links, conforme a última solicitação crítica do usuário.
 
 **Earlier issues found/mentioned but not fixed**
-   - None.
+   - Issue 1:
+     - **Refatoração Pendente:** O arquivo  foi criado em vez de atualizar o  existente. Ele deve ser renomeado/consolidado para manter a consistência do código.
+     - Should Test frontend/backend/both after fix: frontend
+     - Is recurring issue? N
 
 **Known issue recurrence from previous fork**
-  - None.
+  - A dificuldade em exibir imagens da Amazon de forma confiável tornou-se um problema recorrente *dentro desta sessão*, exigindo múltiplas tentativas e abordagens (imagens de estoque, proxy, fallbacks).
 
 **Code Architecture**
 
 
 **Key Technical Concepts**
-- **Backend**: FastAPI, Python, Pydantic
-- **Frontend**: React, JavaScript, TailwindCSS, Shadcn/UI,  (para SEO)
-- **Database**: MongoDB (Atlas)
-- **Caching**: Estratégia de cache no backend com TTL de 24 horas para respostas da SerpAPI.
-- **API Optimization**: Rate limiting, debouncing e paginação controlada pelo usuário.
+- **Backend Image Proxy**: Um endpoint FastAPI que usa  para buscar uma imagem de uma URL externa e a transmite como . Isso é usado para contornar as restrições de CORS do navegador ao tentar carregar imagens diretamente de domínios como o da Amazon.
 
 **key DB schema**
   - Nenhuma alteração no esquema do banco de dados nesta sessão.
 
 **changes in tech stack**
-  - Adicionada a dependência  no frontend para gerenciamento de meta tags de SEO.
+  - ****: Adicionado ao  para alimentar o proxy de imagem.
 
 **All files of reference**
-- : Contém a nova lógica crucial de cache, paginação e rate limiting da SerpAPI.
-- : Atualizado com os endpoints para busca paginada e estatísticas de cache.
-- : Componente central reutilizável que implementa a lógica de busca e paginação Carregar mais.
-- : Refatorado para suportar a busca paginada vinda da HomePage.
-- : Contém todas as novas rotas para as páginas de categoria.
-- : Modificado para incluir o novo menu de categorias.
-- : Novo arquivo para a página de ofertas da Amazon.
-- : Novo arquivo de teste para a lógica do backend.
+- : O arquivo central da tarefa atual, contém a lista de 17 produtos e a lógica de renderização de imagem.
+- : Contém o novo endpoint de proxy .
+- : Modificado para incluir o banner de destaque das ofertas.
 
 **Areas that need refactoring**:
-- Durante a criação da segunda fase de categorias, o agente criou  em vez de atualizar a  existente. Para manter a consistência,  deve ser renomeada para  e o arquivo antigo, se diferente, deve ser removido.
+- O arquivo  deve ser renomeado/consolidado para .
 
 **key api endpoints**
-- : Endpoint principal de busca, agora com suporte a paginação ().
-- : Novo endpoint para monitorar a eficiência do cache da SerpAPI.
+- : Novo endpoint que busca uma imagem de uma URL externa e a serve para o frontend.
 
 **Critical Info for New Agent**
-- **Restrição da SerpAPI:** A integração com a SerpAPI é o ponto mais sensível do sistema. Ela está em um plano gratuito com um limite baixo (100 buscas/mês). Toda a lógica de cache (24h) e paginação (máx. 3 páginas) foi projetada para proteger essa cota. Não faça alterações que possam aumentar o número de chamadas à API.
-- **Padrão de Busca:** Termos de busca genéricos (ex: celular) funcionam melhor com a API do Google Shopping do que termos compostos (ex: smartphone celular). Mantenha esse padrão ao adicionar novas categorias.
-- **Página Amazon:** A nova página  é intencionalmente isolada e não está linkada no menu principal. A tarefa atual é apenas verificar sua funcionalidade.
+- **Prioridade Máxima:** A exigência do usuário de usar imagens **oficiais** da Amazon é absoluta. Não use imagens de estoque ou placeholders como solução final.
+- **Bloqueio Atual:** O principal obstáculo é a qualidade dos links de afiliado fornecidos pelo usuário. Alguns estão quebrados ou são inválidos para o mercado brasileiro. A próxima etapa deve ser comunicar claramente esse bloqueio ao usuário e solicitar links corrigidos para os produtos problemáticos.
+- **Proxy é Essencial:** A abordagem de proxy no backend é a mais robusta para lidar com as imagens da Amazon. Continue usando e aprimorando essa abordagem em vez de tentar carregar imagens diretamente no frontend.
 
 **documents and test reports created in this job**
-  -  (Atualizado consistentemente)
-  - 
-  - 
-  - 
-  - 
-  - 
+  -  foi atualizado.
 
 **Last 10 User Messages and any pending HUMAN messages**
-1.  **Usuário (DONE):** Solicitou a correção de bugs críticos: buscas que levavam a Not Found, categorias que não mostravam produtos e paginação que não funcionava.
-2.  **Agente (DONE):** Investigou, identificou as causas (queries, validação, lógica da API) e corrigiu todos os bugs.
-3.  **Agente (DONE):** Testou exaustivamente todas as correções usando o testing agent e validou que o site estava estável.
-4.  **Agente (DONE):** Finalizou a tarefa de correção de bugs.
-5.  **Usuário (IN PROGRESS):** Solicitou a criação de uma NOVA página, isolada do resto do site, para exibir ofertas de afiliados da Amazon.
-6.  **Agente (IN PROGRESS):** Confirmou o entendimento da tarefa.
-7.  **Agente (IN PROGRESS):** Criou o arquivo  com o conteúdo solicitado.
-8.  **Agente (IN PROGRESS):** Adicionou a nova rota  no arquivo .
-9.  **Agente (IN PROGRESS):** Informou que a rota foi adicionada e preparou-se para a próxima etapa.
-10. **(PENDING HUMAN MESSAGE):** No momento do fork, a próxima ação seria testar a página  que acabou de ser criada. Não há mensagem humana pendente, o fluxo de trabalho do agente continua.
+1.  **Usuário (DONE):** Pediu para adicionar um banner na  para a página de ofertas.
+2.  **Agente (DONE):** Implementou e testou o banner com sucesso.
+3.  **Usuário (IN PROGRESS):** Enviou uma solicitação de **correção CRÍTICA e IMEDIATA** para a página de ofertas, fornecendo uma nova lista de 17 produtos com links exatos e exigindo o uso de imagens oficiais da Amazon para cada um.
+4.  **Agente (IN PROGRESS):** Iniciou a correção, extraindo informações dos novos links.
+5.  **Agente (IN PROGRESS):** Sobrescreveu  com a nova lista de 17 produtos.
+6.  **Agente (IN PROGRESS):** Testou a página e percebeu que algumas imagens não carregavam.
+7.  **Agente (IN PROGRESS):** Verificou os logs do backend e confirmou erros 404 para várias imagens.
+8.  **Agente (IN PROGRESS):** Tentou usar a  em um link problemático (poltrona gamer) e descobriu que ele redirecionava para a Amazon dos EUA.
+9.  **Agente (IN PROGRESS):** Concluiu que alguns links de afiliado fornecidos pelo usuário estão quebrados ou incorretos.
+10. **(PENDING HUMAN MESSAGE):** Não há mensagem pendente. A próxima ação do agente é relatar o problema dos links quebrados ao usuário e pedir os links corretos para finalizar a tarefa.
 
 **Project Health Check:**
-- **Broken**: None. Todos os bugs conhecidos foram resolvidos.
-- **Mocked**: As páginas Comparador de Planos () e Calculadora Financeira () continuam sendo placeholders com a mensagem Em breve.
+- **Broken**: A página  não atende ao requisito mais recente e crítico do usuário, pois várias imagens de produtos não são as oficiais, mostrando um fallback.
+- **Mocked**: As páginas Comparador de Planos () e Calculadora Financeira () continuam como placeholders.
 
 **3rd Party Integrations**
-- **SerpAPI (Google Shopping)**: Para busca de produtos.
-- **Zoho Mail (via SMTP)**: Para envio de e-mails.
-- **Google AdSense**: Para monetização (Auto Ads).
-- **react-helmet**: Para SEO no frontend.
+- SerpAPI (Google Shopping)
+- Zoho Mail (SMTP)
+- Google AdSense
+- react-helmet
 
 **Testing status**
-  - Testing agent used after significant changes: YES (usado 4 vezes nesta sessão para validar features e correções)
+  - Testing agent used after significant changes: NO
   - Troubleshoot agent used after agent stuck in loop: NO
   - Test files created: []
   - Known regressions: None
 
 **Credentials to test flow:**
-- As credenciais de SMTP, SerpAPI e MongoDB Atlas estão nos arquivos  do backend.
-- O ID do AdSense está em .
-- Para testes de login, um novo usuário pode ser criado através do formulário de registro da aplicação.
+- As credenciais de SMTP, SerpAPI e MongoDB estão nos arquivos  do backend.
+- Para testes de login, um novo usuário pode ser criado através do formulário de registro.
 
 **What agent forgot to execute**
-- O agente criou um novo arquivo  em vez de modificar o  original. Isso deve ser consolidado para evitar código duplicado.</analysis>
+- O agente não abordou a tarefa de refatoração pendente de .</analysis>
