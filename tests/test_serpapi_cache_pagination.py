@@ -15,7 +15,7 @@ import os
 import time
 from collections import Counter
 
-BASE_URL = os.environ.get('REACT_APP_BACKEND_URL', 'https://price-watcher-35.preview.emergentagent.com')
+BASE_URL = os.environ.get('REACT_APP_BACKEND_URL', 'https://economizebem-1.preview.emergentagent.com')
 
 class TestCacheStats:
     """Test cache statistics endpoint"""
