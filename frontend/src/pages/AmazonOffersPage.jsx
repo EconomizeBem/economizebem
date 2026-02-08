@@ -149,8 +149,8 @@ const amazonProducts = [
 ];
 
 // Componente de imagem com fallback
-const ProductImage = ({ src, alt, productId }) => {
-    const [imgSrc, setImgSrc] = useState(getAmazonImageProxy(src));
+const ProductImage = ({ src, alt, productId, useProxy = false }) => {
+    const [imgSrc, setImgSrc] = useState(useProxy ? getAmazonImageProxy(src) : src);
     const [hasError, setHasError] = useState(false);
     
     const handleError = () => {
