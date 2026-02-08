@@ -102,7 +102,7 @@ const amazonProducts = [
         name: "Lápis Preto Faber-Castell",
         description: "Kit de lápis pretos de alta qualidade para escrita e desenho. Grafite macio e durável.",
         link: "https://amzn.to/46xjFzh",
-        image: "https://m.media-amazon.com/images/I/71F+YNm5h3L._AC_SY355_.jpg",
+        image: "https://m.media-amazon.com/images/I/51fvU1DCh3L._AC_UL320_.jpg",
         badge: null,
         badgeColor: null
     },
