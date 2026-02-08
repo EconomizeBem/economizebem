@@ -2,18 +2,10 @@ import { Helmet } from 'react-helmet';
 import { ExternalLink, Star, Clock, TrendingUp, Zap, ShoppingCart } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-// URL base da API para proxy de imagens
-const API_URL = process.env.REACT_APP_BACKEND_URL || '';
-
-// Função para gerar URL do proxy de imagem Amazon
-const getAmazonImageProxy = (amazonImageUrl) => {
-    return `${API_URL}/api/proxy/image?url=${encodeURIComponent(amazonImageUrl)}`;
-};
-
-// LISTA OFICIAL E FINAL DE PRODUTOS - Links EXATOS do usuário (imagem fornecida em 08/02/2026)
-// Cada produto usa o link de afiliado exato fornecido pelo usuário
+// LISTA OFICIAL E FINAL DE PRODUTOS - Links e Imagens EXATOS da Amazon
+// Cada produto usa o link de afiliado exato e imagem oficial extraída da Amazon
 const amazonProducts = [
     {
         id: 1,
@@ -21,7 +13,6 @@ const amazonProducts = [
         description: "Console de nova geração com gráficos impressionantes, SSD ultrarrápido e controle DualSense com feedback tátil.",
         link: "https://amzn.to/4r5pT1C",
         image: "https://m.media-amazon.com/images/I/71WCygaQDAL._AC_SL1500_.jpg",
-        fallbackImage: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400&h=400&fit=crop",
         badge: "Destaque",
         badgeColor: "bg-purple-500"
     },
@@ -30,8 +21,7 @@ const amazonProducts = [
         name: "Mala Upscape",
         description: "Mala de viagem resistente, leve e com rodas 360°. Ideal para viagens nacionais e internacionais.",
         link: "https://amzn.to/4kj5bCY",
-        image: "https://m.media-amazon.com/images/I/71PwhBGpHIL._AC_SY500_.jpg",
-        fallbackImage: "https://images.unsplash.com/photo-1565026057447-bc90a3dceb87?w=400&h=400&fit=crop",
+        image: "https://m.media-amazon.com/images/I/51aPj+N0fEL._AC_SL1500_.jpg",
         badge: "Premium",
         badgeColor: "bg-slate-700"
     },
@@ -40,8 +30,7 @@ const amazonProducts = [
         name: "Poltrona Gamer",
         description: "Cadeira gamer ergonômica com ajuste de altura, apoio lombar e braços reguláveis. Conforto para longas sessões.",
         link: "https://amzn.to/4rAHHS9",
-        image: "https://m.media-amazon.com/images/I/51aXvjzcukL._AC_SL1500_.jpg",
-        fallbackImage: "https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=400&h=400&fit=crop",
+        image: "https://m.media-amazon.com/images/I/31ffYq37OfL._AC_SL1500_.jpg",
         badge: "Custo-Benefício",
         badgeColor: "bg-emerald-500"
     },
@@ -50,8 +39,7 @@ const amazonProducts = [
         name: "TV 50 Polegadas Aiwa",
         description: "Smart TV 4K com Android TV, HDR e Dolby Audio. Entretenimento completo com apps integrados.",
         link: "https://amzn.to/4a5VMBo",
-        image: "https://m.media-amazon.com/images/I/71RiQZ29aAL._AC_SL1500_.jpg",
-        fallbackImage: "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400&h=400&fit=crop",
+        image: "https://m.media-amazon.com/images/I/71WIlpBAYeL._AC_SL1500_.jpg",
         badge: "Oferta Limitada",
         badgeColor: "bg-red-500"
     },
@@ -61,7 +49,6 @@ const amazonProducts = [
         description: "Fone de ouvido Bluetooth com som de alta qualidade, bateria de longa duração e design confortável.",
         link: "https://amzn.to/4aBFmRb",
         image: "https://m.media-amazon.com/images/I/61CGHv6kmWL._AC_SL1500_.jpg",
-        fallbackImage: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
         badge: "Mais Vendido",
         badgeColor: "bg-amber-500"
     },
@@ -71,7 +58,6 @@ const amazonProducts = [
         description: "Micro SD de alta velocidade e armazenamento confiável. Ideal para celulares, câmeras e dispositivos portáteis.",
         link: "https://amzn.to/45OY7y4",
         image: "https://m.media-amazon.com/images/I/617NtexaW2L._AC_SL1500_.jpg",
-        fallbackImage: "https://images.unsplash.com/photo-1618152139319-f58e94b55a3a?w=400&h=400&fit=crop",
         badge: "Custo-Benefício",
         badgeColor: "bg-emerald-500"
     },
@@ -80,8 +66,7 @@ const amazonProducts = [
         name: "Câmera de Vigilância Interna",
         description: "Câmera Wi-Fi com visão 360°, resolução 2K e áudio bidirecional. Segurança inteligente para sua casa.",
         link: "https://amzn.to/4r4AkCC",
-        image: "https://m.media-amazon.com/images/I/41m2+WiVLgL._AC_SL1000_.jpg",
-        fallbackImage: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop",
+        image: "https://m.media-amazon.com/images/I/71mU9w46BPL._AC_SL1500_.jpg",
         badge: "Top Avaliado",
         badgeColor: "bg-blue-500"
     },
@@ -90,8 +75,7 @@ const amazonProducts = [
         name: "Cafeteira Elétrica Electrolux",
         description: "Cafeteira para até 30 xícaras, prática para o dia a dia. Perfeita para famílias e escritórios.",
         link: "https://amzn.to/4tpsWTW",
-        image: "https://m.media-amazon.com/images/I/61pFT5V0iyL._AC_SL1200_.jpg",
-        fallbackImage: "https://images.unsplash.com/photo-1565452344518-47faca79dc69?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzd8MHwxfHNlYXJjaHwzfHxjb2ZmZWUlMjBtYWtlciUyMGVsZWN0cmljfGVufDB8fHx8MTc3MDU3ODA4Nnww&ixlib=rb-4.1.0&q=85",
+        image: "https://m.media-amazon.com/images/I/51OyvPACDML._AC_SL1500_.jpg",
         badge: null,
         badgeColor: null
     },
@@ -101,7 +85,6 @@ const amazonProducts = [
         description: "Bebidas variadas em cápsulas: café, cappuccino, chocolate e muito mais com praticidade.",
         link: "https://amzn.to/4krHgYf",
         image: "https://m.media-amazon.com/images/I/71LCd2rGdYL._AC_SL1500_.jpg",
-        fallbackImage: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=400&fit=crop",
         badge: "Mais Vendido",
         badgeColor: "bg-amber-500"
     },
@@ -111,7 +94,6 @@ const amazonProducts = [
         description: "Kit de lápis pretos de alta qualidade para escrita e desenho. Grafite macio e durável.",
         link: "https://amzn.to/46xjFzh",
         image: "https://m.media-amazon.com/images/I/81yiOQf7oOL._AC_SL1500_.jpg",
-        fallbackImage: "https://images.unsplash.com/photo-1565359184520-fcff70f99c24?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwxfHxncmFwaGl0ZSUyMHBlbmNpbHMlMjBkcmF3aW5nfGVufDB8fHx8MTc3MDU3ODA5N3ww&ixlib=rb-4.1.0&q=85",
         badge: null,
         badgeColor: null
     },
@@ -121,7 +103,6 @@ const amazonProducts = [
         description: "Lápis de cor com pigmentos vibrantes e alta cobertura. Ideal para colorir e ilustrar.",
         link: "https://amzn.to/4tEcBLs",
         image: "https://m.media-amazon.com/images/I/81vpqWkm4QL._AC_SL1500_.jpg",
-        fallbackImage: "https://images.unsplash.com/photo-1522199755839-a2bacb67c546?w=400&h=400&fit=crop",
         badge: "Custo-Benefício",
         badgeColor: "bg-emerald-500"
     },
@@ -130,8 +111,7 @@ const amazonProducts = [
         name: "Caneta Esferográfica Faber-Castell",
         description: "Caneta com escrita macia e alta durabilidade. Kit com múltiplas unidades para uso diário.",
         link: "https://amzn.to/45Yl8i6",
-        image: "https://m.media-amazon.com/images/I/51XrAsgOvrL._AC_SY355_.jpg",
-        fallbackImage: "https://images.unsplash.com/photo-1585336261022-680e295ce3fe?w=400&h=400&fit=crop",
+        image: "https://m.media-amazon.com/images/I/51XrAsgOvrL._AC_SL1500_.jpg",
         badge: null,
         badgeColor: null
     },
@@ -140,8 +120,7 @@ const amazonProducts = [
         name: "Kit Material Escolar",
         description: "Mochila e itens essenciais para estudantes. Tudo que você precisa para começar o ano letivo.",
         link: "https://amzn.to/4a3sD9U",
-        image: "https://m.media-amazon.com/images/I/91z+p9mGLlL._AC_SL1500_.jpg",
-        fallbackImage: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop",
+        image: "https://m.media-amazon.com/images/I/71mamCYoIaL._AC_SL1500_.jpg",
         badge: "Volta às Aulas",
         badgeColor: "bg-cyan-500"
     },
@@ -151,7 +130,6 @@ const amazonProducts = [
         description: "Organização e vedação eficiente para sua cozinha. Mantém alimentos frescos por mais tempo.",
         link: "https://amzn.to/4tonMYh",
         image: "https://m.media-amazon.com/images/I/71rZ3Gy6IRL._AC_SL1500_.jpg",
-        fallbackImage: "https://images.unsplash.com/photo-1585237672814-8f85a8118bf6?w=400&h=400&fit=crop",
         badge: "Oferta Limitada",
         badgeColor: "bg-red-500"
     },
@@ -160,8 +138,7 @@ const amazonProducts = [
         name: "Aspirador de Pó Vertical WAP",
         description: "Aspirador compacto, potente e prático. Limpeza silenciosa com alto poder de sucção.",
         link: "https://amzn.to/3LXAw7F",
-        image: "https://m.media-amazon.com/images/I/41UF8DQiYZL._AC_SL1000_.jpg",
-        fallbackImage: "https://images.unsplash.com/photo-1558317374-067fb5f30001?w=400&h=400&fit=crop",
+        image: "https://m.media-amazon.com/images/I/41UF8DQiYZL._AC_SL1500_.jpg",
         badge: "Top Avaliado",
         badgeColor: "bg-blue-500"
     },
@@ -170,8 +147,7 @@ const amazonProducts = [
         name: "Limpa Máquina de Lavar Roupas",
         description: "Limpador especializado para máquinas de lavar. Remove resíduos e elimina odores.",
         link: "https://amzn.to/4aDvlD2",
-        image: "https://m.media-amazon.com/images/I/71P4ew4L9bL._AC_SL1500_.jpg",
-        fallbackImage: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=400&h=400&fit=crop",
+        image: "https://m.media-amazon.com/images/I/710X4+2gC0L._AC_SL1500_.jpg",
         badge: null,
         badgeColor: null
     },
@@ -181,42 +157,34 @@ const amazonProducts = [
         description: "Ventilador potente, econômico e ideal para os dias quentes. Circulação de ar eficiente.",
         link: "https://amzn.to/45UX6o8",
         image: "https://m.media-amazon.com/images/I/71Y1x6qEdrL._AC_SL1500_.jpg",
-        fallbackImage: "https://images.unsplash.com/photo-1754818046542-d2a352bfff09?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjd8MHwxfHNlYXJjaHwyfHxwb3J0YWJsZSUyMGZhbiUyMGNvb2xpbmd8ZW58MHx8fHwxNzcwNTc4MTcwfDA&ixlib=rb-4.1.0&q=85",
         badge: "Mais Vendido",
         badgeColor: "bg-amber-500"
     }
 ];
 
-// Componente de imagem com fallback inteligente
-const ProductImage = ({ src, fallback, alt }) => {
-    const [imgSrc, setImgSrc] = useState(null);
+// Componente de imagem com carregamento direto da Amazon
+const ProductImage = ({ src, alt }) => {
     const [isLoading, setIsLoading] = useState(true);
-    const [errorCount, setErrorCount] = useState(0);
-    
-    useEffect(() => {
-        // Inicializa com a URL do proxy da Amazon
-        setImgSrc(getAmazonImageProxy(src));
-        setIsLoading(true);
-        setErrorCount(0);
-    }, [src]);
+    const [hasError, setHasError] = useState(false);
     
     const handleError = () => {
-        if (errorCount === 0) {
-            // Primeiro erro: tenta o fallback (Unsplash)
-            setErrorCount(1);
-            setImgSrc(fallback);
-        } else {
-            // Se o fallback também falhar, mostra placeholder com iniciais
-            setErrorCount(2);
-            const initials = alt.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase();
-            setImgSrc(`https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=f97316&color=fff&size=300&font-size=0.4&bold=true`);
-        }
+        setHasError(true);
         setIsLoading(false);
     };
     
     const handleLoad = () => {
         setIsLoading(false);
     };
+    
+    // Se houver erro, mostra placeholder com iniciais do produto
+    if (hasError) {
+        const initials = alt.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase();
+        return (
+            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-orange-100 to-amber-50">
+                <span className="text-4xl font-bold text-orange-500">{initials}</span>
+            </div>
+        );
+    }
     
     return (
         <div className="relative w-full h-full flex items-center justify-center">
@@ -225,16 +193,16 @@ const ProductImage = ({ src, fallback, alt }) => {
                     <div className="w-8 h-8 border-2 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
                 </div>
             )}
-            {imgSrc && (
-                <img 
-                    src={imgSrc} 
-                    alt={alt}
-                    className={`max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
-                    loading="lazy"
-                    onError={handleError}
-                    onLoad={handleLoad}
-                />
-            )}
+            <img 
+                src={src} 
+                alt={alt}
+                className={`max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+                loading="lazy"
+                onError={handleError}
+                onLoad={handleLoad}
+                crossOrigin="anonymous"
+                referrerPolicy="no-referrer"
+            />
         </div>
     );
 };
@@ -306,7 +274,6 @@ export default function AmazonOffersPage() {
                                 <div className="relative aspect-square bg-white p-4 flex items-center justify-center overflow-hidden">
                                     <ProductImage 
                                         src={product.image}
-                                        fallback={product.fallbackImage}
                                         alt={product.name}
                                     />
                                 </div>
