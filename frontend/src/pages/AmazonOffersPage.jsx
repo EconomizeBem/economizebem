@@ -10,7 +10,7 @@ const amazonProducts = [
         name: "Ventilador WAP Flow Turbo",
         description: "Potente, econômico e ideal para os dias quentes. Circulação de ar eficiente com baixo consumo de energia.",
         link: "https://amzn.to/45UX6o8",
-        image: "https://m.media-amazon.com/images/I/51Ym1Yx4URL._AC_SL1000_.jpg",
+        image: "https://images.unsplash.com/photo-1558247234-9e4380e897be?w=400&h=400&fit=crop",
         badge: "Mais Vendido",
         badgeColor: "bg-amber-500"
     },
@@ -19,7 +19,7 @@ const amazonProducts = [
         name: "Kit Material Escolar Volta às Aulas MZCell",
         description: "Mochila e itens essenciais para estudantes. Tudo que você precisa para começar o ano letivo.",
         link: "https://amzn.to/4a3sD9U",
-        image: "https://m.media-amazon.com/images/I/71QwD4oJURL._AC_SL1500_.jpg",
+        image: "https://images.unsplash.com/photo-1725801731061-041393837983?w=400&h=400&fit=crop",
         badge: "Custo-Benefício",
         badgeColor: "bg-emerald-500"
     },
@@ -28,7 +28,7 @@ const amazonProducts = [
         name: "Caneta Esferográfica Faber-Castell Trilux 032",
         description: "Escrita macia e alta durabilidade. Kit com múltiplas unidades para uso diário.",
         link: "https://amzn.to/45YL8i6",
-        image: "https://m.media-amazon.com/images/I/41BmmfqGL5L._AC_SL1000_.jpg",
+        image: "https://images.unsplash.com/photo-1553101568-34bd00376c40?w=400&h=400&fit=crop",
         badge: null,
         badgeColor: null
     },
@@ -37,7 +37,7 @@ const amazonProducts = [
         name: "Kit com 15 Potes Herméticos para Alimentos",
         description: "Organização e vedação eficiente para sua cozinha. Mantém alimentos frescos por mais tempo.",
         link: "https://amzn.to/4tonMyh",
-        image: "https://m.media-amazon.com/images/I/81qYpf1LxkL._AC_SL1500_.jpg",
+        image: "https://images.unsplash.com/photo-1621318551436-68573392fd5c?w=400&h=400&fit=crop",
         badge: "Oferta Limitada",
         badgeColor: "bg-red-500"
     },
@@ -46,7 +46,7 @@ const amazonProducts = [
         name: "Aspirador de Pó Vertical WAP Silent Speed Max",
         description: "Compacto, potente e prático. Limpeza silenciosa com alto poder de sucção.",
         link: "https://amzn.to/3LXAw7I",
-        image: "https://m.media-amazon.com/images/I/51LpY-PDPJL._AC_SL1000_.jpg",
+        image: "https://images.unsplash.com/photo-1762859731349-c9ff2808b672?w=400&h=400&fit=crop",
         badge: "Top Avaliado",
         badgeColor: "bg-blue-500"
     },
@@ -55,7 +55,7 @@ const amazonProducts = [
         name: "Kit Cafeteira Nescafé Dolce Gusto",
         description: "Bebidas variadas em cápsulas. Café, cappuccino, chocolate e muito mais com praticidade.",
         link: "https://amzn.to/4krHyGr",
-        image: "https://m.media-amazon.com/images/I/61qIy7DPLNL._AC_SL1500_.jpg",
+        image: "https://images.unsplash.com/photo-1680539882932-559b099446cc?w=400&h=400&fit=crop",
         badge: "Mais Vendido",
         badgeColor: "bg-amber-500"
     },
@@ -64,7 +64,7 @@ const amazonProducts = [
         name: "Cartão de Memória SanDisk Micro SD 128GB",
         description: "Velocidade e armazenamento confiável. Ideal para celulares, câmeras e dispositivos portáteis.",
         link: "https://amzn.to/45OY7y4",
-        image: "https://m.media-amazon.com/images/I/81S+lBP6GFL._AC_SL1500_.jpg",
+        image: "https://images.unsplash.com/photo-1610415390997-2538c1167943?w=400&h=400&fit=crop",
         badge: "Custo-Benefício",
         badgeColor: "bg-emerald-500"
     },
@@ -73,7 +73,7 @@ const amazonProducts = [
         name: "Cafeteira Elétrica Electrolux ECM25",
         description: "Até 30 xícaras, prática para o dia a dia. Perfeita para famílias e escritórios.",
         link: "https://amzn.to/4tpsWTV",
-        image: "https://m.media-amazon.com/images/I/51AHvnQzqzL._AC_SL1000_.jpg",
+        image: "https://images.unsplash.com/photo-1628195441391-e444b7a0516c?w=400&h=400&fit=crop",
         badge: null,
         badgeColor: null
     },
@@ -82,7 +82,7 @@ const amazonProducts = [
         name: "Câmera de Vigilância Mercusys MC210",
         description: "Visão 360°, Wi-Fi, 2K, áudio bidirecional. Segurança inteligente para sua casa ou empresa.",
         link: "https://amzn.to/4r4AkCG",
-        image: "https://m.media-amazon.com/images/I/41YNxFvXHKL._AC_SL1000_.jpg",
+        image: "https://images.unsplash.com/photo-1752116761763-19d288c61d65?w=400&h=400&fit=crop",
         badge: "Top Avaliado",
         badgeColor: "bg-blue-500"
     },
@@ -91,7 +91,7 @@ const amazonProducts = [
         name: "PlayStation 5 Slim + Pacote Astro/Gran Turismo",
         description: "Nova geração de games com gráficos impressionantes. Inclui jogos exclusivos de lançamento.",
         link: "https://amzn.to/4r5pT1G",
-        image: "https://m.media-amazon.com/images/I/51aGu8lJD0L._AC_SL1500_.jpg",
+        image: "https://images.unsplash.com/photo-1689593671231-ea788fda8414?w=400&h=400&fit=crop",
         badge: "Destaque",
         badgeColor: "bg-purple-500"
     },
@@ -100,7 +100,7 @@ const amazonProducts = [
         name: "Mala de Viagem Samsonite Upscape",
         description: "Resistente, leve e ideal para viagens. Rodas 360° e materiais de alta qualidade.",
         link: "https://amzn.to/4kjSbCY",
-        image: "https://m.media-amazon.com/images/I/71Vq0p9rZGL._AC_SL1500_.jpg",
+        image: "https://images.unsplash.com/photo-1714235058831-41227b8be9bf?w=400&h=400&fit=crop",
         badge: "Premium",
         badgeColor: "bg-slate-700"
     },
@@ -109,7 +109,7 @@ const amazonProducts = [
         name: "Smart TV Aiwa 50\" Android 4K",
         description: "HDR, Dolby Áudio e Android TV. Entretenimento completo com apps integrados.",
         link: "https://amzn.to/4a5VMBQ",
-        image: "https://m.media-amazon.com/images/I/71RiQZ29aAL._AC_SL1500_.jpg",
+        image: "https://images.unsplash.com/photo-1730909352933-614f1673ac21?w=400&h=400&fit=crop",
         badge: "Oferta Limitada",
         badgeColor: "bg-red-500"
     },
@@ -118,7 +118,7 @@ const amazonProducts = [
         name: "Cadeira Gamer Elite Pro Dazz",
         description: "Conforto, ajuste e ergonomia para longas sessões. Design moderno com apoio lombar.",
         link: "https://amzn.to/4rAHHsg",
-        image: "https://m.media-amazon.com/images/I/61nCz-sahNL._AC_SL1500_.jpg",
+        image: "https://images.unsplash.com/photo-1770195555068-37103df33bf8?w=400&h=400&fit=crop",
         badge: "Custo-Benefício",
         badgeColor: "bg-emerald-500"
     }
