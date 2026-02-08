@@ -93,7 +93,7 @@ const amazonProducts = [
         name: "Kit Cafeteira Nescafé Dolce Gusto",
         description: "Bebidas variadas em cápsulas: café, cappuccino, chocolate e muito mais com praticidade.",
         link: "https://amzn.to/4krHgYf",
-        image: "https://m.media-amazon.com/images/I/61WL4lMwF6L._AC_SY355_.jpg",
+        image: "https://m.media-amazon.com/images/I/51Zb0XNsXrL._AC_UL320_.jpg",
         badge: "Mais Vendido",
         badgeColor: "bg-amber-500"
     },
