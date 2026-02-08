@@ -120,7 +120,7 @@ const amazonProducts = [
         name: "Caneta Esferográfica Faber-Castell",
         description: "Caneta com escrita macia e alta durabilidade. Kit com múltiplas unidades para uso diário.",
         link: "https://amzn.to/45Yl8i6",
-        image: "https://m.media-amazon.com/images/I/61KOxu8PSWL._AC_SY355_.jpg",
+        image: "https://m.media-amazon.com/images/I/51hgxzYdFJL._AC_UL320_.jpg",
         badge: null,
         badgeColor: null
     },
