@@ -169,7 +169,7 @@ const amazonProducts = [
         id: 16,
         name: "Limpa Máquina de Lavar Roupas",
         description: "Limpador especializado para máquinas de lavar. Remove resíduos e elimina odores.",
-        link: "https://amzn.to/4aDv1D2",
+        link: "https://amzn.to/4aDvlD2",
         image: "https://m.media-amazon.com/images/I/71P4ew4L9bL._AC_SL1500_.jpg",
         fallbackImage: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=400&h=400&fit=crop",
         badge: null,
