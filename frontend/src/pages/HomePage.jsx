@@ -222,7 +222,7 @@ export default function HomePage() {
                             <div className="text-white text-center md:text-left">
                                 <div className="flex items-center gap-2 justify-center md:justify-start">
                                     <span className="text-2xl md:text-3xl font-bold font-['Outfit']">
-                                        Ofertas Amazon do Dia
+                                        Ofertas selecionadas Amazon
                                     </span>
                                     <Gift className="w-6 h-6 animate-bounce" />
                                 </div>
