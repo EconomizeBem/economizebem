@@ -57,7 +57,7 @@ const amazonProducts = [
         name: "Fone JBL sem Fio",
         description: "Fone de ouvido Bluetooth com som de alta qualidade, bateria de longa duração e design confortável.",
         link: "https://amzn.to/4aBFmRb",
-        image: "https://m.media-amazon.com/images/I/61CGHv6kmWL._AC_SY355_.jpg",
+        image: "https://m.media-amazon.com/images/I/51olNZRjn+L._AC_UL320_.jpg",
         badge: "Mais Vendido",
         badgeColor: "bg-amber-500"
     },
