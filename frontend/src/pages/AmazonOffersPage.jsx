@@ -39,7 +39,7 @@ const amazonProducts = [
         name: "Poltrona Gamer",
         description: "Cadeira gamer ergonômica com ajuste de altura, apoio lombar e braços reguláveis. Conforto para longas sessões.",
         link: "https://amzn.to/4rAHHS9",
-        image: "https://m.media-amazon.com/images/I/51aXvjzcukL._AC_SY355_.jpg",
+        image: "https://m.media-amazon.com/images/I/613NfdEWPyL._AC_SY355_.jpg",
         badge: "Custo-Benefício",
         badgeColor: "bg-emerald-500"
     },
