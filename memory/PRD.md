@@ -47,8 +47,10 @@ Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade púb
 - ✅ **Menu de categorias expandido no navbar**
 - ✅ **Homepage com seção "Explore por Categoria"**
 - ✅ **Filtros rápidos (subcategorias) em cada página de categoria**
-- ✅ **Página de Ofertas Amazon com 13 produtos curados e links de afiliado (`/ofertas-amazon`)**
+- ✅ **Página de Ofertas Amazon com 17 produtos curados e links de afiliado (`/ofertas-amazon`)**
 - ✅ **Banner de destaque "Ofertas Amazon do Dia" na HomePage (logo após o Hero)**
+- ✅ **Proxy de imagem no backend para carregar imagens da Amazon contornando CORS**
+- ✅ **Sistema de fallback de imagens: Amazon → Unsplash → Placeholder**
 
 ### Em breve (Mockado removido) 🔜
 - 🔜 Comparador de planos (Internet, Celular, Streaming) - **Página mostra "Em breve"**
