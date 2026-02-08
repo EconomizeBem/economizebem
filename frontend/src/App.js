@@ -63,6 +63,7 @@ function App() {
                                 <Route path="/calculator" element={<CalculatorPage />} />
                                 <Route path="/termos" element={<TermsPage />} />
                                 <Route path="/privacidade" element={<PrivacyPage />} />
+                                <Route path="/ofertas-amazon" element={<AmazonOffersPage />} />
                                 
                                 {/* Auth Routes */}
                                 <Route path="/login" element={<LoginPage />} />
