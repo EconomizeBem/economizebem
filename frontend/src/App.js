@@ -13,6 +13,7 @@ import PlansPage from "./pages/PlansPage";
 import CalculatorPage from "./pages/CalculatorPage";
 import TermsPage from "./pages/TermsPage";
 import PrivacyPage from "./pages/PrivacyPage";
+import AmazonOffersPage from "./pages/AmazonOffersPage";
 // Category Pages
 import EletronicosPage from "./pages/EletronicosPage";
 import EletrodomesticosPage from "./pages/EletrodomesticosPage";
