@@ -111,7 +111,7 @@ const amazonProducts = [
         name: "Lápis de Cor Faber-Castell",
         description: "Lápis de cor com pigmentos vibrantes e alta cobertura. Ideal para colorir e ilustrar.",
         link: "https://amzn.to/4tEcBLs",
-        image: "https://m.media-amazon.com/images/I/71xMoU7OzPL._AC_SY355_.jpg",
+        image: "https://m.media-amazon.com/images/I/61qCatoO2DL._AC_UL320_.jpg",
         badge: "Custo-Benefício",
         badgeColor: "bg-emerald-500"
     },
