@@ -15,7 +15,7 @@ import os
 import time
 from collections import Counter
 
-BASE_URL = os.environ.get('REACT_APP_BACKEND_URL', 'https://ecocompare.preview.emergentagent.com')
+BASE_URL = os.environ.get('REACT_APP_BACKEND_URL', 'https://smart-shopper-211.preview.emergentagent.com')
 
 class TestCacheStats:
     """Test cache statistics endpoint"""
