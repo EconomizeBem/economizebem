@@ -165,7 +165,7 @@ const amazonProducts = [
         name: "Ventilador de Mesa WAP",
         description: "Ventilador potente, econômico e ideal para os dias quentes. Circulação de ar eficiente.",
         link: "https://amzn.to/45UX6o8",
-        image: "https://m.media-amazon.com/images/I/61HaJHHFmsL._AC_SY355_.jpg",
+        image: "https://m.media-amazon.com/images/I/8194vs7pwxL._AC_UL320_.jpg",
         badge: "Mais Vendido",
         badgeColor: "bg-amber-500"
     }
