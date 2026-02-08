@@ -2,7 +2,16 @@ import { Helmet } from 'react-helmet';
 import { ExternalLink, Star, Clock, TrendingUp, Zap, ShoppingCart } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+// URL base da API para proxy de imagens
+const API_URL = process.env.REACT_APP_BACKEND_URL || '';
+
+// Função para gerar URL do proxy de imagem Amazon
+const getProxyImageUrl = (amazonImageUrl) => {
+    if (!amazonImageUrl) return null;
+    return `${API_URL}/api/proxy/image?url=${encodeURIComponent(amazonImageUrl)}`;
+};
 
 // LISTA OFICIAL E FINAL DE PRODUTOS - Links e Imagens EXATOS da Amazon
 // Cada produto usa o link de afiliado exato e imagem oficial extraída da Amazon
@@ -21,7 +30,7 @@ const amazonProducts = [
         name: "Mala Upscape",
         description: "Mala de viagem resistente, leve e com rodas 360°. Ideal para viagens nacionais e internacionais.",
         link: "https://amzn.to/4kj5bCY",
-        image: "https://m.media-amazon.com/images/I/51aPj+N0fEL._AC_SL1500_.jpg",
+        image: "https://m.media-amazon.com/images/I/71PwhBGpHIL._AC_SL1500_.jpg",
         badge: "Premium",
         badgeColor: "bg-slate-700"
     },
@@ -30,7 +39,7 @@ const amazonProducts = [
         name: "Poltrona Gamer",
         description: "Cadeira gamer ergonômica com ajuste de altura, apoio lombar e braços reguláveis. Conforto para longas sessões.",
         link: "https://amzn.to/4rAHHS9",
-        image: "https://m.media-amazon.com/images/I/31ffYq37OfL._AC_SL1500_.jpg",
+        image: "https://m.media-amazon.com/images/I/51aXvjzcukL._AC_SL1500_.jpg",
         badge: "Custo-Benefício",
         badgeColor: "bg-emerald-500"
     },
@@ -39,7 +48,7 @@ const amazonProducts = [
         name: "TV 50 Polegadas Aiwa",
         description: "Smart TV 4K com Android TV, HDR e Dolby Audio. Entretenimento completo com apps integrados.",
         link: "https://amzn.to/4a5VMBo",
-        image: "https://m.media-amazon.com/images/I/71WIlpBAYeL._AC_SL1500_.jpg",
+        image: "https://m.media-amazon.com/images/I/71RiQZ29aAL._AC_SL1500_.jpg",
         badge: "Oferta Limitada",
         badgeColor: "bg-red-500"
     },
@@ -75,7 +84,7 @@ const amazonProducts = [
         name: "Cafeteira Elétrica Electrolux",
         description: "Cafeteira para até 30 xícaras, prática para o dia a dia. Perfeita para famílias e escritórios.",
         link: "https://amzn.to/4tpsWTW",
-        image: "https://m.media-amazon.com/images/I/51OyvPACDML._AC_SL1500_.jpg",
+        image: "https://m.media-amazon.com/images/I/61pFT5V0iyL._AC_SL1200_.jpg",
         badge: null,
         badgeColor: null
     },
@@ -120,7 +129,7 @@ const amazonProducts = [
         name: "Kit Material Escolar",
         description: "Mochila e itens essenciais para estudantes. Tudo que você precisa para começar o ano letivo.",
         link: "https://amzn.to/4a3sD9U",
-        image: "https://m.media-amazon.com/images/I/71mamCYoIaL._AC_SL1500_.jpg",
+        image: "https://m.media-amazon.com/images/I/91z+p9mGLlL._AC_SL1500_.jpg",
         badge: "Volta às Aulas",
         badgeColor: "bg-cyan-500"
     },
@@ -138,7 +147,7 @@ const amazonProducts = [
         name: "Aspirador de Pó Vertical WAP",
         description: "Aspirador compacto, potente e prático. Limpeza silenciosa com alto poder de sucção.",
         link: "https://amzn.to/3LXAw7F",
-        image: "https://m.media-amazon.com/images/I/41UF8DQiYZL._AC_SL1500_.jpg",
+        image: "https://m.media-amazon.com/images/I/41UF8DQiYZL._AC_SL1000_.jpg",
         badge: "Top Avaliado",
         badgeColor: "bg-blue-500"
     },
@@ -147,7 +156,7 @@ const amazonProducts = [
         name: "Limpa Máquina de Lavar Roupas",
         description: "Limpador especializado para máquinas de lavar. Remove resíduos e elimina odores.",
         link: "https://amzn.to/4aDvlD2",
-        image: "https://m.media-amazon.com/images/I/710X4+2gC0L._AC_SL1500_.jpg",
+        image: "https://m.media-amazon.com/images/I/71P4ew4L9bL._AC_SL1500_.jpg",
         badge: null,
         badgeColor: null
     },
@@ -162,13 +171,27 @@ const amazonProducts = [
     }
 ];
 
-// Componente de imagem com carregamento direto da Amazon
+// Componente de imagem com proxy e fallback inteligente
 const ProductImage = ({ src, alt }) => {
+    const [imgSrc, setImgSrc] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [hasError, setHasError] = useState(false);
     
+    useEffect(() => {
+        // Usar proxy para carregar a imagem
+        const proxyUrl = getProxyImageUrl(src);
+        setImgSrc(proxyUrl);
+        setIsLoading(true);
+        setHasError(false);
+    }, [src]);
+    
     const handleError = () => {
-        setHasError(true);
+        // Se proxy falhar, tenta a URL direta
+        if (imgSrc && imgSrc.includes('/api/proxy/')) {
+            setImgSrc(src);
+        } else {
+            setHasError(true);
+        }
         setIsLoading(false);
     };
     
@@ -193,16 +216,16 @@ const ProductImage = ({ src, alt }) => {
                     <div className="w-8 h-8 border-2 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
                 </div>
             )}
-            <img 
-                src={src} 
-                alt={alt}
-                className={`max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
-                loading="lazy"
-                onError={handleError}
-                onLoad={handleLoad}
-                crossOrigin="anonymous"
-                referrerPolicy="no-referrer"
-            />
+            {imgSrc && (
+                <img 
+                    src={imgSrc} 
+                    alt={alt}
+                    className={`max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+                    loading="lazy"
+                    onError={handleError}
+                    onLoad={handleLoad}
+                />
+            )}
         </div>
     );
 };
