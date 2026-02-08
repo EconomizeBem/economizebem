@@ -30,7 +30,7 @@ const amazonProducts = [
         name: "Mala Upscape",
         description: "Mala de viagem resistente, leve e com rodas 360°. Ideal para viagens nacionais e internacionais.",
         link: "https://amzn.to/4kjSbCY",
-        image: "https://m.media-amazon.com/images/I/71Kkm5nSMZL._AC_SY355_.jpg",
+        image: "https://m.media-amazon.com/images/I/71PwhBGpHIL._AC_UL320_.jpg",
         badge: "Premium",
         badgeColor: "bg-slate-700"
     },
