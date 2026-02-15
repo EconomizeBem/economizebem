@@ -112,11 +112,11 @@ export const PartnersCarousel = () => {
                     >
                         <div className="flex flex-col md:flex-row items-center">
                             {/* Logo Section */}
-                            <div className="w-full md:w-1/3 p-8 flex items-center justify-center bg-white">
+                            <div className="w-full md:w-2/5 p-6 md:p-8 flex items-center justify-center bg-white min-h-[160px]">
                                 <img
                                     src={currentPartner.logo}
                                     alt={`Logo ${currentPartner.name}`}
-                                    className="max-h-32 md:max-h-40 w-auto object-contain"
+                                    className="max-h-36 md:max-h-44 max-w-[200px] md:max-w-[280px] w-auto object-contain"
                                     data-testid={`partner-logo-${currentPartner.id}`}
                                 />
                             </div>
