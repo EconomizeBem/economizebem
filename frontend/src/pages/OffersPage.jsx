@@ -11,7 +11,9 @@ const ProductCard = ({ item }) => {
         // Remove onerror para evitar loop
         e.target.onerror = null;
         // Substitui pelo logo da Amazon
-        e.target.src = '/assets/amazon-logo.png';
+        e.target.src = '/assets/amazon-logo.svg';
+        // Ajusta estilo para o logo ficar bem centralizado
+        e.target.style.padding = '40px';
     };
 
     return (
