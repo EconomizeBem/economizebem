@@ -199,6 +199,9 @@ export default function HomePage() {
                 </div>
             </section>
 
+            {/* Partners Carousel */}
+            <PartnersCarousel />
+
             {/* Quick Categories */}
             <section className="py-12 border-b dark:border-slate-800" data-testid="categories-section">
                 <div className="container-main">
