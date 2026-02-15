@@ -14,6 +14,7 @@ import CalculatorPage from "./pages/CalculatorPage";
 import TermsPage from "./pages/TermsPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import AmazonOffersPage from "./pages/AmazonOffersPage";
+import OffersPage from "./pages/OffersPage";
 // Category Pages
 import EletronicosPage from "./pages/EletronicosPage";
 import EletrodomesticosPage from "./pages/EletrodomesticosPage";
@@ -64,6 +65,7 @@ function App() {
                                 <Route path="/termos" element={<TermsPage />} />
                                 <Route path="/privacidade" element={<PrivacyPage />} />
                                 <Route path="/ofertas-amazon" element={<AmazonOffersPage />} />
+                                <Route path="/ofertas" element={<OffersPage />} />
                                 
                                 {/* Auth Routes */}
                                 <Route path="/login" element={<LoginPage />} />

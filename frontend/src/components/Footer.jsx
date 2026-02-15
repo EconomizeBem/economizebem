@@ -45,6 +45,11 @@ export const Footer = () => {
 
                 <hr className="my-8 border-slate-200 dark:border-slate-800" />
 
+                {/* Amazon Affiliate Disclosure */}
+                <p className="text-xs text-center text-muted-foreground mb-6 px-4">
+                    Como participante do Programa de Associados da Amazon, o EconomizeBem pode receber comissões por compras qualificadas.
+                </p>
+
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-sm text-muted-foreground">
                         © 2024 EconomizeBem. Todos os direitos reservados.
