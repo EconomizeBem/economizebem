@@ -5,6 +5,7 @@ import { Button } from '../components/ui/button';
 
 // Componente de card de produto
 const ProductCard = ({ item }) => {
+    const [imageLoaded, setImageLoaded] = useState(false);
     const [imageError, setImageError] = useState(false);
     
     const getInitials = (asin) => {
@@ -17,20 +18,23 @@ const ProductCard = ({ item }) => {
             data-testid={`offer-card-${item.asin}`}
         >
             {/* Imagem */}
-            <div className="relative aspect-square bg-slate-100 dark:bg-slate-700 overflow-hidden">
-                {!imageError && item.image_url ? (
+            <div className="relative aspect-square bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600 overflow-hidden">
+                {!imageError && item.image_url && (
                     <img
                         src={item.image_url}
                         alt={item.title}
-                        className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                        className={`w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                        onLoad={() => setImageLoaded(true)}
                         onError={() => setImageError(true)}
                         loading="lazy"
                     />
-                ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                        <span className="text-4xl font-bold text-slate-400 dark:text-slate-500">
-                            {getInitials(item.asin)}
-                        </span>
+                )}
+                {(!imageLoaded || imageError) && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-center">
+                            <ShoppingCart className="w-12 h-12 text-slate-400 dark:text-slate-500 mx-auto mb-2" />
+                            <span className="text-sm text-slate-500 dark:text-slate-400">Ver produto</span>
+                        </div>
                     </div>
                 )}
             </div>
