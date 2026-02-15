@@ -7,7 +7,7 @@ const partners = [
         id: 'arno',
         name: 'Arno',
         description: 'Até 45% OFF em eletroportáteis e produtos para casa',
-        logo: '/partners/arno-logo.png',
+        logo: '/partners/arno-logo.svg',
         link: 'https://www.awin1.com/cread.php?awinmid=108626&awinaffid=2764132&ued=https%3A%2F%2Fwww.arno.com.br%2Farno%2Fofertas-arno',
         bgGradient: 'from-red-600 to-red-800',
     },
