@@ -15,7 +15,7 @@ const partners = [
         id: 'nike',
         name: 'Nike',
         description: 'Ofertas em tênis, roupas e acessórios esportivos',
-        logo: '/partners/nike-logo.svg',
+        logo: '/partners/nike-logo.png',
         link: 'https://www.awin1.com/cread.php?awinmid=17652&awinaffid=2764132&ued=https%3A%2F%2Fwww.nike.com.br%2Fnav%2Fofertas%2Femoferta',
         bgGradient: 'from-gray-800 to-black',
     },
