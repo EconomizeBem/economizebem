@@ -211,7 +211,7 @@ export default function HomePage() {
                 
                 <div className="container-main relative z-10">
                     <Link 
-                        to="/ofertas-amazon" 
+                        to="/ofertas" 
                         className="flex flex-col md:flex-row items-center justify-between gap-4 group"
                         data-testid="amazon-offers-link"
                     >
@@ -222,7 +222,7 @@ export default function HomePage() {
                             <div className="text-white text-center md:text-left">
                                 <div className="flex items-center gap-2 justify-center md:justify-start">
                                     <span className="text-2xl md:text-3xl font-bold font-['Outfit']">
-                                        Ofertas selecionadas Amazon
+                                        Ofertas Amazon
                                     </span>
                                     <Gift className="w-6 h-6 animate-bounce" />
                                 </div>
@@ -236,7 +236,7 @@ export default function HomePage() {
                             className="bg-white text-orange-600 hover:bg-orange-50 rounded-xl h-12 px-8 text-base font-bold shadow-lg group-hover:shadow-xl transition-all flex items-center gap-2"
                             data-testid="amazon-offers-cta"
                         >
-                            Ver ofertas Amazon
+                            Ver ofertas
                             <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </Button>
                     </Link>
