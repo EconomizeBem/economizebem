@@ -116,7 +116,7 @@ export const PartnersCarousel = () => {
                                 <img
                                     src={currentPartner.logo}
                                     alt={`Logo ${currentPartner.name}`}
-                                    className="max-h-24 md:max-h-32 w-auto object-contain"
+                                    className="max-h-32 md:max-h-40 w-auto object-contain"
                                     data-testid={`partner-logo-${currentPartner.id}`}
                                 />
                             </div>
