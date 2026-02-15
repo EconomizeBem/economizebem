@@ -6,9 +6,19 @@ import { Button } from '../components/ui/button';
 // Componente de card de produto
 const ProductCard = ({ item }) => {
     const [imageSrc, setImageSrc] = useState(item.image_url);
+    const [fallbackAttempt, setFallbackAttempt] = useState(0);
 
     const handleImageError = () => {
-        setImageSrc('https://via.placeholder.com/500?text=Imagem+indispon%C3%ADvel');
+        if (fallbackAttempt === 0) {
+            // Primeira falha: tenta URL alternativa da Amazon
+            setFallbackAttempt(1);
+            setImageSrc(`https://m.media-amazon.com/images/P/${item.asin}.01._SL500_.jpg`);
+        } else {
+            // Segunda falha: usa placeholder e loga
+            console.log(`IMG_FAIL_FINAL ${item.asin}`);
+            setFallbackAttempt(2);
+            setImageSrc('https://via.placeholder.com/500?text=Imagem+indispon%C3%ADvel');
+        }
     };
 
     return (
