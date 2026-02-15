@@ -5,20 +5,13 @@ import { Button } from '../components/ui/button';
 
 // Componente de card de produto
 const ProductCard = ({ item }) => {
-    const [imageSrc, setImageSrc] = useState(item.image_url);
-    const [fallbackAttempt, setFallbackAttempt] = useState(0);
-
-    const handleImageError = () => {
-        if (fallbackAttempt === 0) {
-            // Primeira falha: tenta URL alternativa da Amazon
-            setFallbackAttempt(1);
-            setImageSrc(`https://m.media-amazon.com/images/P/${item.asin}.01._SL500_.jpg`);
-        } else {
-            // Segunda falha: usa placeholder e loga
-            console.log(`IMG_FAIL_FINAL ${item.asin}`);
-            setFallbackAttempt(2);
-            setImageSrc('https://via.placeholder.com/500?text=Imagem+indispon%C3%ADvel');
-        }
+    const handleImageError = (e) => {
+        // Log para debug
+        console.log("IMG_FALLBACK_AMAZON", item.asin, item.image_url);
+        // Remove onerror para evitar loop
+        e.target.onerror = null;
+        // Substitui pelo logo da Amazon
+        e.target.src = '/assets/amazon-logo.png';
     };
 
     return (
@@ -27,11 +20,12 @@ const ProductCard = ({ item }) => {
             data-testid={`offer-card-${item.asin}`}
         >
             {/* Imagem */}
-            <div className="relative aspect-square bg-slate-100 dark:bg-slate-700 overflow-hidden">
+            <div className="relative aspect-square bg-slate-100 dark:bg-slate-700 overflow-hidden flex items-center justify-center">
                 <img
-                    src={imageSrc}
+                    src={item.image_url}
                     alt={item.title}
                     className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                    style={{ objectFit: 'contain' }}
                     onError={handleImageError}
                     loading="lazy"
                 />
