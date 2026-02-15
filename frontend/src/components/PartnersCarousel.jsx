@@ -27,6 +27,14 @@ const partners = [
         link: 'https://www.awin1.com/cread.php?awinmid=47165&awinaffid=2764132&ued=https%3A%2F%2Fwww.drogariavenancio.com.br%2Fmedicamentos',
         bgGradient: 'from-green-600 to-green-800',
     },
+    {
+        id: 'dutra',
+        name: 'Dutra Máquinas',
+        description: 'Ofertas em ferramentas, máquinas e equipamentos',
+        logo: '/partners/dutra-logo.svg',
+        link: 'https://www.awin1.com/cread.php?awinmid=44939&awinaffid=2764132&ued=https%3A%2F%2Fwww.dutramaquinas.com.br%2Fv%2Ftemporada-de-ofertas',
+        bgGradient: 'from-orange-500 to-orange-700',
+    },
 ];
 
 export const PartnersCarousel = () => {
