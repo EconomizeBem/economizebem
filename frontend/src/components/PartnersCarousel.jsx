@@ -122,7 +122,7 @@ export const PartnersCarousel = () => {
                             </div>
 
                             {/* Content Section */}
-                            <div className="w-full md:w-2/3 p-6 md:p-8 flex flex-col items-center md:items-start text-center md:text-left">
+                            <div className="w-full md:w-3/5 p-6 md:p-8 flex flex-col items-center md:items-start text-center md:text-left">
                                 <h3 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white mb-2">
                                     {currentPartner.name}
                                 </h3>
