@@ -23,7 +23,7 @@ const partners = [
         id: 'venancio',
         name: 'Drogaria Venâncio',
         description: 'Medicamentos, vitaminas e produtos de saúde',
-        logo: '/partners/venancio-logo.jpg',
+        logo: '/partners/venancio-logo.png',
         link: 'https://www.awin1.com/cread.php?awinmid=47165&awinaffid=2764132&ued=https%3A%2F%2Fwww.drogariavenancio.com.br%2Fmedicamentos',
         bgGradient: 'from-green-600 to-green-800',
     },
