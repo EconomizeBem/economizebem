@@ -10,12 +10,11 @@ const API_URL = 'https://economizebem-api.onrender.com';
 
 // Labels de categorias
 const CATEGORY_LABELS = {
-    "video_games": "Video Games",
+    "smartphones": "Smartphones",
     "tv": "TVs",
-    "geladeira": "Geladeiras",
-    "cafeteira": "Cafeteiras",
-    "lava_roupas": "Lava Roupas",
-    "lava_e_seca": "Lava e Seca",
+    "linha_branca": "Linha Branca",
+    "eletrodomesticos": "Eletrodomésticos",
+    "acessorios": "Acessórios",
     "outros": "Outros"
 };
 
