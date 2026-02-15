@@ -30,13 +30,11 @@ const ProductCard = ({ item }) => {
             {/* Imagem */}
             <div className="relative aspect-square bg-slate-100 dark:bg-slate-700 overflow-hidden flex items-center justify-center">
                 {showFallback ? (
-                    <div className="w-full h-full flex items-center justify-center p-8 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-800">
-                        <img
-                            src="/assets/amazon-logo.svg"
-                            alt="Produto Amazon"
-                            className="w-24 h-24 opacity-60"
-                        />
-                    </div>
+                    <img
+                        src="/assets/product-placeholder.jpeg"
+                        alt={item.title}
+                        className="w-full h-full object-contain p-4"
+                    />
                 ) : (
                     <img
                         src={item.image_url}
