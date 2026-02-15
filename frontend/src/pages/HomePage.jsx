@@ -24,10 +24,7 @@ import {
     Shirt,
     Sparkles,
     PawPrint,
-    ChevronRight,
-    Flame,
-    ExternalLink,
-    Gift
+    ChevronRight
 } from 'lucide-react';
 
 const features = [
