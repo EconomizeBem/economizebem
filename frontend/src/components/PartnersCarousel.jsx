@@ -19,6 +19,14 @@ const partners = [
         link: 'https://www.awin1.com/cread.php?awinmid=17652&awinaffid=2764132&ued=https%3A%2F%2Fwww.nike.com.br%2Fnav%2Fofertas%2Femoferta',
         bgGradient: 'from-gray-800 to-black',
     },
+    {
+        id: 'venancio',
+        name: 'Drogaria Venâncio',
+        description: 'Medicamentos, vitaminas e produtos de saúde',
+        logo: '/partners/venancio-logo.svg',
+        link: 'https://www.awin1.com/cread.php?awinmid=47165&awinaffid=2764132&ued=https%3A%2F%2Fwww.drogariavenancio.com.br%2Fmedicamentos',
+        bgGradient: 'from-green-600 to-green-800',
+    },
 ];
 
 export const PartnersCarousel = () => {
