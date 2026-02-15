@@ -58,6 +58,9 @@ Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade púb
 ### Em Progresso 🔄
 - Nenhum
 
+### Correção Recente (Fevereiro 2025) ✅
+- ✅ **Fallback de imagem na página /ofertas**: Corrigido problema onde imagens indisponíveis mostravam espaço em branco. A Amazon retorna pixels transparentes (1x1) em vez de erro 404, então a solução usa `onLoad` + `naturalWidth` para detectar e substituir pelo logo da Amazon.
+
 ### Pendentes 📋
 - [ ] Integrar dados reais para "Comparador de Planos" (atualmente mockado)
 - [ ] Implementar backend completo para "Calculadora Financeira"
@@ -232,9 +235,9 @@ GET  /api/expenses/summary
 ```
 
 ## Última Atualização
-- **Data**: Janeiro 2025
-- **Sessão**: Correção de bugs críticos (busca Home, categorias vazias, paginação)
-- **Status**: ✅ Todas as funcionalidades implementadas e testadas (100% de sucesso - 16/16 testes)
+- **Data**: Fevereiro 2025
+- **Sessão**: Correção do fallback de imagens na página /ofertas
+- **Status**: ✅ Fallback de imagens funcionando corretamente
 
 ## Bugs Corrigidos nesta Sessão
 | Bug | Causa | Solução |
