@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
-Script para atualizar ofertas Amazon usando a PA-API 5.0.
-Lê ASINs de asins.csv e gera offers.json e deals_of_day.json.
+Script para atualizar ofertas Amazon usando a API oficial (Creators API / PA-API).
+Lê ASINs de asins.csv e gera offers.json.
 
 Requer variáveis de ambiente:
-- AMAZON_ACCESS_KEY: Chave de acesso da PA-API
-- AMAZON_SECRET_KEY: Chave secreta da PA-API
+- AMAZON_ACCESS_KEY: Chave de acesso da API
+- AMAZON_SECRET_KEY: Chave secreta da API
 - AMAZON_ASSOCIATE_TAG: Tag de associado (padrão: economizebe0b-20)
 - AMAZON_COUNTRY: País (padrão: BR)
 
-Executar via Cron Job no Render: a cada 1 hora ou no mínimo 2x ao dia
+Executar via Cron Job no Render: 2x ao dia (08:00 e 20:00 BRT)
 """
 
 import os
@@ -37,15 +37,14 @@ COUNTRY = os.environ.get("AMAZON_COUNTRY", "BR")
 
 ASINS_FILE = "asins.csv"
 OFFERS_FILE = "offers.json"
-DEALS_FILE = "deals_of_day.json"
 
 # Timezone Brasil
 BRT = ZoneInfo("America/Sao_Paulo")
 
 # Categorias válidas
 VALID_CATEGORIES = [
-    "video_games", "tv", "geladeira", "cafeteira", 
-    "lava_roupas", "lava_e_seca", "outros"
+    "smartphones", "tv", "linha_branca", "eletrodomesticos", 
+    "acessorios", "outros"
 ]
 
 
@@ -92,14 +91,16 @@ def calculate_discount(price: Optional[float], list_price: Optional[float]) -> O
 
 def fetch_products_from_api(asins_data: list[dict]) -> list[dict]:
     """
-    Busca dados dos produtos na Amazon PA-API.
+    Busca dados dos produtos na Amazon PA-API / Creators API.
     Retorna lista de produtos com informações completas.
     """
     items = []
     
     # Verificar se temos credenciais
     if not ACCESS_KEY or not SECRET_KEY:
-        logger.warning("Credenciais da PA-API não configuradas. Usando dados de fallback.")
+        logger.warning("Credenciais da API Amazon não configuradas.")
+        logger.warning("Configure AMAZON_ACCESS_KEY e AMAZON_SECRET_KEY no Render.")
+        logger.warning("Usando dados placeholder. Os dados reais aparecerão após configurar as credenciais.")
         return create_fallback_items(asins_data)
     
     try:
@@ -189,7 +190,8 @@ def fetch_products_from_api(asins_data: list[dict]) -> list[dict]:
                 continue
         
     except ImportError:
-        logger.warning("Biblioteca amazon_paapi não instalada. Usando dados de fallback.")
+        logger.warning("Biblioteca amazon_paapi não instalada.")
+        logger.warning("Execute: pip install python-amazon-paapi")
         return create_fallback_items(asins_data)
     except Exception as e:
         logger.error(f"Erro na API Amazon: {e}")
@@ -199,7 +201,7 @@ def fetch_products_from_api(asins_data: list[dict]) -> list[dict]:
 
 
 def create_fallback_item(asin: str, meta: dict) -> dict:
-    """Cria item de fallback quando a API não está disponível."""
+    """Cria item placeholder quando a API não está disponível."""
     return {
         'asin': asin,
         'category': meta.get('category', 'outros'),
@@ -210,47 +212,40 @@ def create_fallback_item(asin: str, meta: dict) -> dict:
         'list_price': None,
         'discount_pct': None,
         'affiliate_url': generate_affiliate_url(asin),
-        'availability': "Verificar disponibilidade"
+        'availability': "Verificar na Amazon"
     }
 
 
 def create_fallback_items(asins_data: list[dict]) -> list[dict]:
-    """Cria lista de itens de fallback."""
+    """Cria lista de itens placeholder."""
     return [create_fallback_item(item['asin'], item) for item in asins_data]
 
 
 def sort_items(items: list[dict]) -> list[dict]:
     """
-    Ordena itens por desconto (desc) e prioridade (desc).
-    Itens sem desconto vão para o final, ordenados por prioridade.
+    Ordena itens conforme especificado:
+    1) discount_pct desc (itens sem desconto vão pro final)
+    2) priority desc
+    3) price desc
     """
     def sort_key(item):
-        discount = item.get('discount_pct') or 0
+        # Itens COM desconto vêm primeiro (maior desconto = menor valor negativo)
+        # Itens SEM desconto vão pro final (discount = 0 ou None)
+        discount = item.get('discount_pct')
+        has_discount = 1 if discount and discount > 0 else 0
+        discount_val = discount if discount else 0
+        
         priority = item.get('priority', 5)
-        return (-discount, -priority)
+        price = item.get('price') or 0
+        
+        # Ordenação: -has_discount (com desconto primeiro), -discount, -priority, -price
+        return (-has_discount, -discount_val, -priority, -price)
     
     return sorted(items, key=sort_key)
 
 
-def get_deals_of_day(items: list[dict], limit: int = 20) -> list[dict]:
-    """
-    Retorna as melhores ofertas do dia.
-    Prioriza itens com desconto, depois por prioridade.
-    """
-    # Filtrar itens com desconto
-    with_discount = [item for item in items if item.get('discount_pct')]
-    
-    # Se não houver suficientes com desconto, completar com alta prioridade
-    if len(with_discount) < limit:
-        without_discount = [item for item in items if not item.get('discount_pct')]
-        without_discount.sort(key=lambda x: -x.get('priority', 5))
-        with_discount.extend(without_discount[:limit - len(with_discount)])
-    
-    return with_discount[:limit]
-
-
 def update_offers():
-    """Função principal que atualiza os arquivos de ofertas."""
+    """Função principal que atualiza o arquivo de ofertas."""
     now_utc = datetime.now(timezone.utc)
     now_brt = now_utc.astimezone(BRT)
     
@@ -273,40 +268,22 @@ def update_offers():
     # Ordenar itens
     items = sort_items(items)
     
-    # Criar ofertas do dia
-    deals = get_deals_of_day(items)
-    
     # Metadados
-    metadata = {
+    offers_data = {
         "updated_at": now_utc.isoformat(),
         "updated_at_local": now_brt.strftime("%H:%M"),
-        "updated_at_full": now_brt.strftime("%d/%m/%Y às %H:%M"),
-        "total_items": len(items),
         "disclaimer": "Os preços e a disponibilidade dos produtos estão corretos na data/horário indicados e poderão sofrer alterações.",
-        "tracking_tag": TRACKING_ID
-    }
-    
-    # Salvar offers.json
-    offers_data = {
-        **metadata,
+        "tracking_tag": TRACKING_ID,
+        "total_items": len(items),
+        "categories": VALID_CATEGORIES,
         "items": items
     }
     
+    # Salvar offers.json
     with open(OFFERS_FILE, 'w', encoding='utf-8') as f:
         json.dump(offers_data, f, ensure_ascii=False, indent=2)
+    
     logger.info(f"Arquivo {OFFERS_FILE} atualizado com {len(items)} ofertas.")
-    
-    # Salvar deals_of_day.json
-    deals_data = {
-        **metadata,
-        "total_items": len(deals),
-        "items": deals
-    }
-    
-    with open(DEALS_FILE, 'w', encoding='utf-8') as f:
-        json.dump(deals_data, f, ensure_ascii=False, indent=2)
-    logger.info(f"Arquivo {DEALS_FILE} atualizado com {len(deals)} ofertas do dia.")
-    
     logger.info("Atualização concluída!")
 
 
