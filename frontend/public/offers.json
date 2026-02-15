@@ -1,466 +1,82 @@
 {
+  "updated_at_local": "manual",
   "items": [
-    {
-      "asin": "B0CHTM5V62",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0CHTM5V62.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0CHTM5V62/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0GFGNN7KT",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0GFGNN7KT.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0GFGNN7KT/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0G59J279Q",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0G59J279Q.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0G59J279Q/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0G62MBP8G",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0G62MBP8G.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0G62MBP8G/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0DXR7GNWJ",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DXR7GNWJ.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0DXR7GNWJ/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0DRD1SBSD",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DRD1SBSD.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0DRD1SBSD/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0DT5LHPMX",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DT5LHPMX.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0DT5LHPMX/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0FPJ5GYPG",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FPJ5GYPG.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0FPJ5GYPG/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0FPYYNQ7Y",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FPYYNQ7Y.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0FPYYNQ7Y/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0DR7Z1NNB",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DR7Z1NNB.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0DR7Z1NNB/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0DHWFBYVC",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DHWFBYVC.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0DHWFBYVC/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B08BTPB7XQ",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B08BTPB7XQ.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B08BTPB7XQ/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0C5NSC62P",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0C5NSC62P.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0C5NSC62P/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B07734SYSK",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07734SYSK.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B07734SYSK/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0G6GRR6RT",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0G6GRR6RT.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0G6GRR6RT/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B08X66RQ48",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B08X66RQ48.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B08X66RQ48/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B07B9ZZ7V7",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07B9ZZ7V7.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B07B9ZZ7V7/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B08S29F8SZ",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B08S29F8SZ.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B08S29F8SZ/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0CJGL7HC3",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0CJGL7HC3.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0CJGL7HC3/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B076HSPQFD",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B076HSPQFD.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B076HSPQFD/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B09CC72K1X",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B09CC72K1X.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B09CC72K1X/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B09SVPDX3G",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B09SVPDX3G.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B09SVPDX3G/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B07BN3VNDV",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07BN3VNDV.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B07BN3VNDV/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0DJ3GC8N5",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DJ3GC8N5.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0DJ3GC8N5/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0DJ3C9MGL",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DJ3C9MGL.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0DJ3C9MGL/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0BH75ZS8Y",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0BH75ZS8Y.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0BH75ZS8Y/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0D3N66QV2",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0D3N66QV2.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0D3N66QV2/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B00RLM2U12",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B00RLM2U12.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B00RLM2U12/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B07K29F3SB",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07K29F3SB.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B07K29F3SB/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0FVMFSWGV",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FVMFSWGV.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0FVMFSWGV/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B09XN6Z8CW",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B09XN6Z8CW.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B09XN6Z8CW/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0CB528ZCG",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0CB528ZCG.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0CB528ZCG/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B09B8W3KQP",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B09B8W3KQP.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B09B8W3KQP/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0BSR5CS9P",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0BSR5CS9P.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0BSR5CS9P/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0D152HV7Y",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0D152HV7Y.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0D152HV7Y/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B00DCTI47M",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B00DCTI47M.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B00DCTI47M/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0B61WJRY5",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0B61WJRY5.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0B61WJRY5/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0DDZJ18T2",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DDZJ18T2.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0DDZJ18T2/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B07C4NLYSH",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07C4NLYSH.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B07C4NLYSH/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B082DNSZN6",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B082DNSZN6.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B082DNSZN6/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0FQNZX9HY",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FQNZX9HY.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0FQNZX9HY/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B078C9ZRC7",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B078C9ZRC7.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B078C9ZRC7/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0784CLYGQ",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0784CLYGQ.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0784CLYGQ/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0FWGBZ4J6",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FWGBZ4J6.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0FWGBZ4J6/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0751NFD36",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0751NFD36.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0751NFD36/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B07WGQ64QR",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07WGQ64QR.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B07WGQ64QR/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0FX6VX3W6",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FX6VX3W6.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0FX6VX3W6/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B08CPW86PX",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B08CPW86PX.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B08CPW86PX/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B074L9L5KZ",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B074L9L5KZ.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B074L9L5KZ/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0778VZYVV",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0778VZYVV.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0778VZYVV/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0DV7VS87H",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DV7VS87H.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0DV7VS87H/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0DPGN1X93",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DPGN1X93.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0DPGN1X93/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0FTT42SDP",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FTT42SDP.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0FTT42SDP/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B094YS5TDH",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B094YS5TDH.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B094YS5TDH/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0754L836W",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0754L836W.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0754L836W/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0FPBQQ4TN",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FPBQQ4TN.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0FPBQQ4TN/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0156Q7MX0",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0156Q7MX0.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0156Q7MX0/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0F5X69KQB",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0F5X69KQB.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0F5X69KQB/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0D6WHFRSX",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0D6WHFRSX.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0D6WHFRSX/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0CRZ92M2S",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0CRZ92M2S.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0CRZ92M2S/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0FXNW5Q54",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FXNW5Q54.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0FXNW5Q54/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B07FFBVNYV",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07FFBVNYV.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B07FFBVNYV/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B01DY7E8GW",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B01DY7E8GW.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B01DY7E8GW/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0C7GW9F88",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0C7GW9F88.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0C7GW9F88/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0DKZ1W335",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DKZ1W335.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0DKZ1W335/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0DYV7PRLP",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DYV7PRLP.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0DYV7PRLP/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0BLX7PL9P",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0BLX7PL9P.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0BLX7PL9P/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0FMFVYFXC",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FMFVYFXC.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0FMFVYFXC/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0C4Z6GF7J",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0C4Z6GF7J.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0C4Z6GF7J/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B08174YHZH",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B08174YHZH.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B08174YHZH/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0BDGMNF6V",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0BDGMNF6V.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0BDGMNF6V/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0D78RX8Y1",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0D78RX8Y1.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0D78RX8Y1/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0839M5VRD",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0839M5VRD.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0839M5VRD/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0DKY79FQ8",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DKY79FQ8.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0DKY79FQ8/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0DBVK8S6F",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DBVK8S6F.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0DBVK8S6F/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0DBVHPBP7",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DBVHPBP7.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0DBVHPBP7/?tag=economizebe0b-20"
-    },
-    {
-      "asin": "B0DM3B8WTF",
-      "title": "Produto Amazon",
-      "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DM3B8WTF.01.LZZZZZZZ.jpg",
-      "affiliate_url": "https://www.amazon.com.br/dp/B0DM3B8WTF/?tag=economizebe0b-20"
-    }
+    { "asin": "B0CHTM5V62", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0CHTM5V62.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0CHTM5V62/?tag=economizebe0b-20" },
+    { "asin": "B0GFGNN7KT", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0GFGNN7KT.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0GFGNN7KT/?tag=economizebe0b-20" },
+    { "asin": "B0G59J279Q", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0G59J279Q.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0G59J279Q/?tag=economizebe0b-20" },
+    { "asin": "B0G62MBP8G", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0G62MBP8G.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0G62MBP8G/?tag=economizebe0b-20" },
+    { "asin": "B0DXR7GNWJ", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DXR7GNWJ.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0DXR7GNWJ/?tag=economizebe0b-20" },
+    { "asin": "B0DRD1SBSD", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DRD1SBSD.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0DRD1SBSD/?tag=economizebe0b-20" },
+    { "asin": "B0DT5LHPMX", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DT5LHPMX.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0DT5LHPMX/?tag=economizebe0b-20" },
+    { "asin": "B0FPJ5GYPG", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FPJ5GYPG.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0FPJ5GYPG/?tag=economizebe0b-20" },
+    { "asin": "B0FPYYNQ7Y", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FPYYNQ7Y.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0FPYYNQ7Y/?tag=economizebe0b-20" },
+    { "asin": "B0DR7Z1NNB", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DR7Z1NNB.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0DR7Z1NNB/?tag=economizebe0b-20" },
+    { "asin": "B0DHWFBYVC", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DHWFBYVC.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0DHWFBYVC/?tag=economizebe0b-20" },
+    { "asin": "B08BTPB7XQ", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B08BTPB7XQ.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B08BTPB7XQ/?tag=economizebe0b-20" },
+    { "asin": "B0C5NSC62P", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0C5NSC62P.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0C5NSC62P/?tag=economizebe0b-20" },
+    { "asin": "B07734SYSK", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07734SYSK.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B07734SYSK/?tag=economizebe0b-20" },
+    { "asin": "B0G6GRR6RT", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0G6GRR6RT.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0G6GRR6RT/?tag=economizebe0b-20" },
+    { "asin": "B08X66RQ48", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B08X66RQ48.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B08X66RQ48/?tag=economizebe0b-20" },
+    { "asin": "B07B9ZZ7V7", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07B9ZZ7V7.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B07B9ZZ7V7/?tag=economizebe0b-20" },
+    { "asin": "B08S29F8SZ", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B08S29F8SZ.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B08S29F8SZ/?tag=economizebe0b-20" },
+    { "asin": "B0CJGL7HC3", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0CJGL7HC3.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0CJGL7HC3/?tag=economizebe0b-20" },
+    { "asin": "B076HSPQFD", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B076HSPQFD.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B076HSPQFD/?tag=economizebe0b-20" },
+    { "asin": "B09CC72K1X", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B09CC72K1X.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B09CC72K1X/?tag=economizebe0b-20" },
+    { "asin": "B09SVPDX3G", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B09SVPDX3G.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B09SVPDX3G/?tag=economizebe0b-20" },
+    { "asin": "B07BN3VNDV", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07BN3VNDV.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B07BN3VNDV/?tag=economizebe0b-20" },
+    { "asin": "B0DJ3GC8N5", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DJ3GC8N5.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0DJ3GC8N5/?tag=economizebe0b-20" },
+    { "asin": "B0DJ3C9MGL", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DJ3C9MGL.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0DJ3C9MGL/?tag=economizebe0b-20" },
+    { "asin": "B0BH75ZS8Y", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0BH75ZS8Y.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0BH75ZS8Y/?tag=economizebe0b-20" },
+    { "asin": "B0D3N66QV2", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0D3N66QV2.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0D3N66QV2/?tag=economizebe0b-20" },
+    { "asin": "B00RLM2U12", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B00RLM2U12.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B00RLM2U12/?tag=economizebe0b-20" },
+    { "asin": "B07K29F3SB", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07K29F3SB.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B07K29F3SB/?tag=economizebe0b-20" },
+    { "asin": "B0FVMFSWGV", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FVMFSWGV.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0FVMFSWGV/?tag=economizebe0b-20" },
+    { "asin": "B09XN6Z8CW", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B09XN6Z8CW.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B09XN6Z8CW/?tag=economizebe0b-20" },
+    { "asin": "B0CB528ZCG", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0CB528ZCG.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0CB528ZCG/?tag=economizebe0b-20" },
+    { "asin": "B09B8W3KQP", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B09B8W3KQP.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B09B8W3KQP/?tag=economizebe0b-20" },
+    { "asin": "B0BSR5CS9P", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0BSR5CS9P.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0BSR5CS9P/?tag=economizebe0b-20" },
+    { "asin": "B0D152HV7Y", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0D152HV7Y.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0D152HV7Y/?tag=economizebe0b-20" },
+    { "asin": "B00DCTI47M", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B00DCTI47M.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B00DCTI47M/?tag=economizebe0b-20" },
+    { "asin": "B0B61WJRY5", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0B61WJRY5.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0B61WJRY5/?tag=economizebe0b-20" },
+    { "asin": "B0DDZJ18T2", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DDZJ18T2.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0DDZJ18T2/?tag=economizebe0b-20" },
+    { "asin": "B07C4NLYSH", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07C4NLYSH.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B07C4NLYSH/?tag=economizebe0b-20" },
+    { "asin": "B082DNSZN6", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B082DNSZN6.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B082DNSZN6/?tag=economizebe0b-20" },
+    { "asin": "B0FQNZX9HY", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FQNZX9HY.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0FQNZX9HY/?tag=economizebe0b-20" },
+    { "asin": "B078C9ZRC7", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B078C9ZRC7.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B078C9ZRC7/?tag=economizebe0b-20" },
+    { "asin": "B0784CLYGQ", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0784CLYGQ.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0784CLYGQ/?tag=economizebe0b-20" },
+    { "asin": "B0FWGBZ4J6", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FWGBZ4J6.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0FWGBZ4J6/?tag=economizebe0b-20" },
+    { "asin": "B0751NFD36", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0751NFD36.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0751NFD36/?tag=economizebe0b-20" },
+    { "asin": "B07WGQ64QR", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07WGQ64QR.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B07WGQ64QR/?tag=economizebe0b-20" },
+    { "asin": "B0FX6VX3W6", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FX6VX3W6.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0FX6VX3W6/?tag=economizebe0b-20" },
+    { "asin": "B08CPW86PX", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B08CPW86PX.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B08CPW86PX/?tag=economizebe0b-20" },
+    { "asin": "B074L9L5KZ", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B074L9L5KZ.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B074L9L5KZ/?tag=economizebe0b-20" },
+    { "asin": "B0778VZYVV", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0778VZYVV.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0778VZYVV/?tag=economizebe0b-20" },
+    { "asin": "B0DV7VS87H", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DV7VS87H.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0DV7VS87H/?tag=economizebe0b-20" },
+    { "asin": "B0DPGN1X93", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DPGN1X93.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0DPGN1X93/?tag=economizebe0b-20" },
+    { "asin": "B0FTT42SDP", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FTT42SDP.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0FTT42SDP/?tag=economizebe0b-20" },
+    { "asin": "B094YS5TDH", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B094YS5TDH.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B094YS5TDH/?tag=economizebe0b-20" },
+    { "asin": "B0754L836W", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0754L836W.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0754L836W/?tag=economizebe0b-20" },
+    { "asin": "B0FPBQQ4TN", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FPBQQ4TN.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0FPBQQ4TN/?tag=economizebe0b-20" },
+    { "asin": "B0156Q7MX0", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0156Q7MX0.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0156Q7MX0/?tag=economizebe0b-20" },
+    { "asin": "B0F5X69KQB", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0F5X69KQB.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0F5X69KQB/?tag=economizebe0b-20" },
+    { "asin": "B0D6WHFRSX", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0D6WHFRSX.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0D6WHFRSX/?tag=economizebe0b-20" },
+    { "asin": "B0CRZ92M2S", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0CRZ92M2S.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0CRZ92M2S/?tag=economizebe0b-20" },
+    { "asin": "B0FXNW5Q54", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FXNW5Q54.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0FXNW5Q54/?tag=economizebe0b-20" },
+    { "asin": "B07FFBVNYV", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B07FFBVNYV.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B07FFBVNYV/?tag=economizebe0b-20" },
+    { "asin": "B01DY7E8GW", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B01DY7E8GW.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B01DY7E8GW/?tag=economizebe0b-20" },
+    { "asin": "B0C7GW9F88", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0C7GW9F88.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0C7GW9F88/?tag=economizebe0b-20" },
+    { "asin": "B0DKZ1W335", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DKZ1W335.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0DKZ1W335/?tag=economizebe0b-20" },
+    { "asin": "B0DYV7PRLH", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DYV7PRLH.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0DYV7PRLH/?tag=economizebe0b-20" },
+    { "asin": "B0BLX7PL9P", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0BLX7PL9P.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0BLX7PL9P/?tag=economizebe0b-20" },
+    { "asin": "B0FMFVYFXC", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0FMFVYFXC.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0FMFVYFXC/?tag=economizebe0b-20" },
+    { "asin": "B0C4Z6GF7J", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0C4Z6GF7J.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0C4Z6GF7J/?tag=economizebe0b-20" },
+    { "asin": "B08174YHZH", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B08174YHZH.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B08174YHZH/?tag=economizebe0b-20" },
+    { "asin": "B0BDGMNF6V", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0BDGMNF6V.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0BDGMNF6V/?tag=economizebe0b-20" },
+    { "asin": "B0D78RX8Y1", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0D78RX8Y1.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0D78RX8Y1/?tag=economizebe0b-20" },
+    { "asin": "B0839M5VRD", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0839M5VRD.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0839M5VRD/?tag=economizebe0b-20" },
+    { "asin": "B0DKY79FQ8", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DKY79FQ8.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0DKY79FQ8/?tag=economizebe0b-20" },
+    { "asin": "B0DBVK8S6F", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DBVK8S6F.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0DBVK8S6F/?tag=economizebe0b-20" },
+    { "asin": "B0DBVHPBP7", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DBVHPBP7.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0DBVHPBP7/?tag=economizebe0b-20" },
+    { "asin": "B0DM3B8WTF", "title": "Oferta Amazon", "image_url": "https://images-na.ssl-images-amazon.com/images/P/B0DM3B8WTF.01._SL500_.jpg", "affiliate_url": "https://www.amazon.com.br/dp/B0DM3B8WTF/?tag=economizebe0b-20" }
   ]
 }
