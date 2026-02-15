@@ -5,15 +5,21 @@ import { Button } from '../components/ui/button';
 
 // Componente de card de produto
 const ProductCard = ({ item }) => {
-    const handleImageError = (e) => {
-        // Log para debug
-        console.log("IMG_FALLBACK_AMAZON", item.asin, item.image_url);
-        // Remove onerror para evitar loop
-        e.target.onerror = null;
-        // Substitui pelo logo da Amazon
-        e.target.src = '/assets/amazon-logo.svg';
-        // Ajusta estilo para o logo ficar bem centralizado
-        e.target.style.padding = '40px';
+    const [showFallback, setShowFallback] = useState(false);
+
+    const handleImageLoad = (e) => {
+        // A Amazon retorna uma imagem 1x1 pixel transparente para imagens não disponíveis
+        // Verificamos naturalWidth para detectar isso
+        if (e.target.naturalWidth <= 1 || e.target.naturalHeight <= 1) {
+            console.log("IMG_FALLBACK_AMAZON (pixel transparente detectado)", item.asin);
+            setShowFallback(true);
+        }
+    };
+
+    const handleImageError = () => {
+        // Fallback tradicional para erros de rede
+        console.log("IMG_FALLBACK_AMAZON (erro de rede)", item.asin);
+        setShowFallback(true);
     };
 
     return (
@@ -23,14 +29,25 @@ const ProductCard = ({ item }) => {
         >
             {/* Imagem */}
             <div className="relative aspect-square bg-slate-100 dark:bg-slate-700 overflow-hidden flex items-center justify-center">
-                <img
-                    src={item.image_url}
-                    alt={item.title}
-                    className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
-                    style={{ objectFit: 'contain' }}
-                    onError={handleImageError}
-                    loading="lazy"
-                />
+                {showFallback ? (
+                    <div className="w-full h-full flex items-center justify-center p-8 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-700 dark:to-slate-800">
+                        <img
+                            src="/assets/amazon-logo.svg"
+                            alt="Produto Amazon"
+                            className="w-24 h-24 opacity-60"
+                        />
+                    </div>
+                ) : (
+                    <img
+                        src={item.image_url}
+                        alt={item.title}
+                        className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                        style={{ objectFit: 'contain' }}
+                        onLoad={handleImageLoad}
+                        onError={handleImageError}
+                        loading="lazy"
+                    />
+                )}
             </div>
 
             {/* Conteúdo */}
