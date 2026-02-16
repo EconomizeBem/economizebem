@@ -13,7 +13,7 @@ import PlansPage from "./pages/PlansPage";
 import CalculatorPage from "./pages/CalculatorPage";
 import TermsPage from "./pages/TermsPage";
 import PrivacyPage from "./pages/PrivacyPage";
-import AmazonOffersPage from "./pages/AmazonOffersPage";
+import { Navigate } from "react-router-dom";
 // Category Pages
 import EletronicosPage from "./pages/EletronicosPage";
 import EletrodomesticosPage from "./pages/EletrodomesticosPage";
@@ -63,7 +63,9 @@ function App() {
                                 <Route path="/calculator" element={<CalculatorPage />} />
                                 <Route path="/termos" element={<TermsPage />} />
                                 <Route path="/privacidade" element={<PrivacyPage />} />
-                                <Route path="/ofertas-amazon" element={<AmazonOffersPage />} />
+                                {/* Redirect old offers routes to home */}
+                                <Route path="/ofertas-amazon" element={<Navigate to="/" replace />} />
+                                <Route path="/ofertas" element={<Navigate to="/" replace />} />
                                 
                                 {/* Auth Routes */}
                                 <Route path="/login" element={<LoginPage />} />

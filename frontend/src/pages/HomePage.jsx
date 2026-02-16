@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { toast } from 'sonner';
+import { PartnersCarousel } from '../components/PartnersCarousel';
 import { 
     Search, 
     TrendingDown, 
@@ -24,10 +25,7 @@ import {
     Shirt,
     Sparkles,
     PawPrint,
-    ChevronRight,
-    Flame,
-    ExternalLink,
-    Gift
+    ChevronRight
 } from 'lucide-react';
 
 const features = [
@@ -201,47 +199,8 @@ export default function HomePage() {
                 </div>
             </section>
 
-            {/* Amazon Offers Banner - Destaque */}
-            <section className="py-6 bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 dark:from-amber-600 dark:via-orange-600 dark:to-amber-600 relative overflow-hidden" data-testid="amazon-offers-banner">
-                {/* Animated background elements */}
-                <div className="absolute inset-0 opacity-20">
-                    <div className="absolute top-0 left-1/4 w-32 h-32 bg-white rounded-full blur-3xl animate-pulse"></div>
-                    <div className="absolute bottom-0 right-1/4 w-40 h-40 bg-yellow-300 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-                </div>
-                
-                <div className="container-main relative z-10">
-                    <Link 
-                        to="/ofertas-amazon" 
-                        className="flex flex-col md:flex-row items-center justify-between gap-4 group"
-                        data-testid="amazon-offers-link"
-                    >
-                        <div className="flex items-center gap-4">
-                            <div className="flex items-center justify-center w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl group-hover:scale-110 transition-transform">
-                                <Flame className="w-8 h-8 text-white animate-pulse" />
-                            </div>
-                            <div className="text-white text-center md:text-left">
-                                <div className="flex items-center gap-2 justify-center md:justify-start">
-                                    <span className="text-2xl md:text-3xl font-bold font-['Outfit']">
-                                        Ofertas selecionadas Amazon
-                                    </span>
-                                    <Gift className="w-6 h-6 animate-bounce" />
-                                </div>
-                                <p className="text-amber-100 text-sm md:text-base mt-1">
-                                    Produtos selecionados com os melhores preços • Economia garantida
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <Button 
-                            className="bg-white text-orange-600 hover:bg-orange-50 rounded-xl h-12 px-8 text-base font-bold shadow-lg group-hover:shadow-xl transition-all flex items-center gap-2"
-                            data-testid="amazon-offers-cta"
-                        >
-                            Ver ofertas Amazon
-                            <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                        </Button>
-                    </Link>
-                </div>
-            </section>
+            {/* Partners Carousel */}
+            <PartnersCarousel />
 
             {/* Quick Categories */}
             <section className="py-12 border-b dark:border-slate-800" data-testid="categories-section">

@@ -1,0 +1,9 @@
+# Lista de URLs da Amazon para extrair ASINs
+# Adicione uma URL por linha
+# Use: python extract_asins.py
+
+# Exemplos:
+# https://www.amazon.com.br/dp/B08N5WRWNW
+# https://www.amazon.com.br/gp/product/B09V3KXJPB
+# https://amzn.to/3ABC123 (links curtos também funcionam após redirecionamento)
+
