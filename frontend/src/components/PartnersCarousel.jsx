@@ -39,7 +39,7 @@ const partners = [
         id: 'drogal',
         name: 'Drogal',
         description: 'Medicamentos, vitaminas e produtos de saúde',
-        logo: '/partners/drogal-logo.svg',
+        logo: '/partners/drogal-logo.jpg',
         link: 'https://www.awin1.com/cread.php?awinmid=68224&awinaffid=2764132&ued=https%3A%2F%2Fwww.drogal.com.br%2F',
         bgGradient: 'from-cyan-500 to-blue-600',
     },
