@@ -31,7 +31,7 @@ const partners = [
         id: 'adidas',
         name: 'Adidas',
         description: 'Ofertas em tênis, roupas e acessórios esportivos',
-        logo: '/partners/adidas-logo.svg',
+        logo: '/partners/adidas-logo.webp',
         link: 'https://www.awin1.com/cread.php?awinmid=79926&awinaffid=2764132&ued=https%3A%2F%2Fwww.adidas.com.br%2F',
         bgGradient: 'from-gray-900 to-black',
     },
