@@ -38,7 +38,7 @@ export const MercadoLivreBanner = () => {
     // Não exibir se expirou
     if (isExpired) return null;
 
-    const affiliateLink = 'https://lista.mercadolivre.com.br/_CustId_218sjsu';
+    const affiliateLink = 'https://mercadolivre.com/sec/2KZTXpP';
 
     return (
         <section 
