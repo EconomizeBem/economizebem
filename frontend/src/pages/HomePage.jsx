@@ -25,7 +25,8 @@ import {
     Shirt,
     Sparkles,
     PawPrint,
-    ChevronRight
+    ChevronRight,
+    Car
 } from 'lucide-react';
 
 const features = [
@@ -59,6 +60,7 @@ const categories = [
     { icon: <Shirt className="w-8 h-8" />, name: 'Vestuário', link: '/categoria/vestuario', description: 'Roupas, calçados' },
     { icon: <Sparkles className="w-8 h-8" />, name: 'Beleza & Saúde', link: '/categoria/beleza-saude', description: 'Maquiagem, skincare' },
     { icon: <PawPrint className="w-8 h-8" />, name: 'Pets', link: '/categoria/pets', description: 'Ração, acessórios' },
+    { icon: <Car className="w-8 h-8" />, name: 'Automotivo', link: '/categoria/automotivo', description: 'Pneus, óleos, acessórios' },
 ];
 
 export default function HomePage() {

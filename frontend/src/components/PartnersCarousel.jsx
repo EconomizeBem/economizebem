@@ -27,6 +27,22 @@ const partners = [
         link: 'https://www.awin1.com/cread.php?awinmid=47165&awinaffid=2764132&ued=https%3A%2F%2Fwww.drogariavenancio.com.br%2Fmedicamentos',
         bgGradient: 'from-green-600 to-green-800',
     },
+    {
+        id: 'adidas',
+        name: 'Adidas',
+        description: 'Ofertas em tênis, roupas e acessórios esportivos',
+        logo: '/partners/adidas-logo.webp',
+        link: 'https://www.awin1.com/cread.php?awinmid=79926&awinaffid=2764132&ued=https%3A%2F%2Fwww.adidas.com.br%2F',
+        bgGradient: 'from-gray-900 to-black',
+    },
+    {
+        id: 'drogal',
+        name: 'Drogal',
+        description: 'Medicamentos, vitaminas e produtos de saúde',
+        logo: '/partners/drogal-logo.jpg',
+        link: 'https://www.awin1.com/cread.php?awinmid=68224&awinaffid=2764132&ued=https%3A%2F%2Fwww.drogal.com.br%2F',
+        bgGradient: 'from-cyan-500 to-blue-600',
+    },
 ];
 
 export const PartnersCarousel = () => {

@@ -21,6 +21,7 @@ import CasaCozinhaPage from "./pages/CasaCozinhaPage";
 import VestuarioPageNew from "./pages/VestuarioPageNew";
 import BelezaSaudePage from "./pages/BelezaSaudePage";
 import PetsPage from "./pages/PetsPage";
+import AutomotivosPage from "./pages/AutomotivosPage";
 // Legacy category pages (redirects)
 import VestuarioPage from "./pages/VestuarioPage";
 import GeladeirasPage from "./pages/GeladeirasPage";
@@ -53,6 +54,7 @@ function App() {
                                 <Route path="/categoria/vestuario" element={<VestuarioPageNew />} />
                                 <Route path="/categoria/beleza-saude" element={<BelezaSaudePage />} />
                                 <Route path="/categoria/pets" element={<PetsPage />} />
+                                <Route path="/categoria/automotivo" element={<AutomotivosPage />} />
                                 
                                 {/* Legacy routes - Keep for backwards compatibility */}
                                 <Route path="/vestuario" element={<VestuarioPage />} />
