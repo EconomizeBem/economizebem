@@ -38,7 +38,7 @@ export const MercadoLivreBanner = () => {
     // Não exibir se expirou
     if (isExpired) return null;
 
-    const affiliateLink = 'https://lista.mercadolivre.com.br/pagina/n2ferramentas/lista/ferramentas/?tracking_id=97f2ddbd2339c8a7677e987a455a8833#client=HOME&component_id=menu_corridors&component=menu_corridors&label=Ferramentas&tracking_id=97f2ddbd2339c8a7677e987a455a8833&global_position=1';
+    const affiliateLink = 'https://mercadolivre.com/sec/1FKv9Ka';
 
     return (
         <section 
