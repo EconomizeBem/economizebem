@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { ExternalLink, Tag, Clock } from 'lucide-react';
 import { Button } from './ui/button';
 
-const PROMO_END_DATE = new Date('2025-02-28T23:59:00-03:00'); // Horário de Brasília
+const PROMO_END_DATE = new Date('2026-02-28T23:59:00-03:00'); // Horário de Brasília
 
 export const MercadoLivreBanner = () => {
     const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
