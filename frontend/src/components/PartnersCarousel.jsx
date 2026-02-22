@@ -27,6 +27,14 @@ const partners = [
         link: 'https://www.awin1.com/cread.php?awinmid=47165&awinaffid=2764132&ued=https%3A%2F%2Fwww.drogariavenancio.com.br%2Fmedicamentos',
         bgGradient: 'from-green-600 to-green-800',
     },
+    {
+        id: 'adidas',
+        name: 'Adidas',
+        description: 'Ofertas em tênis, roupas e acessórios esportivos',
+        logo: '/partners/adidas-logo.svg',
+        link: 'https://www.awin1.com/cread.php?awinmid=79926&awinaffid=2764132&ued=https%3A%2F%2Fwww.adidas.com.br%2F',
+        bgGradient: 'from-gray-900 to-black',
+    },
 ];
 
 export const PartnersCarousel = () => {
