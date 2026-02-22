@@ -2,11 +2,24 @@ import { Car } from 'lucide-react';
 import CategoryPage from './CategoryPage';
 
 const subcategories = [
+    // Pneus
     { id: 'pneus', name: 'Pneus', searchTerm: 'pneu carro' },
-    { id: 'oleos', name: 'Óleos', searchTerm: 'oleo motor' },
+    { id: 'pneu-aro-13', name: 'Pneu Aro 13', searchTerm: 'pneu aro 13' },
+    { id: 'pneu-aro-14', name: 'Pneu Aro 14', searchTerm: 'pneu aro 14' },
+    { id: 'pneu-aro-15', name: 'Pneu Aro 15', searchTerm: 'pneu aro 15' },
+    { id: 'pneu-aro-16', name: 'Pneu Aro 16', searchTerm: 'pneu aro 16' },
+    { id: 'pneu-aro-17', name: 'Pneu Aro 17', searchTerm: 'pneu aro 17' },
+    { id: 'pneu-aro-18', name: 'Pneu Aro 18', searchTerm: 'pneu aro 18' },
+    // Óleos Automotivos
+    { id: 'oleos', name: 'Óleos Automotivos', searchTerm: 'oleo motor automotivo' },
+    { id: 'oleo-5w30', name: 'Óleo 5W30', searchTerm: 'oleo motor 5w30' },
+    { id: 'oleo-5w40', name: 'Óleo 5W40', searchTerm: 'oleo motor 5w40' },
+    { id: 'oleo-10w40', name: 'Óleo 10W40', searchTerm: 'oleo motor 10w40' },
+    { id: 'oleo-15w40', name: 'Óleo 15W40', searchTerm: 'oleo motor 15w40' },
+    { id: 'oleo-20w50', name: 'Óleo 20W50', searchTerm: 'oleo motor 20w50' },
+    // Pastilhas e Baterias
     { id: 'pastilhas', name: 'Pastilhas de Freio', searchTerm: 'pastilha freio' },
-    { id: 'higienizacao', name: 'Higienização', searchTerm: 'limpeza automotiva' },
-    { id: 'acessorios', name: 'Acessórios', searchTerm: 'acessorio carro' },
+    { id: 'baterias', name: 'Baterias Automotivas', searchTerm: 'bateria automotiva carro' },
 ];
 
 export default function AutomotivosPage() {
@@ -19,7 +32,7 @@ export default function AutomotivosPage() {
             icon={Car}
             accentColor="sky"
             categorySlug="automotivo"
-            metaDescription="Compare preços de produtos automotivos: pneus, óleos, pastilhas de freio, acessórios e produtos para seu veículo. Encontre ofertas no EconomizeBem."
+            metaDescription="Compare preços de produtos automotivos: pneus, óleos, pastilhas de freio, baterias e produtos para seu veículo. Encontre ofertas no EconomizeBem."
         />
     );
 }
