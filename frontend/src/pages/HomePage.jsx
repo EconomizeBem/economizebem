@@ -202,6 +202,9 @@ export default function HomePage() {
                 </div>
             </section>
 
+            {/* Mercado Livre Promo Banner */}
+            <MercadoLivreBanner />
+
             {/* Partners Carousel */}
             <PartnersCarousel />
 
