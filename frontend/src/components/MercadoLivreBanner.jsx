@@ -121,8 +121,8 @@ export const MercadoLivreBanner = () => {
 
                         {/* Aviso informativo */}
                         <p className="text-xs md:text-sm text-center max-w-sm" style={{ color: '#D32F2F' }}>
-                            Você será direcionado para um produto da loja.<br />
-                            Dentro da página, clique no nome da loja <strong>N2FERRAMENTAS</strong> para ver todos os produtos participantes da promoção.
+                            Você será direcionado para nossa página no Mercado Livre.<br />
+                            Clique em "Ir para o produto" e depois em "<strong>Vendido por N2FERRAMENTAS</strong>" para visualizar todos os produtos participantes da promoção e usar o mesmo cupom.
                         </p>
                     </div>
                 </div>
