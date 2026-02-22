@@ -54,6 +54,7 @@ function App() {
                                 <Route path="/categoria/vestuario" element={<VestuarioPageNew />} />
                                 <Route path="/categoria/beleza-saude" element={<BelezaSaudePage />} />
                                 <Route path="/categoria/pets" element={<PetsPage />} />
+                                <Route path="/categoria/automotivo" element={<AutomotivosPage />} />
                                 
                                 {/* Legacy routes - Keep for backwards compatibility */}
                                 <Route path="/vestuario" element={<VestuarioPage />} />
