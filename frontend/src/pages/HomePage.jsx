@@ -4,6 +4,7 @@ import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
 import { toast } from 'sonner';
 import { PartnersCarousel } from '../components/PartnersCarousel';
+import { MercadoLivreBanner } from '../components/MercadoLivreBanner';
 import { 
     Search, 
     TrendingDown, 
@@ -200,6 +201,9 @@ export default function HomePage() {
                     </div>
                 </div>
             </section>
+
+            {/* Mercado Livre Promo Banner */}
+            <MercadoLivreBanner />
 
             {/* Partners Carousel */}
             <PartnersCarousel />

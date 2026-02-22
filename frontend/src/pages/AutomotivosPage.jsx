@@ -17,9 +17,10 @@ const subcategories = [
     { id: 'oleo-10w40', name: 'Óleo 10W40', searchTerm: 'oleo motor 10w40' },
     { id: 'oleo-15w40', name: 'Óleo 15W40', searchTerm: 'oleo motor 15w40' },
     { id: 'oleo-20w50', name: 'Óleo 20W50', searchTerm: 'oleo motor 20w50' },
-    // Pastilhas e Baterias
+    // Pastilhas, Baterias e Bombas de Água
     { id: 'pastilhas', name: 'Pastilhas de Freio', searchTerm: 'pastilha freio' },
     { id: 'baterias', name: 'Baterias Automotivas', searchTerm: 'bateria automotiva carro' },
+    { id: 'bomba-agua', name: 'Bomba de Água', searchTerm: 'bomba agua automotiva' },
 ];
 
 export default function AutomotivosPage() {
