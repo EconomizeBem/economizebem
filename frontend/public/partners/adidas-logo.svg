@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 70">
-  <rect width="200" height="70" fill="transparent"/>
-  <!-- Three stripes -->
-  <polygon fill="#000" points="20,55 35,25 50,55"/>
-  <polygon fill="#000" points="45,55 60,25 75,55"/>
-  <polygon fill="#000" points="70,55 85,25 100,55"/>
-  <!-- adidas text -->
-  <text x="110" y="48" font-family="Arial Black, Arial, sans-serif" font-size="24" font-weight="900" fill="#000">adidas</text>
-</svg>
