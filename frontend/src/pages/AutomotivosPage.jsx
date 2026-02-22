@@ -4,12 +4,12 @@ import CategoryPage from './CategoryPage';
 const subcategories = [
     // Pneus
     { id: 'pneus', name: 'Pneus', searchTerm: 'pneu carro' },
-    { id: 'pneu-aro-13', name: 'Pneu Aro 13', searchTerm: 'pneu aro 13' },
-    { id: 'pneu-aro-14', name: 'Pneu Aro 14', searchTerm: 'pneu aro 14' },
-    { id: 'pneu-aro-15', name: 'Pneu Aro 15', searchTerm: 'pneu aro 15' },
-    { id: 'pneu-aro-16', name: 'Pneu Aro 16', searchTerm: 'pneu aro 16' },
-    { id: 'pneu-aro-17', name: 'Pneu Aro 17', searchTerm: 'pneu aro 17' },
-    { id: 'pneu-aro-18', name: 'Pneu Aro 18', searchTerm: 'pneu aro 18' },
+    { id: 'pneu-aro-13', name: 'Pneu Aro 13', searchTerm: 'pneu 13' },
+    { id: 'pneu-aro-14', name: 'Pneu Aro 14', searchTerm: 'pneu 14' },
+    { id: 'pneu-aro-15', name: 'Pneu Aro 15', searchTerm: 'pneu 15' },
+    { id: 'pneu-aro-16', name: 'Pneu Aro 16', searchTerm: 'pneu 16' },
+    { id: 'pneu-aro-17', name: 'Pneu Aro 17', searchTerm: 'pneu 17' },
+    { id: 'pneu-aro-18', name: 'Pneu Aro 18', searchTerm: 'pneu 18' },
     // Óleos Automotivos
     { id: 'oleos', name: 'Óleos Automotivos', searchTerm: 'oleo motor automotivo' },
     { id: 'oleo-5w30', name: 'Óleo 5W30', searchTerm: 'oleo motor 5w30' },
