@@ -118,6 +118,12 @@ export const MercadoLivreBanner = () => {
                                 <ExternalLink className="w-5 h-5" />
                             </Button>
                         </a>
+
+                        {/* Aviso informativo */}
+                        <p className="text-xs md:text-sm text-center max-w-sm" style={{ color: '#D32F2F' }}>
+                            Você será direcionado para um produto da loja.<br />
+                            Dentro da página, clique no nome da loja <strong>N2FERRAMENTAS</strong> para ver todos os produtos participantes da promoção.
+                        </p>
                     </div>
                 </div>
             </div>
