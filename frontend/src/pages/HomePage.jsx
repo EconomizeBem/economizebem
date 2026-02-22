@@ -25,7 +25,8 @@ import {
     Shirt,
     Sparkles,
     PawPrint,
-    ChevronRight
+    ChevronRight,
+    Car
 } from 'lucide-react';
 
 const features = [
