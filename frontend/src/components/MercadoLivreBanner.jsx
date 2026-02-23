@@ -12,7 +12,7 @@ const promoSlides = [
         couponCode: 'ECOBEM30OFF',
         endDate: new Date('2026-02-28T23:59:00-03:00'),
         buttonText: 'VER OFERTAS COM DESCONTO',
-        affiliateLink: 'https://mercadolivre.com/sec/1FKv9Ka',
+        affiliateLink: 'https://mercadolivre.com/sec/1yLAYaH',
         storeName: 'N2FERRAMENTAS',
         noticeText: 'Você será direcionado para nossa página no Mercado Livre. Clique em "Ir para o produto" e depois em "Vendido por N2FERRAMENTAS" para visualizar todos os produtos participantes da promoção e usar o mesmo cupom.',
     },
