@@ -66,6 +66,10 @@ function App() {
                                 <Route path="/calculator" element={<CalculatorPage />} />
                                 <Route path="/termos" element={<TermsPage />} />
                                 <Route path="/privacidade" element={<PrivacyPage />} />
+                                
+                                {/* Promo Copa Page */}
+                                <Route path="/promocoes-copa" element={<PromoCopaPage />} />
+                                
                                 {/* Redirect old offers routes to home */}
                                 <Route path="/ofertas-amazon" element={<Navigate to="/" replace />} />
                                 <Route path="/ofertas" element={<Navigate to="/" replace />} />
