@@ -22,6 +22,7 @@ import VestuarioPageNew from "./pages/VestuarioPageNew";
 import BelezaSaudePage from "./pages/BelezaSaudePage";
 import PetsPage from "./pages/PetsPage";
 import AutomotivosPage from "./pages/AutomotivosPage";
+import PromoCopaPage from "./pages/PromoCopaPage";
 // Legacy category pages (redirects)
 import VestuarioPage from "./pages/VestuarioPage";
 import GeladeirasPage from "./pages/GeladeirasPage";
