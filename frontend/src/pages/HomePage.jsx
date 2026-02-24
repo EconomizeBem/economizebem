@@ -5,6 +5,7 @@ import { Badge } from '../components/ui/badge';
 import { toast } from 'sonner';
 import { PartnersCarousel } from '../components/PartnersCarousel';
 import { MercadoLivreBanner } from '../components/MercadoLivreBanner';
+import { TopPromoBanner } from '../components/TopPromoBanner';
 import { 
     Search, 
     TrendingDown, 
