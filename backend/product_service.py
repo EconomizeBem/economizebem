@@ -313,15 +313,23 @@ async def search_google_shopping_paginated(
     
     try:
         async with httpx.AsyncClient(timeout=30.0) as client:
+            logger.info(f"Calling SerpAPI with query: {search_query}, start: {start}, num: {page_size + 1}")
             response = await client.get(SERPAPI_BASE_URL, params=params)
             response.raise_for_status()
             data = response.json()
+            
+            # Log response structure for debugging
+            logger.info(f"SerpAPI response keys: {list(data.keys())}")
+            if 'error' in data:
+                logger.warning(f"SerpAPI returned error: {data.get('error')}")
         
         _search_metrics["api_calls"] += 1
         
         # Processar resultados
         products = []
         shopping_results = data.get("shopping_results", [])
+        
+        logger.info(f"SerpAPI shopping_results count: {len(shopping_results)}")
         
         # Verificar se há mais resultados
         has_more = len(shopping_results) > page_size and page < MAX_PAGE
