@@ -312,7 +312,9 @@ async def search_google_shopping_paginated(
     }
     
     try:
-        async with httpx.AsyncClient(timeout=60.0) as client:
+        # Use httpx with specific transport settings to avoid DNS issues
+        transport = httpx.AsyncHTTPTransport(retries=2)
+        async with httpx.AsyncClient(timeout=httpx.Timeout(60.0, connect=30.0), transport=transport) as client:
             logger.info(f"Calling SerpAPI with query: {search_query}, start: {start}, num: {page_size + 1}")
             response = await client.get(SERPAPI_BASE_URL, params=params)
             response.raise_for_status()
