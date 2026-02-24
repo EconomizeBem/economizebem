@@ -13,8 +13,8 @@ import {
     ArrowLeft
 } from 'lucide-react';
 import { Button } from '../components/ui/button';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import { default as Navbar } from '../components/Navbar';
+import { default as Footer } from '../components/Footer';
 
 // Categorias da promoção Copa
 const categories = [
