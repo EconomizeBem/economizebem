@@ -102,6 +102,9 @@ export default function HomePage() {
 
     return (
         <div className="min-h-screen">
+            {/* Top Promo Banner */}
+            <TopPromoBanner />
+            
             {/* Hero Section */}
             <section className="relative overflow-hidden hero-gradient" data-testid="hero-section">
                 <div className="container-main py-20 md:py-28">
