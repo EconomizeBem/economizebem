@@ -134,7 +134,6 @@ export default function PromoCopaPage() {
             </Helmet>
             
             <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
-                <Navbar />
                 
                 {/* Hero */}
                 <section className="bg-gradient-to-r from-green-600 via-green-500 to-yellow-500 py-12 md:py-16">
