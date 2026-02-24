@@ -195,8 +195,6 @@ export default function PromoCopaPage() {
                         Alguns links podem ser de afiliados. Isso não altera o preço para você e ajuda a manter o EconomizeBem.
                     </p>
                 </div>
-                
-                <Footer />
             </div>
         </>
     );
