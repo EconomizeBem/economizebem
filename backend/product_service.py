@@ -386,8 +386,18 @@ async def search_google_shopping_paginated(
             "total_pages": 0,
             "message": "Erro ao buscar produtos"
         }
+    except httpx.TimeoutException as e:
+        logger.error(f"SerpAPI timeout error: {str(e)}")
+        return {
+            "products": [],
+            "page": page,
+            "page_size": page_size,
+            "has_more": False,
+            "total_pages": 0,
+            "message": "Tempo limite excedido. Tente novamente."
+        }
     except Exception as e:
-        logger.error(f"SerpAPI error: {e}")
+        logger.error(f"SerpAPI error: {type(e).__name__}: {str(e)}")
         return {
             "products": [],
             "page": page,
