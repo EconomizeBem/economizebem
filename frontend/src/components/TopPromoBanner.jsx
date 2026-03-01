@@ -10,7 +10,7 @@ export const TopPromoBanner = () => {
         >
             <div className="container-main py-2 md:py-2.5">
                 <div className="flex items-center justify-center gap-2 md:gap-3 text-white">
-                    <span className="text-lg md:text-xl">⚽</span>
+                    <img src="/assets/copa-trophy.png" alt="Taça da Copa" className="w-5 h-5 md:w-6 md:h-6 object-contain" />
                     <span className="text-xs md:text-sm font-medium text-center">
                         Promoções para se preparar para a copa — clique e confira!
                     </span>
