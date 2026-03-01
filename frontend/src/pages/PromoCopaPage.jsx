@@ -16,6 +16,24 @@ import { Button } from '../components/ui/button';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || '';
 
+// Produtos em destaque (manuais) por categoria
+const featuredProducts = {
+    'tvs': [
+        {
+            id: 'featured-tv-1',
+            name: 'Smart TV DLED 50" 4K Multi Roku – 4 HDMI, 2 USB, Wi-Fi',
+            brand: 'Multilaser',
+            price: 1799,
+            originalPrice: 2044,
+            discount: '12% OFF',
+            installment: '10x de R$ 179,90 sem juros',
+            image: null, // placeholder será usado
+            link: 'https://meli.la/2qMnksA',
+            isFeatured: true
+        }
+    ]
+};
+
 // Categorias da promoção Copa
 const categories = [
     { 
