@@ -20,6 +20,17 @@ const API_URL = process.env.REACT_APP_BACKEND_URL || '';
 // Cache em memória por sessão (evita refetch ao rolar/navegar)
 const sectionCache = {};
 
+// Produto fixo de afiliado Mercado Livre (sempre primeiro na seção TVs)
+const featuredTv = {
+    id: 'featured-meli-tv',
+    name: 'Smart Tv Dled 50 4k Multi Roku 4hdmi 2usb Wi-fi',
+    best_price: 1799,
+    image: null,
+    offer_url: 'https://meli.la/2qMnksA',
+    stores: [{ store: 'Mercado Livre' }],
+    _featured: true,
+};
+
 const categories = [
     { 
         id: 'tvs', 
