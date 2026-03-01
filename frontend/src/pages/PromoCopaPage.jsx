@@ -20,7 +20,7 @@ const API_URL = process.env.REACT_APP_BACKEND_URL || '';
 // Cache em memória por sessão (evita refetch ao rolar/navegar)
 const sectionCache = {};
 
-// Produto fixo de afiliado Mercado Livre (sempre primeiro na seção TVs)
+// Produtos fixos de afiliado Mercado Livre (sempre primeiro na seção correspondente)
 const featuredTv = {
     id: 'featured-meli-tv',
     name: 'Smart Tv Dled 50 4k Multi Roku 4hdmi 2usb Wi-fi',
@@ -29,6 +29,23 @@ const featuredTv = {
     offer_url: 'https://meli.la/2qMnksA',
     stores: [{ store: 'Mercado Livre' }],
     _featured: true,
+};
+
+const featuredSpeaker = {
+    id: 'featured-meli-speaker',
+    name: 'Caixa Amplificada Connect Power Plus CM-550 Preto Mondial',
+    best_price: 501.16,
+    image: null,
+    offer_url: 'https://meli.la/143kBWs',
+    stores: [{ store: 'Mercado Livre' }],
+    _featured: true,
+    _placeholderIcon: 'speaker',
+};
+
+// Mapa de produtos fixos por seção
+const featuredBySection = {
+    'tvs': featuredTv,
+    'caixas-som': featuredSpeaker,
 };
 
 const categories = [
