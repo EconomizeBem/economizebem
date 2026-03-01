@@ -236,7 +236,7 @@ export default function PromoCopaPage() {
                         </Link>
                         
                         <div className="flex items-center gap-4 mb-4">
-                            <span className="text-5xl md:text-6xl">⚽</span>
+                            <img src="/assets/copa-trophy.png" alt="Taça da Copa" className="w-16 h-16 md:w-20 md:h-20 object-contain" />
                             <div>
                                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white font-['Outfit']">
                                     Promoções para se preparar para a Copa
