@@ -4,7 +4,7 @@
 Plataforma web brasileira de comparação de preços, planos e ferramentas financeiras focada em economia para o usuário final.
 
 **Domínio**: economizebem.com.br
-**Preview URL**: https://economizebem-4.preview.emergentagent.com
+**Preview URL**: https://economize-promo.preview.emergentagent.com
 
 ## Problem Statement Original
 Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade pública e economia para o usuário final. O site deve ser simples de usar, visualmente limpo e pensado para pessoas leigas.

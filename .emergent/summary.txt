@@ -1,123 +1,129 @@
 <analysis>**original_problem_statement:**
-O usuário solicitou inicialmente a criação da plataforma EconomizeBem. O escopo evoluiu para incluir a correção manual de imagens de produtos em uma página de ofertas da Amazon. Recentemente, o foco mudou para a automação dessa página. Várias abordagens foram tentadas: primeiro, uma correção manual de 17 produtos; depois, a implementação de uma API backend () para buscar dados dinamicamente; e, por fim, a mudança para uma solução mais simples usando um arquivo estático  devido às dificuldades em obter imagens da Amazon de forma confiável sem uma API autenticada. As tarefas mais recentes se concentraram em popular e refinar os dados nesse arquivo estático (adicionando títulos descritivos) e implementar um fallback visual para imagens que não carregam.
+O usuário solicitou inicialmente a criação da plataforma EconomizeBem. O escopo evoluiu através de várias fases, incluindo uma página de ofertas da Amazon que foi posteriormente removida. As solicitações recentes concentraram-se em aprimorar a página inicial, adicionando e gerenciando um carrossel de parceiros com logotipos e links de afiliados (Arno, Nike, Casas Bahia, etc.), e um carrossel de banners promocionais para o Mercado Livre com contadores regressivos. Além disso, o agente implementou uma nova categoria de produto Automotivo com filtros de pesquisa detalhados, corrigiu um bug crítico no endpoint de busca de produtos da API () que estava falhando em retornar resultados, e criou uma nova página de promoções para a Copa () com um banner de divulgação na página inicial, conectando-a à API de busca para exibir produtos reais.
 
 **User's preferred language**: Portuguese (Português)
 
 **what currently exists?**
-Uma aplicação full-stack (React/FastAPI/MongoDB). A funcionalidade principal em desenvolvimento é a página , que renderiza uma grade de produtos a partir de um arquivo estático . Este arquivo contém 77 produtos com ASINs, títulos descritivos, e URLs de afiliado. O agente implementou uma lógica para exibir títulos pesquisados e estava no meio da implementação de um mecanismo de fallback de imagem para os produtos cujas imagens não carregam corretamente.
+Uma aplicação full-stack (React/FastAPI/MongoDB). O frontend possui uma página inicial com dois carrosséis: um para parceiros de lojas (Arno, Nike, Casas Bahia, etc.) e outro para banners promocionais do Mercado Livre. O site inclui várias páginas de categoria, como a recém-adicionada , que possui filtros rápidos funcionais. Há também uma página de evento, , que busca e exibe produtos de categorias específicas (TVs, Bolas, etc.) através da API de backend. O backend ( e ) possui um endpoint de busca () que foi recentemente depurado e corrigido, utilizando a SerpAPI para buscar produtos do Google Shopping e um sistema de cache em MongoDB.
 
 **Last working item**:
-    - Last item agent was working: Corrigir o mecanismo de fallback de imagem na página . As imagens que não carregam estão deixando um espaço em branco em vez de mostrar um logo da Amazon como fallback. O agente identificou que o problema é que as URLs de imagem da Amazon, quando falham, retornam uma imagem de pixel transparente em vez de um erro 404, o que impede o acionamento do evento  do JavaScript.
+    - Last item agent was working: Adicionar um card de produto específico (uma Smart TV) como item em destaque no topo da seção TVs na página . O agente estava no meio da implementação, modificando o arquivo  para incluir um array de produtos em destaque e a lógica para renderizá-lo.
     - Status: IN PROGRESS
-    - Agent Testing Done: Y (via screenshot, que confirmou a falha do fallback)
+    - Agent Testing Done: N
     - Which testing method agent to use? screenshot tool
     - User Testing Done: N
 
 **All Pending/In progress Issue list**:
-  - Issue 1:  **(P0) O fallback de imagem na página /ofertas não funciona, exibindo espaços em branco em vez de um logo.**
+  - Issue 1:  **(P0) Implementação do card de produto em destaque está incompleta e não foi verificada.**
 
   Issues Detail:
   - Issue 1: 
-     - Attempted fixes: 
-        1. Usou um handler  para carregar um logo PNG local. Falhou.
-        2. Usou um handler  para carregar um logo SVG local. Falhou.
-        3. A causa raiz foi identificada: As URLs da Amazon para imagens ausentes retornam uma imagem de 1x1 pixel transparente com status 200 OK, portanto o evento  nunca é disparado.
+     - Attempted fixes: O agente modificou o arquivo  para adicionar um array  e uma lógica de renderização condicional dentro do componente . A implementação foi concluída, mas não foi testada.
      - Next debug checklist: 
-        1. Abandonar a abordagem .
-        2. Implementar uma nova estratégia usando o evento  no componente do card de produto ().
-        3. Dentro do , verificar a largura natural da imagem (). Se for menor ou igual a 1, significa que a imagem transparente foi carregada.
-        4. Nesse caso, acionar a lógica de fallback para substituir o  da imagem pelo logo da Amazon local ().
-        5. Verificar visualmente a correção com a .
-     - Why fix this issue and what will be achieved with the fix? Para melhorar a experiência do usuário, mostrando um indicador claro para produtos sem imagem, em vez de um espaço vazio que parece um erro no site.
+        1. Executar a  na página  para verificar se o novo card de TV em destaque aparece corretamente no topo da seção TVs.
+        2. Se não estiver visível ou estiver quebrado, revisar a lógica no componente  dentro de .
+        3. Confirmar que o estilo do card de destaque é consistente com os outros cards de produto.
+        4. Verificar se o link do botão Ver oferta () abre em uma nova aba.
+     - Why fix this issue and what will be achieved with the fix? Para completar a solicitação do usuário de destacar um produto específico na página de promoções da Copa.
      - Status:  IN PROGRESS
-     - Is recurring issue? Y (A dificuldade em lidar com as imagens da Amazon é um problema central e recorrente neste projeto).
+     - Is recurring issue? N
      - Should Test frontend/backend/both after fix? frontend
      - Blocked on other issue: None
 
 **In progress Task List**:
-- N/A
+  - Task 1:  **(P0) Adicionar um produto de TV em destaque na página de promoções da Copa.**
+     - Where to resume: O arquivo  já foi modificado. O próximo passo é testar a funcionalidade com a .
+     - What will be achieved with this? Um card de produto específico será exibido de forma proeminente na seção de TVs da página .
+     - Status:  IN PROGRESS
+     - Should Test frontend/backend/both after fix? frontend
+     - Blocked on something: None
 
 **Upcoming and Future Tasks**
 - **Upcoming Tasks:**
     - **(P1)** Implementar o backend para a funcionalidade Comparador de Planos na página .
     - **(P1)** Implementar o backend para a Calculadora Financeira na página .
 - **Future Tasks:**
-    - **(P2)** Substituir a solução estática  por uma integração real com a API da Amazon (Product Advertising API) para obter dados dinâmicos de produtos (preço, imagens, etc.), caso o usuário decida revisitar essa abordagem.
     - **(P2)** Configurar SEO avançado com  e .
 
 **Completed work in this session**
-- Corrigidas as imagens para Aspirador de Pó Vertical WAP, Limpa Máquina de Lavar Roupas e Ventilador de Mesa WAP.
-- O texto do banner na página inicial foi alterado para Ofertas selecionadas Amazon.
-- Criado o arquivo  na pasta  para corrigir o roteamento de SPA em produção.
-- Iterou sobre várias implementações para a página de ofertas da Amazon, finalmente estabelecendo a abordagem de um arquivo estático .
-- Adicionados 77 produtos ao .
-- Atualizados os títulos dos produtos no  com nomes descritivos pesquisados na web.
+- Corrigido um bug crítico no endpoint de busca de produtos () que causava timeouts e retornos vazios. A solução envolveu substituir  por  executado em um thread () no arquivo .
+- Criada a página  com seções de produtos que buscam dados reais da API.
+- Adicionado um banner promocional no topo da página inicial para divulgar a página da Copa.
+- Substituído o ícone de bola de futebol por uma taça da Copa do Mundo no banner e na página de promoções.
+- Adicionada e atualizada a logo da Casas Bahia no carrossel de parceiros.
+- Removido o aviso de afiliado da Amazon do rodapé do site.
+- Implementado um carrossel de banners promocionais na página inicial com contadores regressivos e links de afiliado.
+- Adicionada uma nova categoria Automotivo e a página  com múltiplos filtros rápidos funcionais.
+- A página de Ofertas da Amazon foi completamente removida do projeto, incluindo arquivos, rotas e assets.
 
 **Earlier issues found/mentioned but not fixed**
    - Issue 1:
-     - **Refatoração Pendente:** Existe um arquivo  que provavelmente é redundante em relação a .
-     - Debug checklist: Comparar os dois arquivos, consolidar o código em um só, atualizar as rotas em  e remover o arquivo duplicado.
-     - Why to solve this issue and what will be achieved with this? Para manter a organização e a manutenibilidade do código.
+     - **Refatoração Pendente:** O arquivo  parece ser um duplicado de .
+     - Debug checklist: Comparar os dois arquivos, consolidar o código necessário em , atualizar as rotas em  e remover .
+     - Why to solve this issue and what will be achieved with this? Melhorar a organização e manutenibilidade do código, eliminando redundância.
      - Should Test frontend/backend/both after fix: frontend
      - Is recurring issue? N
 
 **Known issue recurrence from previous fork**
-  - **Instabilidade das Imagens da Amazon:** A obtenção de imagens de produtos da Amazon sem usar a API oficial autenticada é consistentemente um desafio. As URLs são instáveis ou, como no problema atual, retornam imagens de pixel transparente em vez de erros, complicando a lógica de fallback.
+  - **Limitação da SerpAPI:** Foi descoberto que a API externa (SerpAPI/Google Shopping) pode não retornar resultados para algumas buscas genéricas (ex: tv). Isso não é um bug no código, mas uma limitação da API externa. A solução é usar termos de busca mais específicos (ex: smart tv 4k).
 
 **Code Architecture**
 
 
 **Key Technical Concepts**
-- **Abordagem de Dados Estáticos:** A funcionalidade de ofertas foi migrada de uma tentativa de API dinâmica para o consumo de um arquivo  estático, servido junto com o frontend.
-- **Manipulação de Erros de Imagem:** O desafio técnico atual é criar um fallback de imagem robusto, contornando o comportamento da Amazon de retornar pixels transparentes em vez de erros 404. A próxima tentativa usará  e .
-- **Roteamento de SPA:** O arquivo  foi criado para garantir que o roteamento do React funcione corretamente em um ambiente de hospedagem estática.
+- **API Externa (SerpAPI):** O backend utiliza a SerpAPI para buscar dados de produtos do Google Shopping em tempo real.
+- **Correção de Tarefas Assíncronas:** Um problema de timeout na chamada da API foi resolvido no  ao substituir a chamada  assíncrona por uma chamada  síncrona dentro de um , tornando a integração com a API externa mais robusta.
+- **Componentização (React):** A interface é construída com componentes reutilizáveis para os carrosséis, banners e seções de produtos.
+- **Estado do Componente (React Hooks):**  e  são amplamente utilizados para gerenciar dados, timers de contagem regressiva e o estado de carregamento dos produtos.
 
 **key DB schema**
-  - Nenhuma alteração no esquema do banco de dados nesta sessão.
+  - A aplicação utiliza MongoDB principalmente para o cache dos resultados da busca de produtos na coleção , gerenciada pelo .
 
 **changes in tech stack**
-  - Nenhuma mudança na stack de tecnologia. A arquitetura da feature de ofertas foi alterada para usar um arquivo JSON estático em vez de uma API backend.
+  - Nenhuma mudança fundamental. No entanto, a biblioteca  foi substituída por  no  para resolver um problema de timeout na comunicação com a SerpAPI.
 
 **All files of reference**
--  (Arquivo principal da página de ofertas e da lógica de fallback)
--  (Arquivo de dados dos produtos)
--  (Arquivo de imagem para o fallback)
+-  (Arquivo principal em modificação para o item de destaque)
+- 
+- 
+- 
+-  (Contém a lógica de busca corrigida)
+- 
 
 **Areas that need refactoring**:
-- O arquivo  deve ser consolidado ou removido.
-- A página  provavelmente está obsoleta e pode ser removida.
-- O diretório  inteiro não está sendo usado atualmente e poderia ser removido para simplificar a base de código (ou mantido para uma futura implementação de API).
+- O arquivo  está se tornando grande e complexo. Os componentes internos (, ) e a lógica de dados poderiam ser extraídos para arquivos separados.
+- O arquivo  deve ser investigado e removido se for um duplicado.
+- O diretório , um resquício de uma abordagem anterior, está obsoleto e pode ser removido para limpar a base de código.
 
 **key api endpoints**
-- O frontend consome o arquivo estático .
-- A API em  (com endpoints como  e ) existe, mas não está sendo utilizada pelo site.
+- : Endpoint principal de busca de produtos, que foi recentemente depurado e corrigido.
 
 **Critical Info for New Agent**
-- **Foco no Fallback de Imagem:** Sua primeira e mais importante tarefa é consertar o fallback de imagem na página . A abordagem  falhou. A próxima etapa de depuração deve ser usar  e verificar o  da imagem para detectar os pixels transparentes da Amazon.
-- **Manter a Abordagem Estática:** O usuário abandonou a ideia de uma API backend para as ofertas e agora prefere a solução com o arquivo estático . Não tente reintroduzir a API a menos que seja explicitamente solicitado.
-- **Esteja Ciente do Código Obsoleto:** Existem arquivos (, ) e um diretório de API () que não estão em uso. Reconheça sua existência, mas evite refatorá-los sem a aprovação do usuário para não sair do escopo da tarefa atual.
+- Sua primeira tarefa é finalizar e verificar a implementação do card de produto em destaque na página . O agente anterior modificou  mas não testou. Use a  para validar o resultado e depurar se necessário.
+- O usuário frequentemente solicita pequenas alterações iterativas (troca de logos, atualização de links). Esteja preparado para esse fluxo de trabalho e sempre verifique os artefatos enviados pelo usuário.
+- Ao trabalhar com a busca de produtos, lembre-se que a SerpAPI pode retornar zero resultados para termos genéricos; isso é uma limitação externa, não um bug.
 
 **documents and test reports created in this job**
 - Nenhum.
 
 **Last 10 User Messages and any pending HUMAN messages** 
-- **User (most recent):** Solicitou a correção dos títulos dos produtos no arquivo . **(Status: COMPLETED)**
-- **User:** Solicitou a implementação de um fallback de imagem na página . **(Status: IN PROGRESS)**
-- **User:** Pediu para usar um segundo formato de URL de imagem como fallback. **(Status: ATTEMPTED/FAILED)**
-- **User:** Forneceu um arquivo  completo para ser usado. **(Status: COMPLETED)**
-- **User:** Instruiu a abandonar a API e usar um arquivo estático . **(Status: COMPLETED)**
-- **User:** Solicitou a implementação de uma API completa usando a Amazon Creators API. **(Status: SUPERSEDED)**
-- **User:** Solicitou a implementação inicial de uma API de ofertas. **(Status: SUPERSEDED)**
-- **User:** Pediu para corrigir o roteamento do SPA com um arquivo . **(Status: COMPLETED)**
-- **User:** Pediu para alterar o texto do banner na página inicial. **(Status: COMPLETED)**
-- **User (multiple):** Instruiu a corrigir as imagens de produtos manualmente, um por um. **(Status: SUPERSEDED)**
+1.  **User:** Adicione este produto de TV em destaque na página . **(Status: IN PROGRESS)**
+2.  **User:** Substitua o ícone da bola pelo ícone da taça da Copa. **(Status: COMPLETED)**
+3.  **User:** Substitua o logo da Casas Bahia no carrossel. **(Status: COMPLETED)**
+4.  **User:** Adicione a Casas Bahia ao carrossel de parceiros. **(Status: COMPLETED)**
+5.  **User:** Os itens na página de promoções estão carregando mas não aparecem. **(Status: COMPLETED - Agente conectou a página à API)**
+6.  **User:** Crie uma página  e um banner na home para ela. **(Status: COMPLETED)**
+7.  **User:** O sistema de busca está quebrado, não retorna produtos. Faça uma auditoria e corrija. **(Status: COMPLETED)**
+8.  **User:** Atualize o link do banner de Ferramentas. **(Status: COMPLETED)**
+9.  **User:** Transforme o banner promocional em um carrossel de dois slides. **(Status: COMPLETED)**
+10. **User:** Adicione um aviso informativo abaixo do botão no banner promocional. **(Status: COMPLETED)**
 
 **Project Health Check:**
-- **Broken:** A exibição de imagens na página  está quebrada para muitos produtos, mostrando um espaço em branco em vez da imagem ou de um fallback.
-- **Mocked:** Toda a funcionalidade da página de ofertas depende de um arquivo  estático e curado manualmente. Os dados não são dinâmicos.
+- **Broken:** A funcionalidade do produto em destaque na página de promoções está com a implementação em andamento e seu estado funcional é desconhecido.
+- **Mocked:** O card de produto em destaque está sendo adicionado como dados estáticos (hardcoded) no componente do frontend, em vez de ser gerenciado dinamicamente.
 
 **3rd Party Integrations**
-- SerpAPI
+- **SerpAPI:** Essencial para a funcionalidade de busca de produtos. A chave da API está configurada no ambiente.
 - Zoho Mail
 - Google AdSense
 - react-helmet
@@ -132,4 +138,4 @@ Uma aplicação full-stack (React/FastAPI/MongoDB). A funcionalidade principal e
 - N/A
 
 **What agent forgot to execute**
-- O agente não esqueceu de executar nada. Ele seguiu um processo de depuração lógico para o problema do fallback de imagem, identificando corretamente a causa raiz (pixel transparente) e estava no processo de formular a próxima solução quando a sessão terminou.</analysis>
+- O agente não executou o passo final de verificação (teste) após modificar o código para adicionar o produto em destaque. Ele parou logo antes de chamar a .</analysis>
