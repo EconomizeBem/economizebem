@@ -84,18 +84,24 @@ const ProductCard = ({ product }) => (
         className="block group"
         data-testid={`product-card-${product.id}`}
     >
-        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden border border-slate-200 dark:border-slate-700 flex flex-col hover:shadow-lg hover:border-green-300 dark:hover:border-green-600 transition-all h-full">
+        <div className={`bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden flex flex-col hover:shadow-lg transition-all h-full ${product._featured ? 'border-2 border-green-500 dark:border-green-400 hover:border-green-600' : 'border border-slate-200 dark:border-slate-700 hover:border-green-300 dark:hover:border-green-600'}`}>
             <div className="aspect-square bg-slate-50 dark:bg-slate-700 flex items-center justify-center p-3">
-                <img 
-                    src={product.image} 
-                    alt={product.name}
-                    className="w-full h-full object-contain"
-                    loading="lazy"
-                    onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src = 'https://via.placeholder.com/200x200?text=Produto';
-                    }}
-                />
+                {product.image ? (
+                    <img 
+                        src={product.image} 
+                        alt={product.name}
+                        className="w-full h-full object-contain"
+                        loading="lazy"
+                        onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = 'https://via.placeholder.com/200x200?text=Produto';
+                        }}
+                    />
+                ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700 rounded-lg">
+                        <Tv className="w-16 h-16 text-slate-400 dark:text-slate-500" />
+                    </div>
+                )}
             </div>
             <div className="p-3 flex flex-col flex-1">
                 <h3 className="text-sm font-medium text-slate-800 dark:text-white line-clamp-2 mb-2 min-h-[40px]">
@@ -103,7 +109,7 @@ const ProductCard = ({ product }) => (
                 </h3>
                 {product.stores?.[0]?.store && (
                     <p className="text-xs text-muted-foreground mb-1">
-                        {product.stores[0].store}
+                        {product._featured ? 'Oferta Mercado Livre (link de associado)' : product.stores[0].store}
                     </p>
                 )}
                 <p className="text-lg font-bold text-green-600 dark:text-green-400 mb-3">
@@ -112,8 +118,8 @@ const ProductCard = ({ product }) => (
                         : 'Ver preço'}
                 </p>
                 <Button 
-                    variant="outline" 
-                    className="w-full rounded-lg text-sm h-9 mt-auto hover:bg-green-50 hover:text-green-700 hover:border-green-300 dark:hover:bg-green-900/20 dark:hover:text-green-400 group-hover:bg-green-50 group-hover:text-green-700 group-hover:border-green-300 dark:group-hover:bg-green-900/20 dark:group-hover:text-green-400"
+                    variant={product._featured ? 'default' : 'outline'}
+                    className={`w-full rounded-lg text-sm h-9 mt-auto ${product._featured ? 'bg-green-600 hover:bg-green-700 text-white' : 'hover:bg-green-50 hover:text-green-700 hover:border-green-300 dark:hover:bg-green-900/20 dark:hover:text-green-400 group-hover:bg-green-50 group-hover:text-green-700 group-hover:border-green-300 dark:group-hover:bg-green-900/20 dark:group-hover:text-green-400'}`}
                     data-testid={`ver-oferta-${product.id}`}
                 >
                     <ExternalLink className="w-3 h-3 mr-1" />
