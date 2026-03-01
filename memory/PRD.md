@@ -59,7 +59,7 @@ Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade púb
 - Nenhum
 
 ### Concluído Recentemente (Março 2026) ✅
-- ✅ **Card de produto em destaque na página `/promocoes-copa`**: Smart TV DLED 50" 4K Multilaser com badge "12% OFF", preço, parcelamento e link de afiliado Mercado Livre. Card com borda verde e posicionado no topo da seção "TVs". Dados estáticos (hardcoded) no frontend.
+- ✅ **Página `/promocoes-copa` reescrita com dados reais via Google Shopping API**: 6 seções (TVs, Caixas de Som, Bolas de Futebol, Petiscos, Cerveja e Bebidas, Churrasco e Utensílios) carregam 8 produtos cada via `/api/products/search`. Cards com imagem, título, loja, preço em BRL e botão "Ver oferta" com link direto do Google Shopping. Cache em memória por sessão, estados de loading/erro/vazio, botão "Tentar novamente". Testado: Backend 14/14, Frontend 18/18.
 
 ### Correção Recente (Fevereiro 2025) ✅
 - ✅ **Fallback de imagem na página /ofertas**: Corrigido problema onde imagens indisponíveis mostravam espaço em branco. A Amazon retorna pixels transparentes (1x1) em vez de erro 404, então a solução usa `onLoad` + `naturalWidth` para detectar e substituir pelo logo da Amazon.
