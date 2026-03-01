@@ -146,6 +146,8 @@ const ProductCardSkeleton = () => (
 );
 
 const CategorySection = ({ category }) => {
+    const isTvs = category.id === 'tvs';
+    const apiLimit = isTvs ? 7 : 8;
     const [products, setProducts] = useState(sectionCache[category.id]?.products || []);
     const [loading, setLoading] = useState(!sectionCache[category.id]);
     const [error, setError] = useState(null);
@@ -161,7 +163,7 @@ const CategorySection = ({ category }) => {
             setError(null);
             try {
                 const res = await fetch(
-                    `${API_URL}/api/products/search?q=${encodeURIComponent(category.searchTerm)}&page=1&page_size=8`
+                    `${API_URL}/api/products/search?q=${encodeURIComponent(category.searchTerm)}&page=1&page_size=${apiLimit}`
                 );
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 const data = await res.json();
@@ -178,7 +180,7 @@ const CategorySection = ({ category }) => {
         };
 
         fetchProducts();
-    }, [category.id, category.searchTerm, category.name]);
+    }, [category.id, category.searchTerm, category.name, apiLimit]);
 
     const handleRetry = () => {
         fetchedRef.current = false;
@@ -190,7 +192,7 @@ const CategorySection = ({ category }) => {
         const fetchProducts = async () => {
             try {
                 const res = await fetch(
-                    `${API_URL}/api/products/search?q=${encodeURIComponent(category.searchTerm)}&page=1&page_size=8`
+                    `${API_URL}/api/products/search?q=${encodeURIComponent(category.searchTerm)}&page=1&page_size=${apiLimit}`
                 );
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 const data = await res.json();
@@ -205,6 +207,9 @@ const CategorySection = ({ category }) => {
         };
         fetchProducts();
     };
+
+    // Monta a lista final: card fixo primeiro (apenas TVs) + itens da API
+    const displayProducts = isTvs ? [featuredTv, ...products] : products;
 
     return (
         <section className="mb-12" id={category.id} data-testid={`section-${category.id}`}>
