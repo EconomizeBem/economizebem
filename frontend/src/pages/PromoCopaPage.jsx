@@ -228,8 +228,8 @@ const CategorySection = ({ category }) => {
         fetchProducts();
     };
 
-    // Monta a lista final: card fixo primeiro (apenas TVs) + itens da API
-    const displayProducts = isTvs ? [featuredTv, ...products] : products;
+    // Monta a lista final: card fixo primeiro (se houver) + itens da API
+    const displayProducts = featured ? [featured, ...products] : products;
 
     return (
         <section className="mb-12" id={category.id} data-testid={`section-${category.id}`}>
