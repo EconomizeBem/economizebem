@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 
-const API_URL = process.env.REACT_APP_BACKEND_URL || '';
+const API_URL = process.env.REACT_APP_API_URL || process.env.REACT_APP_BACKEND_URL || '';
 
 // Cache em memória por sessão (evita refetch ao rolar/navegar)
 const sectionCache = {};
