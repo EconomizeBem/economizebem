@@ -25,7 +25,7 @@ const featuredTv = {
     id: 'featured-meli-tv',
     name: 'Smart Tv Dled 50 4k Multi Roku 4hdmi 2usb Wi-fi',
     best_price: 1799,
-    image: null,
+    image: 'https://customer-assets.emergentagent.com/job_c975d90b-2e22-401b-8406-8d712ff16fd5/artifacts/9e6evedc_file_000000000408720e8198adb78c247fb4.png',
     offer_url: 'https://meli.la/2qMnksA',
     stores: [{ store: 'Mercado Livre' }],
     _featured: true,
