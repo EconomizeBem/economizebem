@@ -80,6 +80,75 @@ const categories = [
     },
 ];
 
+// Componente de Card de Produto em Destaque
+const FeaturedProductCard = ({ product }) => (
+    <a 
+        href={product.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block"
+    >
+        <div 
+            className="bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden border-2 border-green-500 dark:border-green-400 flex flex-col hover:shadow-xl transition-shadow relative"
+        >
+            {/* Badge Destaque */}
+            {product.discount && (
+                <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
+                    {product.discount}
+                </div>
+            )}
+            
+            {/* Imagem */}
+            <div className="aspect-square bg-slate-100 dark:bg-slate-700 flex items-center justify-center p-4">
+                {product.image ? (
+                    <img 
+                        src={product.image} 
+                        alt={product.name}
+                        className="w-full h-full object-contain"
+                    />
+                ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700 rounded-lg">
+                        <Tv className="w-16 h-16 text-slate-400 dark:text-slate-500" />
+                    </div>
+                )}
+            </div>
+            
+            {/* Conteúdo */}
+            <div className="p-3 flex flex-col flex-1">
+                {/* Marca */}
+                {product.brand && (
+                    <p className="text-xs text-muted-foreground mb-1">{product.brand}</p>
+                )}
+                
+                {/* Nome */}
+                <h3 className="text-sm font-medium text-slate-800 dark:text-white line-clamp-2 mb-2 min-h-[40px]">
+                    {product.name}
+                </h3>
+                
+                {/* Preço */}
+                <p className="text-xl font-black text-green-600 dark:text-green-400 mb-1">
+                    R$ {product.price.toLocaleString('pt-BR')}
+                </p>
+                
+                {/* Parcelamento */}
+                {product.installment && (
+                    <p className="text-xs text-muted-foreground mb-3">
+                        {product.installment}
+                    </p>
+                )}
+                
+                {/* Botão */}
+                <Button 
+                    className="w-full rounded-lg text-sm h-9 bg-green-600 hover:bg-green-700 text-white mt-auto"
+                >
+                    <ExternalLink className="w-3 h-3 mr-1" />
+                    Ver oferta
+                </Button>
+            </div>
+        </div>
+    </a>
+);
+
 // Componente de Card de Produto
 const ProductCard = ({ product }) => (
     <div 
