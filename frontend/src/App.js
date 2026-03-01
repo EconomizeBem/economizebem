@@ -22,6 +22,7 @@ import VestuarioPageNew from "./pages/VestuarioPageNew";
 import BelezaSaudePage from "./pages/BelezaSaudePage";
 import PetsPage from "./pages/PetsPage";
 import AutomotivosPage from "./pages/AutomotivosPage";
+import PromoCopaPage from "./pages/PromoCopaPage";
 // Legacy category pages (redirects)
 import VestuarioPage from "./pages/VestuarioPage";
 import GeladeirasPage from "./pages/GeladeirasPage";
@@ -65,6 +66,10 @@ function App() {
                                 <Route path="/calculator" element={<CalculatorPage />} />
                                 <Route path="/termos" element={<TermsPage />} />
                                 <Route path="/privacidade" element={<PrivacyPage />} />
+                                
+                                {/* Promo Copa Page */}
+                                <Route path="/promocoes-copa" element={<PromoCopaPage />} />
+                                
                                 {/* Redirect old offers routes to home */}
                                 <Route path="/ofertas-amazon" element={<Navigate to="/" replace />} />
                                 <Route path="/ofertas" element={<Navigate to="/" replace />} />

@@ -4,7 +4,7 @@
 Plataforma web brasileira de comparação de preços, planos e ferramentas financeiras focada em economia para o usuário final.
 
 **Domínio**: economizebem.com.br
-**Preview URL**: https://economizebem-4.preview.emergentagent.com
+**Preview URL**: https://economize-promo.preview.emergentagent.com
 
 ## Problem Statement Original
 Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade pública e economia para o usuário final. O site deve ser simples de usar, visualmente limpo e pensado para pessoas leigas.
@@ -57,6 +57,9 @@ Criar uma plataforma web moderna, rápida e responsiva, focada em utilidade púb
 
 ### Em Progresso 🔄
 - Nenhum
+
+### Concluído Recentemente (Março 2026) ✅
+- ✅ **Página `/promocoes-copa` reescrita com dados reais via Google Shopping API**: 6 seções (TVs, Caixas de Som, Bolas de Futebol, Petiscos, Cerveja e Bebidas, Churrasco e Utensílios) carregam 8 produtos cada via `/api/products/search`. Cards com imagem, título, loja, preço em BRL e botão "Ver oferta" com link direto do Google Shopping. Cache em memória por sessão, estados de loading/erro/vazio, botão "Tentar novamente". Testado: Backend 14/14, Frontend 18/18.
 
 ### Correção Recente (Fevereiro 2025) ✅
 - ✅ **Fallback de imagem na página /ofertas**: Corrigido problema onde imagens indisponíveis mostravam espaço em branco. A Amazon retorna pixels transparentes (1x1) em vez de erro 404, então a solução usa `onLoad` + `naturalWidth` para detectar e substituir pelo logo da Amazon.

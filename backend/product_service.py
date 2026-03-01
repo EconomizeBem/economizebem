@@ -312,16 +312,26 @@ async def search_google_shopping_paginated(
     }
     
     try:
-        async with httpx.AsyncClient(timeout=30.0) as client:
+        # Use httpx with specific transport settings to avoid DNS issues
+        transport = httpx.AsyncHTTPTransport(retries=2)
+        async with httpx.AsyncClient(timeout=httpx.Timeout(60.0, connect=30.0), transport=transport) as client:
+            logger.info(f"Calling SerpAPI with query: {search_query}, start: {start}, num: {page_size + 1}")
             response = await client.get(SERPAPI_BASE_URL, params=params)
             response.raise_for_status()
             data = response.json()
+            
+            # Log response structure for debugging
+            logger.info(f"SerpAPI response keys: {list(data.keys())}")
+            if 'error' in data:
+                logger.warning(f"SerpAPI returned error: {data.get('error')}")
         
         _search_metrics["api_calls"] += 1
         
         # Processar resultados
         products = []
         shopping_results = data.get("shopping_results", [])
+        
+        logger.info(f"SerpAPI shopping_results count: {len(shopping_results)}")
         
         # Verificar se há mais resultados
         has_more = len(shopping_results) > page_size and page < MAX_PAGE
@@ -378,8 +388,18 @@ async def search_google_shopping_paginated(
             "total_pages": 0,
             "message": "Erro ao buscar produtos"
         }
+    except httpx.TimeoutException as e:
+        logger.error(f"SerpAPI timeout error: {str(e)}")
+        return {
+            "products": [],
+            "page": page,
+            "page_size": page_size,
+            "has_more": False,
+            "total_pages": 0,
+            "message": "Tempo limite excedido. Tente novamente."
+        }
     except Exception as e:
-        logger.error(f"SerpAPI error: {e}")
+        logger.error(f"SerpAPI error: {type(e).__name__}: {str(e)}")
         return {
             "products": [],
             "page": page,
