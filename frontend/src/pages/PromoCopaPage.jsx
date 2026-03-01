@@ -227,21 +227,37 @@ const CategorySection = ({ category }) => {
 
             {loading ? (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {[...Array(8)].map((_, i) => (
+                    {isTvs && <ProductCard product={featuredTv} />}
+                    {[...Array(apiLimit)].map((_, i) => (
                         <ProductCardSkeleton key={i} />
                     ))}
                 </div>
             ) : error ? (
-                <div className="text-center py-10" data-testid={`error-${category.id}`}>
-                    <p className="text-muted-foreground mb-3">{error}</p>
-                    <Button variant="outline" size="sm" onClick={handleRetry} data-testid={`retry-${category.id}`}>
-                        <RefreshCw className="w-4 h-4 mr-2" />
-                        Tentar novamente
-                    </Button>
-                </div>
-            ) : products.length > 0 ? (
+                isTvs ? (
+                    <div>
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
+                            <ProductCard product={featuredTv} />
+                        </div>
+                        <div className="text-center py-6" data-testid={`error-${category.id}`}>
+                            <p className="text-muted-foreground mb-3">{error}</p>
+                            <Button variant="outline" size="sm" onClick={handleRetry} data-testid={`retry-${category.id}`}>
+                                <RefreshCw className="w-4 h-4 mr-2" />
+                                Tentar novamente
+                            </Button>
+                        </div>
+                    </div>
+                ) : (
+                    <div className="text-center py-10" data-testid={`error-${category.id}`}>
+                        <p className="text-muted-foreground mb-3">{error}</p>
+                        <Button variant="outline" size="sm" onClick={handleRetry} data-testid={`retry-${category.id}`}>
+                            <RefreshCw className="w-4 h-4 mr-2" />
+                            Tentar novamente
+                        </Button>
+                    </div>
+                )
+            ) : displayProducts.length > 0 ? (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {products.map((product) => (
+                    {displayProducts.map((product) => (
                         <ProductCard key={product.id} product={product} />
                     ))}
                 </div>
