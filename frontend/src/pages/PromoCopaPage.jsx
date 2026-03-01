@@ -116,7 +116,10 @@ const ProductCard = ({ product }) => (
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700 rounded-lg">
-                        <Tv className="w-16 h-16 text-slate-400 dark:text-slate-500" />
+                        {product._placeholderIcon === 'speaker' 
+                            ? <Speaker className="w-16 h-16 text-slate-400 dark:text-slate-500" />
+                            : <Tv className="w-16 h-16 text-slate-400 dark:text-slate-500" />
+                        }
                     </div>
                 )}
             </div>
