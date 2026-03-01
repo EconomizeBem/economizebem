@@ -225,14 +225,19 @@ const CategorySection = ({ category }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const Icon = category.icon;
+    
+    // Produtos em destaque para esta categoria
+    const featured = featuredProducts[category.id] || [];
 
     useEffect(() => {
         const fetchProducts = async () => {
             setLoading(true);
             setError(null);
             try {
+                // Buscar menos produtos se houver produtos em destaque
+                const limit = Math.max(1, 6 - featured.length);
                 const response = await fetch(
-                    `${API_URL}/api/products/search?q=${encodeURIComponent(category.searchTerm)}&page=1&page_size=6`
+                    `${API_URL}/api/products/search?q=${encodeURIComponent(category.searchTerm)}&page=1&page_size=${limit}`
                 );
                 const data = await response.json();
                 
@@ -251,7 +256,7 @@ const CategorySection = ({ category }) => {
         };
 
         fetchProducts();
-    }, [category.searchTerm, category.name]);
+    }, [category.searchTerm, category.name, featured.length]);
 
     return (
         <section 
@@ -276,26 +281,35 @@ const CategorySection = ({ category }) => {
             
             {/* Grid de Produtos */}
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                {/* Produtos em Destaque (sempre primeiro) */}
+                {featured.map((product) => (
+                    <FeaturedProductCard key={product.id} product={product} />
+                ))}
+                
                 {loading ? (
-                    // Loading state
-                    [...Array(6)].map((_, i) => (
-                        <ProductCardLoading key={i} />
+                    // Loading state para produtos da API
+                    [...Array(Math.max(1, 6 - featured.length))].map((_, i) => (
+                        <ProductCardLoading key={`loading-${i}`} />
                     ))
                 ) : error ? (
                     // Error state
-                    <div className="col-span-full text-center py-8 text-muted-foreground">
-                        {error}
-                    </div>
+                    featured.length === 0 && (
+                        <div className="col-span-full text-center py-8 text-muted-foreground">
+                            {error}
+                        </div>
+                    )
                 ) : products.length > 0 ? (
-                    // Products
+                    // Products da API
                     products.map((product) => (
                         <ProductCard key={product.id} product={product} />
                     ))
                 ) : (
-                    // Empty state
-                    <div className="col-span-full text-center py-8 text-muted-foreground">
-                        Nenhum produto encontrado nesta categoria.
-                    </div>
+                    // Empty state (apenas se não houver produtos em destaque)
+                    featured.length === 0 && (
+                        <div className="col-span-full text-center py-8 text-muted-foreground">
+                            Nenhum produto encontrado nesta categoria.
+                        </div>
+                    )
                 )}
             </div>
         </section>
