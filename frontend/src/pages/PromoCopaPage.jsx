@@ -247,16 +247,16 @@ const CategorySection = ({ category }) => {
 
             {loading ? (
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {isTvs && <ProductCard product={featuredTv} />}
+                    {featured && <ProductCard product={featured} />}
                     {[...Array(apiLimit)].map((_, i) => (
                         <ProductCardSkeleton key={i} />
                     ))}
                 </div>
             ) : error ? (
-                isTvs ? (
+                featured ? (
                     <div>
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
-                            <ProductCard product={featuredTv} />
+                            <ProductCard product={featured} />
                         </div>
                         <div className="text-center py-6" data-testid={`error-${category.id}`}>
                             <p className="text-muted-foreground mb-3">{error}</p>
