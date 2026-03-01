@@ -43,6 +43,14 @@ const partners = [
         link: 'https://www.awin1.com/cread.php?awinmid=68224&awinaffid=2764132&ued=https%3A%2F%2Fwww.drogal.com.br%2F',
         bgGradient: 'from-cyan-500 to-blue-600',
     },
+    {
+        id: 'casasbahia',
+        name: 'Casas Bahia',
+        description: 'Eletrodomésticos, móveis, eletrônicos e muito mais',
+        logo: '/partners/casasbahia-logo.svg',
+        link: 'https://www.awin1.com/cread.php?awinmid=85979&awinaffid=2783640&ued=https%3A%2F%2Fwww.casasbahia.com.br%2F',
+        bgGradient: 'from-blue-600 to-orange-500',
+    },
 ];
 
 export const PartnersCarousel = () => {
