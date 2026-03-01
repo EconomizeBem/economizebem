@@ -166,8 +166,8 @@ const ProductCardSkeleton = () => (
 );
 
 const CategorySection = ({ category }) => {
-    const isTvs = category.id === 'tvs';
-    const apiLimit = isTvs ? 7 : 8;
+    const featured = featuredBySection[category.id] || null;
+    const apiLimit = featured ? 7 : 8;
     const [products, setProducts] = useState(sectionCache[category.id]?.products || []);
     const [loading, setLoading] = useState(!sectionCache[category.id]);
     const [error, setError] = useState(null);
