@@ -47,7 +47,7 @@ const partners = [
         id: 'casasbahia',
         name: 'Casas Bahia',
         description: 'Eletrodomésticos, móveis, eletrônicos e muito mais',
-        logo: '/partners/casasbahia-logo.svg',
+        logo: '/partners/casasbahia-logo.jpg',
         link: 'https://www.awin1.com/cread.php?awinmid=85979&awinaffid=2783640&ued=https%3A%2F%2Fwww.casasbahia.com.br%2F',
         bgGradient: 'from-blue-600 to-orange-500',
     },
