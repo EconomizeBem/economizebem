@@ -35,7 +35,7 @@ const featuredSpeaker = {
     id: 'featured-meli-speaker',
     name: 'Caixa Amplificada Connect Power Plus CM-550 Preto Mondial',
     best_price: 501.16,
-    image: null,
+    image: 'https://customer-assets.emergentagent.com/job_c975d90b-2e22-401b-8406-8d712ff16fd5/artifacts/tzry558l_file_0000000060e4720ebaef67af9822639d.png',
     offer_url: 'https://meli.la/143kBWs',
     stores: [{ store: 'Mercado Livre' }],
     _featured: true,
