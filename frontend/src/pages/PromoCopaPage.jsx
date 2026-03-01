@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { 
@@ -10,136 +10,100 @@ import {
     Flame,
     ExternalLink,
     ArrowLeft,
-    Loader2
+    Loader2,
+    RefreshCw
 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL || '';
 
-// Produtos em destaque (manuais) por categoria
-const featuredProducts = {
-    'tvs': [
-        {
-            id: 'featured-tv-1',
-            name: 'Smart TV DLED 50" 4K Multi Roku – 4 HDMI, 2 USB, Wi-Fi',
-            brand: 'Multilaser',
-            price: 1799,
-            originalPrice: 2044,
-            discount: '12% OFF',
-            installment: '10x de R$ 179,90 sem juros',
-            image: null, // placeholder será usado
-            link: 'https://meli.la/2qMnksA',
-            isFeatured: true
-        }
-    ]
-};
+// Cache em memória por sessão (evita refetch ao rolar/navegar)
+const sectionCache = {};
 
-// Categorias da promoção Copa
 const categories = [
     { 
         id: 'tvs', 
         name: 'TVs', 
         icon: Tv,
         description: 'Smart TVs para assistir os jogos em grande estilo',
-        searchTerm: 'smart tv'
+        searchTerm: 'smart tv 4k 50'
     },
     { 
         id: 'caixas-som', 
         name: 'Caixas de Som', 
         icon: Speaker,
         description: 'Som potente para a torcida',
-        searchTerm: 'caixa de som bluetooth'
+        searchTerm: 'caixa de som bluetooth potente'
     },
     { 
-        id: 'bolas-acessorios', 
-        name: 'Bolas e Acessórios', 
+        id: 'bolas-futebol', 
+        name: 'Bolas de Futebol', 
         icon: Circle,
         description: 'Tudo para jogar uma pelada',
-        searchTerm: 'bola futebol'
+        searchTerm: 'bola de futebol oficial'
     },
     { 
         id: 'petiscos', 
         name: 'Petiscos', 
         icon: Cookie,
         description: 'Snacks e aperitivos para o jogo',
-        searchTerm: 'amendoim petisco'
+        searchTerm: 'petiscos para festa'
     },
     { 
         id: 'bebidas', 
         name: 'Cerveja e Bebidas', 
         icon: Beer,
         description: 'Bebidas geladas para comemorar',
-        searchTerm: 'cerveja lata'
+        searchTerm: 'cerveja lata pack'
     },
     { 
         id: 'churrasco', 
         name: 'Churrasco e Utensílios', 
         icon: Flame,
         description: 'Equipamentos para o churras da copa',
-        searchTerm: 'churrasqueira'
+        searchTerm: 'kit churrasco grelha'
     },
 ];
 
-// Componente de Card de Produto em Destaque
-const FeaturedProductCard = ({ product }) => (
+const ProductCard = ({ product }) => (
     <a 
-        href={product.link}
+        href={product.offer_url}
         target="_blank"
         rel="noopener noreferrer"
-        className="block"
+        className="block group"
+        data-testid={`product-card-${product.id}`}
     >
-        <div 
-            className="bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden border-2 border-green-500 dark:border-green-400 flex flex-col hover:shadow-xl transition-shadow relative"
-        >
-            {/* Badge Destaque */}
-            {product.discount && (
-                <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-md z-10">
-                    {product.discount}
-                </div>
-            )}
-            
-            {/* Imagem */}
-            <div className="aspect-square bg-slate-100 dark:bg-slate-700 flex items-center justify-center p-4">
-                {product.image ? (
-                    <img 
-                        src={product.image} 
-                        alt={product.name}
-                        className="w-full h-full object-contain"
-                    />
-                ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-200 to-slate-300 dark:from-slate-600 dark:to-slate-700 rounded-lg">
-                        <Tv className="w-16 h-16 text-slate-400 dark:text-slate-500" />
-                    </div>
-                )}
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden border border-slate-200 dark:border-slate-700 flex flex-col hover:shadow-lg hover:border-green-300 dark:hover:border-green-600 transition-all h-full">
+            <div className="aspect-square bg-slate-50 dark:bg-slate-700 flex items-center justify-center p-3">
+                <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full h-full object-contain"
+                    loading="lazy"
+                    onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = 'https://via.placeholder.com/200x200?text=Produto';
+                    }}
+                />
             </div>
-            
-            {/* Conteúdo */}
             <div className="p-3 flex flex-col flex-1">
-                {/* Marca */}
-                {product.brand && (
-                    <p className="text-xs text-muted-foreground mb-1">{product.brand}</p>
-                )}
-                
-                {/* Nome */}
                 <h3 className="text-sm font-medium text-slate-800 dark:text-white line-clamp-2 mb-2 min-h-[40px]">
                     {product.name}
                 </h3>
-                
-                {/* Preço */}
-                <p className="text-xl font-black text-green-600 dark:text-green-400 mb-1">
-                    R$ {product.price.toLocaleString('pt-BR')}
-                </p>
-                
-                {/* Parcelamento */}
-                {product.installment && (
-                    <p className="text-xs text-muted-foreground mb-3">
-                        {product.installment}
+                {product.stores?.[0]?.store && (
+                    <p className="text-xs text-muted-foreground mb-1">
+                        {product.stores[0].store}
                     </p>
                 )}
-                
-                {/* Botão */}
+                <p className="text-lg font-bold text-green-600 dark:text-green-400 mb-3">
+                    {product.best_price > 0
+                        ? `R$ ${product.best_price.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+                        : 'Ver preço'}
+                </p>
                 <Button 
-                    className="w-full rounded-lg text-sm h-9 bg-green-600 hover:bg-green-700 text-white mt-auto"
+                    variant="outline" 
+                    className="w-full rounded-lg text-sm h-9 mt-auto hover:bg-green-50 hover:text-green-700 hover:border-green-300 dark:hover:bg-green-900/20 dark:hover:text-green-400 group-hover:bg-green-50 group-hover:text-green-700 group-hover:border-green-300 dark:group-hover:bg-green-900/20 dark:group-hover:text-green-400"
+                    data-testid={`ver-oferta-${product.id}`}
                 >
                     <ExternalLink className="w-3 h-3 mr-1" />
                     Ver oferta
@@ -149,62 +113,7 @@ const FeaturedProductCard = ({ product }) => (
     </a>
 );
 
-// Componente de Card de Produto
-const ProductCard = ({ product }) => (
-    <div 
-        className="bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden border border-slate-200 dark:border-slate-700 flex flex-col hover:shadow-lg transition-shadow"
-    >
-        {/* Imagem */}
-        <div className="aspect-square bg-slate-100 dark:bg-slate-700 flex items-center justify-center p-2">
-            <img 
-                src={product.image} 
-                alt={product.name}
-                className="w-full h-full object-contain"
-                onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = 'https://via.placeholder.com/200?text=Produto';
-                }}
-            />
-        </div>
-        
-        {/* Conteúdo */}
-        <div className="p-3 flex flex-col flex-1">
-            {/* Nome */}
-            <h3 className="text-sm font-medium text-slate-800 dark:text-white line-clamp-2 mb-2 min-h-[40px]">
-                {product.name}
-            </h3>
-            
-            {/* Preço */}
-            <p className="text-lg font-bold text-green-600 dark:text-green-400 mb-1">
-                {product.price > 0 ? `R$ ${product.price.toFixed(2).replace('.', ',')}` : 'Ver preço'}
-            </p>
-            
-            {/* Loja */}
-            <p className="text-xs text-muted-foreground mb-3">
-                {product.store || 'Loja parceira'}
-            </p>
-            
-            {/* Botão */}
-            <a 
-                href={product.link} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="mt-auto"
-            >
-                <Button 
-                    variant="outline" 
-                    className="w-full rounded-lg text-sm h-9 hover:bg-green-50 hover:text-green-700 hover:border-green-300 dark:hover:bg-green-900/20 dark:hover:text-green-400"
-                >
-                    <ExternalLink className="w-3 h-3 mr-1" />
-                    Ver oferta
-                </Button>
-            </a>
-        </div>
-    </div>
-);
-
-// Componente de Card Loading
-const ProductCardLoading = () => (
+const ProductCardSkeleton = () => (
     <div className="bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden border border-slate-200 dark:border-slate-700 flex flex-col">
         <div className="aspect-square bg-slate-100 dark:bg-slate-700 flex items-center justify-center">
             <div className="w-16 h-16 bg-slate-200 dark:bg-slate-600 rounded-lg animate-pulse" />
@@ -219,52 +128,69 @@ const ProductCardLoading = () => (
     </div>
 );
 
-// Seção de Categoria
 const CategorySection = ({ category }) => {
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [products, setProducts] = useState(sectionCache[category.id]?.products || []);
+    const [loading, setLoading] = useState(!sectionCache[category.id]);
     const [error, setError] = useState(null);
+    const fetchedRef = useRef(!!sectionCache[category.id]);
     const Icon = category.icon;
-    
-    // Produtos em destaque para esta categoria
-    const featured = featuredProducts[category.id] || [];
 
     useEffect(() => {
+        if (fetchedRef.current) return;
+        fetchedRef.current = true;
+
         const fetchProducts = async () => {
             setLoading(true);
             setError(null);
             try {
-                // Buscar menos produtos se houver produtos em destaque
-                const limit = Math.max(1, 6 - featured.length);
-                const response = await fetch(
-                    `${API_URL}/api/products/search?q=${encodeURIComponent(category.searchTerm)}&page=1&page_size=${limit}`
+                const res = await fetch(
+                    `${API_URL}/api/products/search?q=${encodeURIComponent(category.searchTerm)}&page=1&page_size=8`
                 );
-                const data = await response.json();
-                
-                if (data.products && data.products.length > 0) {
-                    setProducts(data.products);
-                } else {
-                    setProducts([]);
-                }
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+
+                const items = data.products || [];
+                sectionCache[category.id] = { products: items };
+                setProducts(items);
             } catch (err) {
-                console.error(`Error fetching ${category.name}:`, err);
-                setError('Erro ao carregar produtos');
-                setProducts([]);
+                console.error(`Erro ao carregar ${category.name}:`, err);
+                setError('Não foi possível carregar agora. Tente novamente.');
             } finally {
                 setLoading(false);
             }
         };
 
         fetchProducts();
-    }, [category.searchTerm, category.name, featured.length]);
+    }, [category.id, category.searchTerm, category.name]);
+
+    const handleRetry = () => {
+        fetchedRef.current = false;
+        delete sectionCache[category.id];
+        setProducts([]);
+        setError(null);
+        setLoading(true);
+
+        const fetchProducts = async () => {
+            try {
+                const res = await fetch(
+                    `${API_URL}/api/products/search?q=${encodeURIComponent(category.searchTerm)}&page=1&page_size=8`
+                );
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                const items = data.products || [];
+                sectionCache[category.id] = { products: items };
+                setProducts(items);
+            } catch (err) {
+                setError('Não foi possível carregar agora. Tente novamente.');
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchProducts();
+    };
 
     return (
-        <section 
-            className="mb-12"
-            id={category.id}
-            data-testid={`section-${category.id}`}
-        >
-            {/* Header da Seção */}
+        <section className="mb-12" id={category.id} data-testid={`section-${category.id}`}>
             <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center text-white shadow-lg">
                     <Icon className="w-6 h-6" />
@@ -273,45 +199,35 @@ const CategorySection = ({ category }) => {
                     <h2 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white">
                         {category.name}
                     </h2>
-                    <p className="text-sm text-muted-foreground">
-                        {category.description}
-                    </p>
+                    <p className="text-sm text-muted-foreground">{category.description}</p>
                 </div>
             </div>
-            
-            {/* Grid de Produtos */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-                {/* Produtos em Destaque (sempre primeiro) */}
-                {featured.map((product) => (
-                    <FeaturedProductCard key={product.id} product={product} />
-                ))}
-                
-                {loading ? (
-                    // Loading state para produtos da API
-                    [...Array(Math.max(1, 6 - featured.length))].map((_, i) => (
-                        <ProductCardLoading key={`loading-${i}`} />
-                    ))
-                ) : error ? (
-                    // Error state
-                    featured.length === 0 && (
-                        <div className="col-span-full text-center py-8 text-muted-foreground">
-                            {error}
-                        </div>
-                    )
-                ) : products.length > 0 ? (
-                    // Products da API
-                    products.map((product) => (
+
+            {loading ? (
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {[...Array(8)].map((_, i) => (
+                        <ProductCardSkeleton key={i} />
+                    ))}
+                </div>
+            ) : error ? (
+                <div className="text-center py-10" data-testid={`error-${category.id}`}>
+                    <p className="text-muted-foreground mb-3">{error}</p>
+                    <Button variant="outline" size="sm" onClick={handleRetry} data-testid={`retry-${category.id}`}>
+                        <RefreshCw className="w-4 h-4 mr-2" />
+                        Tentar novamente
+                    </Button>
+                </div>
+            ) : products.length > 0 ? (
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {products.map((product) => (
                         <ProductCard key={product.id} product={product} />
-                    ))
-                ) : (
-                    // Empty state (apenas se não houver produtos em destaque)
-                    featured.length === 0 && (
-                        <div className="col-span-full text-center py-8 text-muted-foreground">
-                            Nenhum produto encontrado nesta categoria.
-                        </div>
-                    )
-                )}
-            </div>
+                    ))}
+                </div>
+            ) : (
+                <div className="text-center py-10 text-muted-foreground" data-testid={`empty-${category.id}`}>
+                    Nenhum produto encontrado nesta categoria.
+                </div>
+            )}
         </section>
     );
 };
@@ -323,7 +239,7 @@ export default function PromoCopaPage() {
                 <title>Promoções para a Copa | EconomizeBem</title>
                 <meta name="description" content="Seleção de produtos para curtir os jogos da copa gastando menos. TVs, caixas de som, petiscos, bebidas e muito mais." />
             </Helmet>
-            
+
             <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
                 {/* Hero */}
                 <section className="bg-gradient-to-r from-green-600 via-green-500 to-yellow-500 py-12 md:py-16">
@@ -331,39 +247,37 @@ export default function PromoCopaPage() {
                         <Link 
                             to="/"
                             className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-4 transition-colors"
+                            data-testid="back-to-home"
                         >
                             <ArrowLeft className="w-4 h-4" />
                             Voltar para Home
                         </Link>
-                        
                         <div className="flex items-center gap-4 mb-4">
                             <img src="/assets/copa-trophy.png" alt="Taça da Copa" className="w-16 h-16 md:w-20 md:h-20 object-contain" />
-                            <div>
-                                <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white font-['Outfit']">
-                                    Promoções para se preparar para a Copa
-                                </h1>
-                            </div>
+                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white font-['Outfit']">
+                                Promoções para se preparar para a Copa
+                            </h1>
                         </div>
-                        
                         <p className="text-lg md:text-xl text-white/90 max-w-2xl">
                             Seleção de itens para curtir os jogos gastando menos.
                         </p>
                     </div>
                 </section>
-                
-                {/* Navegação rápida por categorias */}
+
+                {/* Navegação rápida */}
                 <section className="sticky top-0 z-40 bg-white dark:bg-slate-800 shadow-md py-3 border-b border-slate-200 dark:border-slate-700">
                     <div className="container-main">
                         <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
                             {categories.map((cat) => {
-                                const Icon = cat.icon;
+                                const CatIcon = cat.icon;
                                 return (
                                     <a
                                         key={cat.id}
                                         href={`#${cat.id}`}
                                         className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-700 hover:bg-green-100 dark:hover:bg-green-900/30 text-slate-700 dark:text-slate-300 hover:text-green-700 dark:hover:text-green-400 transition-colors whitespace-nowrap text-sm font-medium"
+                                        data-testid={`nav-${cat.id}`}
                                     >
-                                        <Icon className="w-4 h-4" />
+                                        <CatIcon className="w-4 h-4" />
                                         {cat.name}
                                     </a>
                                 );
@@ -371,18 +285,17 @@ export default function PromoCopaPage() {
                         </div>
                     </div>
                 </section>
-                
-                {/* Conteúdo Principal */}
+
+                {/* Conteúdo */}
                 <main className="container-main py-10">
                     {categories.map((category) => (
                         <CategorySection key={category.id} category={category} />
                     ))}
                 </main>
-                
-                {/* Aviso de Afiliado */}
+
                 <div className="container-main pb-8">
                     <p className="text-xs text-center text-muted-foreground">
-                        Alguns links podem ser de afiliados. Isso não altera o preço para você e ajuda a manter o EconomizeBem.
+                        Preços e disponibilidade podem variar. Dados via Google Shopping.
                     </p>
                 </div>
             </div>
