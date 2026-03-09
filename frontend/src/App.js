@@ -23,6 +23,7 @@ import BelezaSaudePage from "./pages/BelezaSaudePage";
 import PetsPage from "./pages/PetsPage";
 import AutomotivosPage from "./pages/AutomotivosPage";
 import PromoCopaPage from "./pages/PromoCopaPage";
+import ExcluirContaPage from "./pages/ExcluirContaPage";
 // Legacy category pages (redirects)
 import VestuarioPage from "./pages/VestuarioPage";
 import GeladeirasPage from "./pages/GeladeirasPage";
@@ -69,6 +70,9 @@ function App() {
                                 
                                 {/* Promo Copa Page */}
                                 <Route path="/promocoes-copa" element={<PromoCopaPage />} />
+                                
+                                {/* Account Deletion Page */}
+                                <Route path="/excluir-conta" element={<ExcluirContaPage />} />
                                 
                                 {/* Redirect old offers routes to home */}
                                 <Route path="/ofertas-amazon" element={<Navigate to="/" replace />} />
