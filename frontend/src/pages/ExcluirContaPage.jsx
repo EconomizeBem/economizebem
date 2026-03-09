@@ -136,8 +136,8 @@ export default function ExcluirContaPage() {
                         <p className="text-xs text-muted-foreground flex items-center justify-center gap-1">
                             <Mail className="w-3 h-3" />
                             Se precisar de ajuda, entre em contato pelo email{' '}
-                            <a href="mailto:suporte@economizebem.com.br" className="underline hover:text-foreground">
-                                suporte@economizebem.com.br
+                            <a href="mailto:contato@economizebem.com.br" className="underline hover:text-foreground">
+                                contato@economizebem.com.br
                             </a>
                         </p>
                     </div>
