@@ -990,6 +990,38 @@ async def test_email(email_type: str, test_email: str, background_tasks: Backgro
     
     return {"message": f"Email de teste ({email_type}) enviado para {test_email}"}
 
+
+# ==================== ACCOUNT DELETION REQUEST ====================
+
+class DeleteAccountRequest(BaseModel):
+    email: EmailStr
+    reason: Optional[str] = None
+
+@api_router.post("/account/delete-request")
+async def request_account_deletion(req: DeleteAccountRequest):
+    """Registra solicitação de exclusão de conta e notifica suporte"""
+    now = datetime.now(timezone.utc).isoformat()
+
+    # Salvar no banco
+    await db.deletion_requests.insert_one({
+        "email": req.email,
+        "reason": req.reason or "",
+        "requested_at": now,
+        "status": "pending"
+    })
+
+    # Notificar suporte por email
+    html = f"""
+    <h2>Solicitação de Exclusão de Conta</h2>
+    <p><strong>Email:</strong> {req.email}</p>
+    <p><strong>Motivo:</strong> {req.reason or '(não informado)'}</p>
+    <p><strong>Data:</strong> {now}</p>
+    """
+    await send_email("suporte@economizebem.com.br", "Solicitação de exclusão de conta", html)
+
+    logger.info(f"Account deletion requested for: {req.email}")
+    return {"message": "Solicitação registrada com sucesso"}
+
 # Include router and middleware
 app.include_router(api_router)
 

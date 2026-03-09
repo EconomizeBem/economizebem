@@ -47,9 +47,32 @@ export default function CalculatorPage() {
     const [grossSalary, setGrossSalary] = useState('');
     const [netSalary, setNetSalary] = useState(null);
 
+    // Helper: carregar gastos locais do localStorage
+    const getLocalExpenses = (month) => {
+        try {
+            const all = JSON.parse(localStorage.getItem('economizebem_expenses') || '[]');
+            return all.filter(e => e.month === month);
+        } catch { return []; }
+    };
+
+    const saveLocalExpenses = (allExpenses) => {
+        localStorage.setItem('economizebem_expenses', JSON.stringify(allExpenses));
+    };
+
+    const calcLocalSummary = (list) => {
+        const total = list.reduce((s, e) => s + (e.amount || 0), 0);
+        const by_category = {};
+        list.forEach(e => { by_category[e.category] = (by_category[e.category] || 0) + (e.amount || 0); });
+        return { total, by_category };
+    };
+
     useEffect(() => {
         if (isAuthenticated) {
             fetchExpenses();
+        } else {
+            const local = getLocalExpenses(selectedMonth);
+            setExpenses(local);
+            setSummary(calcLocalSummary(local));
         }
     }, [isAuthenticated, selectedMonth]);
 
@@ -71,28 +94,57 @@ export default function CalculatorPage() {
             toast.error('Preencha categoria e valor');
             return;
         }
-        try {
-            await expensesApi.create({
+
+        if (isAuthenticated) {
+            try {
+                await expensesApi.create({
+                    category: newExpense.category,
+                    description: newExpense.description || expenseCategories.find(c => c.id === newExpense.category)?.name,
+                    amount: parseFloat(newExpense.amount),
+                    month: selectedMonth
+                });
+                toast.success('Despesa adicionada');
+                setNewExpense({ category: '', description: '', amount: '' });
+                fetchExpenses();
+            } catch (error) {
+                toast.error('Erro ao adicionar despesa');
+            }
+        } else {
+            const entry = {
+                id: Date.now().toString(),
                 category: newExpense.category,
                 description: newExpense.description || expenseCategories.find(c => c.id === newExpense.category)?.name,
                 amount: parseFloat(newExpense.amount),
                 month: selectedMonth
-            });
+            };
+            const all = JSON.parse(localStorage.getItem('economizebem_expenses') || '[]');
+            all.push(entry);
+            saveLocalExpenses(all);
+            const local = getLocalExpenses(selectedMonth);
+            setExpenses(local);
+            setSummary(calcLocalSummary(local));
             toast.success('Despesa adicionada');
             setNewExpense({ category: '', description: '', amount: '' });
-            fetchExpenses();
-        } catch (error) {
-            toast.error('Erro ao adicionar despesa');
         }
     };
 
     const handleDeleteExpense = async (id) => {
-        try {
-            await expensesApi.delete(id);
+        if (isAuthenticated) {
+            try {
+                await expensesApi.delete(id);
+                toast.success('Despesa removida');
+                fetchExpenses();
+            } catch (error) {
+                toast.error('Erro ao remover despesa');
+            }
+        } else {
+            const all = JSON.parse(localStorage.getItem('economizebem_expenses') || '[]');
+            const filtered = all.filter(e => e.id !== id);
+            saveLocalExpenses(filtered);
+            const local = getLocalExpenses(selectedMonth);
+            setExpenses(local);
+            setSummary(calcLocalSummary(local));
             toast.success('Despesa removida');
-            fetchExpenses();
-        } catch (error) {
-            toast.error('Erro ao remover despesa');
         }
     };
 
@@ -128,21 +180,26 @@ export default function CalculatorPage() {
             return;
         }
 
-        // Simplified Brazilian tax calculation
+        // INSS 2025
         let inss = 0;
-        if (gross <= 1412) inss = gross * 0.075;
-        else if (gross <= 2666.68) inss = gross * 0.09;
-        else if (gross <= 4000.03) inss = gross * 0.12;
+        if (gross <= 1518.00) inss = gross * 0.075;
+        else if (gross <= 2793.88) inss = gross * 0.09;
+        else if (gross <= 4190.83) inss = gross * 0.12;
         else inss = gross * 0.14;
-        inss = Math.min(inss, 908.85);
+        inss = Math.min(inss, 951.63);
 
-        const baseIR = gross - inss;
+        // IR 2025 — isenção para quem ganha até R$ 5.000 bruto (Lei aprovada em 2025)
         let ir = 0;
-        if (baseIR > 4664.68) ir = baseIR * 0.275 - 896.00;
-        else if (baseIR > 3751.05) ir = baseIR * 0.225 - 662.77;
-        else if (baseIR > 2826.65) ir = baseIR * 0.15 - 381.44;
-        else if (baseIR > 2259.20) ir = baseIR * 0.075 - 169.44;
-        ir = Math.max(ir, 0);
+        if (gross <= 5000.00) {
+            ir = 0;
+        } else {
+            const baseIR = gross - inss;
+            if (baseIR > 4664.68) ir = baseIR * 0.275 - 896.00;
+            else if (baseIR > 3751.05) ir = baseIR * 0.225 - 662.77;
+            else if (baseIR > 2826.65) ir = baseIR * 0.15 - 381.44;
+            else if (baseIR > 2259.20) ir = baseIR * 0.075 - 169.44;
+            ir = Math.max(ir, 0);
+        }
 
         const net = gross - inss - ir;
         
@@ -192,26 +249,12 @@ export default function CalculatorPage() {
 
                     {/* Expenses Tab */}
                     <TabsContent value="expenses">
-                        {!isAuthenticated ? (
-                            <Card>
-                                <CardContent className="py-12 text-center">
-                                    <PiggyBank className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
-                                    <h3 className="text-lg font-semibold mb-2">Faça login para usar</h3>
-                                    <p className="text-muted-foreground mb-4">
-                                        Crie uma conta gratuita para registrar e acompanhar seus gastos mensais.
-                                    </p>
-                                    <Button className="btn-primary" onClick={() => window.location.href = '/login'}>
-                                        Fazer Login
-                                    </Button>
-                                </CardContent>
-                            </Card>
-                        ) : (
                             <div className="grid lg:grid-cols-3 gap-8">
                                 {/* Add Expense Form */}
                                 <Card className="lg:col-span-1">
                                     <CardHeader>
                                         <CardTitle>Adicionar Despesa</CardTitle>
-                                        <CardDescription>Registre seus gastos mensais</CardDescription>
+                                        <CardDescription>Registre seus gastos mensais{!isAuthenticated && ' (salvo no navegador)'}</CardDescription>
                                     </CardHeader>
                                     <CardContent className="space-y-4">
                                         <div>
@@ -351,7 +394,6 @@ export default function CalculatorPage() {
                                     </Card>
                                 )}
                             </div>
-                        )}
                     </TabsContent>
 
                     {/* Simulator Tab */}
@@ -474,7 +516,7 @@ export default function CalculatorPage() {
                                         Calcular
                                     </Button>
                                     <p className="text-xs text-muted-foreground">
-                                        * Cálculo simplificado baseado nas tabelas de 2024. Não considera dependentes ou outras deduções.
+                                        * Cálculo simplificado baseado nas tabelas de 2025. Isenção de IR para salários até R$ 5.000. Não considera dependentes ou outras deduções.
                                     </p>
                                 </CardContent>
                             </Card>
