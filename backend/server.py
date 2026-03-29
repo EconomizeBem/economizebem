@@ -1017,7 +1017,7 @@ async def request_account_deletion(req: DeleteAccountRequest):
     <p><strong>Motivo:</strong> {req.reason or '(não informado)'}</p>
     <p><strong>Data:</strong> {now}</p>
     """
-    await send_email("suporte@economizebem.com.br", "Solicitação de exclusão de conta", html)
+    await send_email("contato@economizebem.com.br", "Solicitação de exclusão de conta", html)
 
     logger.info(f"Account deletion requested for: {req.email}")
     return {"message": "Solicitação registrada com sucesso"}
